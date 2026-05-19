@@ -760,7 +760,17 @@ function setSyncStatus(state) {
 function nxtId(){let a=[];for(let i=1;i<=5;i++){a=[...a,...SP[i].tickets,...(gc()[i]||[])]}const ns=a.map(t=>parseInt(t.id.replace('RS-',''))).filter(n=>!isNaN(n));return 'RS-'+String(Math.max(25,...ns)+1).padStart(3,'0');}
 const views={1:'table',2:'table',3:'table',4:'table',5:'table'};
 
-function getAllTickets(){let a=[];for(let i=1;i<=5;i++)a=[...a,...SP[i].tickets,...(gc()[i]||[])];return a;}
+function getAllTickets(){
+  let a=[];
+  for(let i=1;i<=5;i++){
+    const cx=gc()[i]||[];
+    const defaultIds=SP[i].tickets.map(t=>t.id);
+    const merged=SP[i].tickets.map(t=>{const c=cx.find(x=>x.id===t.id);return c||t;});
+    const custom=cx.filter(x=>!defaultIds.includes(x.id));
+    a=[...a,...merged,...custom];
+  }
+  return a;
+}
 function getTicket(tid,sid){const cx=gc()[sid]||[];return SP[sid].tickets.find(x=>x.id===tid)||cx.find(x=>x.id===tid);}
 
 // ── RENDER DASHBOARD ──
@@ -797,7 +807,12 @@ function renderDash(){
 
 // ── RENDER SPRINT ──
 function rSprint(sid){
-  const s=SP[sid],cx=gc()[sid]||[],all=[...s.tickets,...cx];
+  const s=SP[sid],cx=gc()[sid]||[];
+  // tickets par défaut surchargés par le cache, custom ajoutés à la fin
+  const defaultIds=s.tickets.map(t=>t.id);
+  const merged=s.tickets.map(t=>{const c=cx.find(x=>x.id===t.id);return c||t;});
+  const custom=cx.filter(x=>!defaultIds.includes(x.id));
+  const all=[...merged,...custom];
   const done=all.filter(t=>t.status==='done').length,pct=all.length?Math.round(done/all.length*100):0;
   const stC=s.status==='current'?'c-blue':s.status==='done'?'c-green':'c-gray';
   const stL=s.status==='current'?'● En cours':s.status==='done'?'✓ Terminé':'À venir';

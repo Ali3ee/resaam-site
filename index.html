@@ -270,6 +270,14 @@ body{display:flex;overflow:hidden;}
 .btn-p{background:var(--text);color:#fff;}
 .btn-p:hover{background:#2d2d2d;}
 
+/* comments */
+.comment-item{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.comment-item:last-child{border-bottom:none;}
+.comment-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2383e2,#9747ff);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;flex-shrink:0;margin-top:1px;}
+.comment-body{flex:1;}
+.comment-meta{font-size:11px;color:var(--t3);margin-bottom:2px;}
+.comment-text{color:var(--text);line-height:1.5;}
+
 /* toast */
 .tst{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:#fff;padding:7px 14px;border-radius:6px;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .2s ease,opacity .2s;opacity:0;z-index:9999;white-space:nowrap;}
 .tst.on{transform:translateX(-50%) translateY(0);opacity:1;}
@@ -984,6 +992,14 @@ body{display:flex;overflow:hidden;}
         <div id="dp-criteria"></div>
         <button class="add-ac-btn" onclick="addCriterion()">+ Ajouter un critère</button>
       </div>
+      <div class="dp-comments">
+        <div class="dp-ac-title" style="margin-top:16px">Commentaires</div>
+        <div id="dp-comments-list"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input class="fi" id="dp-comment-input" placeholder="Laisser un commentaire…" style="flex:1;padding:6px 10px;font-size:13px" onkeydown="if(event.key==='Enter')addComment()">
+          <button class="btn btn-p" onclick="addComment()" style="padding:5px 12px;font-size:13px;flex-shrink:0">↵</button>
+        </div>
+      </div>
     </div>
     <div class="dp-footer">
       <button class="btn btn-d" onclick="deleteCurrentTicket()">🗑 Supprimer</button>
@@ -1089,7 +1105,7 @@ async function loadRemote() {
       headers: { 'X-Master-Key': API_KEY }
     });
     const j = await r.json();
-    _cache = j.record || { tickets:{}, criteria:{} };
+    _cache = j.record || { tickets:{}, criteria:{}, comments:{} };
   } catch(e) {
     console.warn('JSONBin load failed, using cache', e);
     if (!_cache) _cache = { tickets:{}, criteria:{} };
@@ -1143,16 +1159,17 @@ function debounceSave() {
 
 // ── POLLING — pausé quand panneau de détail ouvert ──
 setInterval(async () => {
-  // ne pas écraser le cache si l'utilisateur est en train d'éditer
   if (document.getElementById('det-ov').classList.contains('on')) return;
   try {
     const r = await fetch(BIN_URL+'/latest', { headers: { 'X-Master-Key': API_KEY } });
     const j = await r.json();
-    const newData = j.record || { tickets:{}, criteria:{} };
+    const newData = j.record || { tickets:{}, criteria:{}, comments:{} };
     if (JSON.stringify(newData) !== JSON.stringify(_cache)) {
       _cache = newData;
       for(let i=1;i<=5;i++) rSprint(i);
-      renderDash();
+      // auto-refresh dashboard si on est dessus
+      const dashActive = document.getElementById('page-dashboard').classList.contains('on');
+      if (dashActive) renderDash();
       setSyncStatus('ok');
     }
   } catch(e) { setSyncStatus('err'); }
@@ -1343,6 +1360,7 @@ function openDetail(tid, sid) {
   document.getElementById('dp-priority').value = t.priority;
   document.getElementById('dp-desc').value = t.desc;
   renderCriteria(tid);
+  renderComments(tid);
   document.getElementById('det-ov').classList.add('on');
 }
 
@@ -1451,6 +1469,54 @@ function nav(name){
   document.getElementById('tb-act').style.display=sprintPages.has(name)?'flex':'none';
   if(name.startsWith('sprint'))curSprint=parseInt(name.replace('sprint',''));
   if(name==='dashboard')renderDash();
+}
+
+// ── COMMENTAIRES ──
+const gcm = () => (_cache ? (_cache.comments||{}) : {});
+const scm = d => { if(_cache){ _cache.comments = d; debounceSave(); } };
+
+// auteur : Ali ou Sefora selon le nom dans la sidebar
+function getAuthor() {
+  const n = document.querySelector('.sb-un');
+  return n ? n.textContent.trim() : 'Ali';
+}
+
+function renderComments(tid) {
+  const all = gcm();
+  const list = all[tid] || [];
+  const el = document.getElementById('dp-comments-list');
+  if (!el) return;
+  if (!list.length) {
+    el.innerHTML = '<div style="font-size:12px;color:var(--t3);padding:6px 0">Aucun commentaire</div>';
+    return;
+  }
+  el.innerHTML = list.map(c => `
+    <div class="comment-item">
+      <div class="comment-av">${c.author.slice(0,2).toUpperCase()}</div>
+      <div class="comment-body">
+        <div class="comment-meta">${c.author} · ${c.date}</div>
+        <div class="comment-text">${c.text}</div>
+      </div>
+    </div>
+  `).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+function addComment() {
+  const input = document.getElementById('dp-comment-input');
+  const text = input.value.trim();
+  if (!text || !detTid) return;
+  const all = gcm();
+  if (!all[detTid]) all[detTid] = [];
+  all[detTid].push({
+    author: getAuthor(),
+    text,
+    date: new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})
+  });
+  scm(all);
+  input.value = '';
+  renderComments(detTid);
+  toast('Commentaire ajouté ✓');
 }
 
 function toast(msg){const e=document.getElementById('tst');e.textContent=msg;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2300);}

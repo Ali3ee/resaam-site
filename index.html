@@ -289,6 +289,41 @@ body{display:flex;overflow:hidden;}
 .tpl-icon{font-size:24px;margin-bottom:6px;}
 .tpl-name{font-size:13px;font-weight:500;color:var(--text);}
 .tpl-desc{font-size:11px;color:var(--t3);margin-top:2px;}
+/* ── BLOCK EDITOR ── */
+.be-blocks{padding-bottom:40px;}
+.be-block{position:relative;margin:1px 0;}
+.be-block-inner{display:flex;align-items:flex-start;gap:6px;padding:2px 0;border-radius:var(--r);transition:background .08s;}
+.be-block:hover .be-handle{opacity:1;}
+.be-block-focused>.be-block-inner{background:rgba(0,0,0,.02);}
+.be-handle{opacity:0;cursor:grab;color:var(--t3);font-size:13px;padding:2px 3px;border-radius:3px;flex-shrink:0;margin-top:2px;transition:opacity .1s;user-select:none;}
+.be-handle:hover{background:var(--bg-a);color:var(--text);}
+.be-editable{flex:1;min-width:0;outline:none;word-break:break-word;line-height:1.6;min-height:1.6em;}
+.be-editable:empty:before{content:attr(data-ph);color:var(--t3);pointer-events:none;}
+.be-editable.be-focused:empty:before{opacity:.5;}
+.be-h1{font-size:28px;font-weight:700;color:var(--text);margin-top:8px;}
+.be-h2{font-size:20px;font-weight:600;color:var(--text);margin-top:6px;}
+.be-h3{font-size:16px;font-weight:600;color:var(--text);margin-top:4px;}
+.be-p{font-size:14px;color:var(--text);}
+.be-bullet-dot{color:var(--t3);flex-shrink:0;margin-top:2px;font-size:13px;width:16px;text-align:center;}
+.be-num-n{color:var(--t3);flex-shrink:0;margin-top:2px;font-size:13px;width:22px;}
+.be-quote{border-left:3px solid var(--border);padding-left:12px;color:var(--t2);font-style:italic;}
+.be-code{font-family:'SFMono-Regular',Consolas,monospace;font-size:13px;background:var(--bg-h);padding:8px 12px;border-radius:var(--r);color:var(--red);width:100%;}
+.be-callout-inner{background:var(--bg-h);border-radius:var(--r2);padding:10px 12px;}
+.be-todo-check{margin-top:4px;flex-shrink:0;accent-color:var(--text);cursor:pointer;width:14px;height:14px;}
+.be-done{text-decoration:line-through;color:var(--t3);}
+.be-divider-wrap{align-items:center;}
+.be-icon{cursor:pointer;transition:transform .1s;}
+.be-icon:hover{transform:scale(1.1);}
+.be-title{cursor:text;}
+.be-title:empty:before{content:'Sans titre';color:var(--t3);}
+.be-add-btn{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--t3);cursor:pointer;padding:6px 0;transition:color .1s;border:none;background:none;font-family:var(--font);margin-top:4px;}
+.be-add-btn:hover{color:var(--text);}
+.slash-menu{position:fixed;background:var(--bg);border:1px solid var(--border);border-radius:var(--r2);box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:800;min-width:180px;padding:4px;display:none;}
+.slash-menu.on{display:block;}
+.slash-item{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--text);transition:background .08s;}
+.slash-item:hover{background:var(--bg-h);}
+.slash-icon{width:22px;text-align:center;font-size:12px;color:var(--t3);font-family:monospace;font-weight:600;}
+
 .tst{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:#fff;padding:7px 14px;border-radius:6px;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .2s ease,opacity .2s;opacity:0;z-index:9999;white-space:nowrap;}
 .tst.on{transform:translateX(-50%) translateY(0);opacity:1;}
 
@@ -384,605 +419,15 @@ body{display:flex;overflow:hidden;}
     </div>
   </div>
 
-  <!-- WELCOME -->
-  <div class="pw on" id="page-welcome">
-    <div class="cov" style="background:linear-gradient(120deg,#e0f2fe,#ede9fe,#fce7f3)"></div>
-    <div class="pg-icon">👋</div>
-    <div class="pg-t">Bienvenue chez Resaam, Sefora !</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">👤</span> Tuteur</div><div class="pv">Ali HANOUT (CEO) — ali@resaam.com — +33 6 22 32 49 41</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📅</span> Début</div><div class="pv">19 mai 2026</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🏁</span> Fin prévue</div><div class="pv">25 juillet 2026 — 280h minimum (40 jours × 7h)</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📍</span> Lieu</div><div class="pv">5 Parvis Alan Turing, Paris 75013 + télétravail</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🎓</span> Formation</div><div class="pv">LP2 Métiers de l'Informatique et Application Web — Université de Limoges</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📞</span> Suivi</div><div class="pv">Point hebdo visio chaque lundi matin + messagerie instantanée</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🏷️</span> Statut</div><div class="pv"><span class="chip c-green">● En cours</span></div></div>
-    </div>
-    <hr class="ndiv">
-    <div class="cl blue"><span class="cl-ic">💡</span><div>Ce document est ton guide de stage. Il contient tout : contexte, mission, outils, gestion des tickets par sprint. Lis-le du début à la fin avant de commencer, puis reviens dessus chaque lundi.</div></div>
-    <div class="h2">Checklist du premier jour</div>
-    <ul class="nul">
-      <li class="done-li">Convention de stage signée et transmise</li>
-      <li class="done-li">Accès GitHub configuré (<span class="ic">Ali3ee/resaam-site</span>) — invitation acceptée</li>
-      <li class="done-li">Messagerie interne Resaam opérationnelle</li>
-      <li>Lecture complète de ce document onboarding</li>
-      <li>Visite de resaam.com et prise de notes (premier regard)</li>
-      <li>Premier ticket Sprint 1 démarré (RS-001 : Benchmark)</li>
-    </ul>
-    <div class="h2">Règles de vie</div>
-    <ul class="nul">
-      <li><strong>Autonomie</strong> — Résultats comptent plus que la présence. Horaires flexibles, mais les deadlines de sprint sont tenues.</li>
-      <li><strong>Communication</strong> — Un blocage de plus de 2h se signale immédiatement sur la messagerie. Ne pas rester bloquée seule.</li>
-      <li><strong>Git discipline</strong> — Un commit = une tâche. Pas de commits "misc" ou "wip" sans description.</li>
-      <li><strong>IA = outil</strong> — Tout output IA relu, compris, amélioré avant commit. L'IA est une accélératrice, pas une remplaçante.</li>
-      <li><strong>Documentation</strong> — Ce qui n'est pas documenté n'existe pas. Chaque décision technique notée.</li>
-    </ul>
-  </div>
+  <!-- EDITABLE PAGES (block engine) -->
+  <div class="pw on" id="page-welcome" data-pid="welcome"></div>
+  <div class="pw" id="page-context" data-pid="context"></div>
+  <div class="pw" id="page-mission" data-pid="mission"></div>
+  <div class="pw" id="page-stack" data-pid="stack"></div>
+  <div class="pw" id="page-timeline" data-pid="timeline"></div>
+  <div class="pw" id="page-charte" data-pid="charte"></div>
 
-  <!-- CONTEXT -->
-  <div class="pw" id="page-context">
-    <div class="cov" style="background:linear-gradient(120deg,#dcfce7,#e0f2fe)"></div>
-    <div class="pg-icon">📌</div>
-    <div class="pg-t">Contexte Resaam</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">🏢</span> Société</div><div class="pv">RESAAM SAS — 366 rue de Vaugirard, 75015 Paris</div></div>
-      <div class="pr"><div class="pk"><span class="pi">💡</span> Pitch</div><div class="pv">"Solution de gestion des flux de transport sanitaire"</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🎯</span> Marché</div><div class="pv"><span class="chip c-blue">Healthtech</span> <span class="chip c-gray">SaaS B2B</span> <span class="chip c-gray">Transport sanitaire</span> <span class="chip c-gray">Régulation médicale</span></div></div>
-      <div class="pr"><div class="pk"><span class="pi">🏆</span> Certifications</div><div class="pv"><span class="chip c-green">HDS certifié</span> <span class="chip c-yellow">CNDA homologation en cours</span> <span class="chip c-gray">SESAM-Vitale sandbox</span></div></div>
-      <div class="pr"><div class="pk"><span class="pi">🤝</span> Partenaires</div><div class="pv">Mairie du 15e · French Tech Grand Paris · Station F · BPI France · URPS Médecins Libéraux IDF · SFMU · SAMU Urgences de France · SAMU 93 Bobigny</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📧</span> Contact</div><div class="pv">contact@resaam.com</div></div>
-    </div>
-    <hr class="ndiv">
-
-    <div class="h1">Comprendre le produit</div>
-    <p class="np">Resaam est une plateforme de gestion des flux de transport sanitaire. Elle connecte en temps réel l'ensemble des acteurs : SAMU/SAS, établissements de santé, médecine de ville, SMUR, ambulances privées et associations de secours. L'objectif : remplacer la coordination par téléphone et papier par un système intelligent d'affectation automatisée des missions.</p>
-
-    <div class="cl yellow"><span class="cl-ic">⚠️</span><div><strong>Important sur les visuels :</strong> les captures d'écran dans le deck commercial sont issues de l'ancienne version (legacy). Une refonte visuelle complète des interfaces est en cours. Pour le site vitrine, tu t'appuies sur les descriptions fonctionnelles — pas sur les screenshots legacy.</div></div>
-
-    <div class="h2">L'écosystème Resaam — qui connecte quoi ?</div>
-    <p class="np">Resaam s'intègre au cœur du parcours patient, de la prescription médicale jusqu'au retour au domicile :</p>
-    <ul class="nul">
-      <li><strong>Médecine de ville → Hospitalisation/Urgence</strong> — programmation des transports non urgents avec annonce des délais</li>
-      <li><strong>SAMU/SAS → Transporteurs</strong> — affectation automatisée des missions (SMUR, ambulances privées, associations)</li>
-      <li><strong>Transporteurs → SAU</strong> — bilan numérique embarqué + annonce des arrivées auprès des services d'urgences</li>
-      <li><strong>SAU → Domicile/Transfert</strong> — programmation des sorties et des retours patients</li>
-      <li><strong>Connecteur Sapeurs-Pompiers</strong> — intégration flux pompiers vers les urgences</li>
-    </ul>
-
-    <div class="h2">Les interfaces par utilisateur</div>
-
-    <div class="tog op"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>📡 Pour le SAMU — régulation intelligente (3 vues)</span></div><div class="tog-b">
-      <p style="font-size:13px;color:var(--t2);margin-bottom:8px">L'interface SAMU est déclinée en 3 vues complémentaires :</p>
-      <ul class="nul">
-        <li><strong>Vue Patient</strong> — app mobile, suivi de la mission en cours, navigation guidée</li>
-        <li><strong>Vue Coordinateur</strong> — dashboard web, liste des interventions en cours, statuts en temps réel, assignation des véhicules</li>
-        <li><strong>Vue Embarqué</strong> — app mobile ambulancier, prise en charge et navigation</li>
-        <li>Affectation automatisée des missions selon disponibilité et géolocalisation</li>
-        <li>ECG connecté (synergie partenaire) — bilan numérique transmis depuis le véhicule</li>
-      </ul>
-    </div></div>
-
-    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🏥 Pour le Service des Urgences — tableau de gestion de flux</span></div><div class="tog-b">
-      <ul class="nul">
-        <li>Écran temps réel des véhicules en approche avec délais d'arrivée mis à jour en continu</li>
-        <li>Affichage du motif du patient (ex: OAP, fracture col du fémur, parturiente, malaise…)</li>
-        <li>Code couleur urgence (rouge = prioritaire)</li>
-        <li>Connecteur pour admission — liaison avec le DPI de l'établissement</li>
-      </ul>
-    </div></div>
-
-    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>💊 Pour les Prescripteurs — réservation de transport</span></div><div class="tog-b">
-      <ul class="nul">
-        <li>Outil de recherche et réservation de transport sanitaire (consultation, transfert, dialyse, chimio, hospitalisation…)</li>
-        <li>Transports unitaires ou séries programmées</li>
-        <li>Choix du véhicule : Ambulance, VSL, Taxi</li>
-        <li>Affichage temps réel des statuts et délais</li>
-        <li>Connecteur au DPI (Dossier Patient Informatisé) — évite la re-saisie des infos patient</li>
-      </ul>
-    </div></div>
-
-    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🚑 Pour les Transporteurs — 3 profils (Taxi, Régulateur, Ambulancier)</span></div><div class="tog-b">
-      <p style="font-size:13px;color:var(--t2);margin-bottom:8px">L'interface transporteur couvre 3 types d'acteurs :</p>
-      <ul class="nul">
-        <li><strong>Taxi</strong> — app mobile, réception des missions, acceptation/refus, navigation</li>
-        <li><strong>Régulateur</strong> — dashboard web, gestion des réservations en cours, assignation de véhicules, suivi flotte</li>
-        <li><strong>Ambulancier</strong> — app mobile, prise en charge guidée, bilan numérique, navigation</li>
-        <li>Bilan numérique embarqué pour SMUR, ambulances privées et associations</li>
-      </ul>
-    </div></div>
-
-    <div class="h2">Partenaires institutionnels</div>
-    <ul class="nul">
-      <li><strong>Mairie du 15e arrondissement de Paris</strong> — ancrage territorial</li>
-      <li><strong>French Tech Grand Paris</strong> — label startup</li>
-      <li><strong>Station F</strong> — programme incubation</li>
-      <li><strong>BPI France</strong> — financement public innovation</li>
-      <li><strong>URPS Médecins Libéraux Île-de-France</strong> — partenaire médecine de ville</li>
-      <li><strong>SFMU</strong> (Société Française de Médecine d'Urgence) — partenaire scientifique</li>
-      <li><strong>SAMU Urgences de France</strong> — partenaire institutionnel national</li>
-      <li><strong>SAMU 93 Bobigny</strong> — partenaire opérationnel terrain</li>
-    </ul>
-
-    <div class="h2">Périmètre technique de ton stage</div>
-    <div class="cl red"><span class="cl-ic">🔒</span><div><strong>Accès Git restreint intentionnellement.</strong> Tu travailles uniquement sur <span class="ic">Ali3ee/resaam-site</span> (repo dédié site vitrine). Le monorepo applicatif <span class="ic">resaam-source</span> contient les interfaces métier (SAMU, Transporter, Service, backend NestJS) — confidentiel, pas d'accès. Pour toute info produit nécessaire au contenu du site, tu passes par Ali.</div></div>
-
-    <div class="h2">Ce que le site vitrine doit communiquer</div>
-    <div class="cl green"><span class="cl-ic">✅</span><div>Le site doit répondre à une question : <strong>"Pourquoi Resaam plutôt qu'un appel téléphonique ?"</strong> — pour chacune des 3 cibles principales (établissements, transporteurs, régulateurs).</div></div>
-    <ul class="nul">
-      <li><strong>Crédibilité</strong> — partenaires institutionnels de poids (SAMU, BPI, Station F), HDS, CNDA</li>
-      <li><strong>Couverture de l'écosystème</strong> — Resaam connecte TOUS les acteurs, pas juste un maillon</li>
-      <li><strong>Temps réel</strong> — bilan numérique, annonce des arrivées, statuts en direct</li>
-      <li><strong>Sécurité des données</strong> — données de santé sensibles, HDS certifié, rassurer</li>
-      <li><strong>Intégration DPI</strong> — pas de re-saisie, connecteur existant</li>
-    </ul>
-  </div>
-
-  <!-- MISSION -->
-  <div class="pw" id="page-mission">
-    <div class="cov" style="background:linear-gradient(120deg,#fef3c7,#fce7f3)"></div>
-    <div class="pg-icon">🎯</div>
-    <div class="pg-t">Ma mission</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">📦</span> Livrable</div><div class="pv"><span class="chip c-blue">resaam.com — refonte complète de zéro</span></div></div>
-      <div class="pr"><div class="pk"><span class="pi">🤖</span> Outils IA</div><div class="pv">Claude (Anthropic) + ChatGPT (OpenAI) — code ET contenu</div></div>
-      <div class="pr"><div class="pk"><span class="pi">⏱️</span> Durée</div><div class="pv">10 semaines · 5 sprints · ~280 heures</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🌐</span> URL cible</div><div class="pv">resaam.com (domaine existant à reprendre)</div></div>
-    </div>
-    <hr class="ndiv">
-    <div class="cl red"><span class="cl-ic">🚫</span><div><strong>Site actuel :</strong> onepage générique auto-générée, design impersonnel, contenu inadapté, ne reflète pas l'identité Resaam. On ne récupère rien — table rase.</div></div>
-    <div class="h1">Objectif principal</div>
-    <p class="np">Concevoir et développer un site vitrine professionnel pour Resaam qui donne envie à un directeur d'hôpital ou un ambulancier de prendre contact. Chaque page doit répondre à une question précise de l'utilisateur cible.</p>
-    <div class="h2">Pages à créer</div>
-    <ul class="nul">
-      <li><strong>Homepage</strong> — pitch global, 3 cibles, comment ça marche, partenaires, CTA</li>
-      <li><strong>Produit / Fonctionnalités</strong> — détail des 3 interfaces, captures d'écran ou illustrations</li>
-      <li><strong>À propos</strong> — histoire Resaam, équipe, valeurs, localisation</li>
-      <li><strong>Partenaires & Certifications</strong> — BPI, Station F, HDS, CNDA</li>
-      <li><strong>Contact</strong> — formulaire de démo, coordonnées, localisation</li>
-      <li><strong>Mentions légales + Politique de confidentialité</strong> — obligatoires légalement</li>
-    </ul>
-    <div class="h2">Critères de qualité</div>
-    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>📱 Responsive & accessibilité</span></div><div class="tog-b"><ul class="nul"><li>Mobile first — testé sur iPhone et Android (émulateur)</li><li>Contraste AA minimum sur tous les textes</li><li>Navigation clavier fonctionnelle</li><li>Alt text sur toutes les images</li></ul></div></div>
-    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>⚡ Performance</span></div><div class="tog-b"><ul class="nul"><li>Lighthouse ≥ 90 sur les 4 catégories</li><li>Images optimisées (WebP, lazy loading)</li><li>Pas de librairies JS inutiles — vanilla JS autant que possible</li><li>CSS minimal — pas de Bootstrap complet si 10% est utilisé</li></ul></div></div>
-    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🔍 SEO</span></div><div class="tog-b"><ul class="nul"><li>Title et meta description uniques par page</li><li>Structure H1/H2/H3 logique</li><li>Sitemap.xml soumis à Google Search Console</li><li>Schema.org Organization sur la homepage</li></ul></div></div>
-    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🎨 Design</span></div><div class="tog-b"><ul class="nul"><li>Cohérent avec l'identité Resaam existante (couleurs teal/dark)</li><li>Typographie professionnelle et lisible</li><li>Illustrations ou icônes cohérentes (pas de stock photos génériques)</li><li>Animations subtiles — pas de parallax agressif</li></ul></div></div>
-  </div>
-
-  <!-- STACK -->
-  <div class="pw" id="page-stack">
-    <div class="cov" style="background:linear-gradient(120deg,#f3f0ff,#e0f2fe)"></div>
-    <div class="pg-icon">🛠️</div>
-    <div class="pg-t">Stack & Outils</div>
-    <div class="h2" style="margin-top:20px">Tes compétences actuelles</div>
-    <div style="margin:10px 0 20px">
-      <div class="skrow"><div class="sknm">HTML / CSS</div><div class="skt"><div class="skf" style="width:90%"></div></div><div class="skp">90%</div></div>
-      <div class="skrow"><div class="sknm">Design Web</div><div class="skt"><div class="skf" style="width:80%"></div></div><div class="skp">80%</div></div>
-      <div class="skrow"><div class="sknm">PHP</div><div class="skt"><div class="skf" style="width:65%"></div></div><div class="skp">65%</div></div>
-      <div class="skrow"><div class="sknm">Gestion serveur</div><div class="skt"><div class="skf" style="width:55%"></div></div><div class="skp">55%</div></div>
-      <div class="skrow"><div class="sknm">JavaScript</div><div class="skt"><div class="skf" style="width:50%"></div></div><div class="skp">50%</div></div>
-      <div class="skrow"><div class="sknm">Docker / Symfony</div><div class="skt"><div class="skf" style="width:20%"></div></div><div class="skp">20%</div></div>
-    </div>
-    <div class="cl blue"><span class="cl-ic">📈</span><div>Ce stage est une opportunité de <strong>monter en JS</strong>. Les animations scroll, la validation de formulaire et les interactions du site vont te pousser au-delà des 50% actuels.</div></div>
-    <hr class="ndiv">
-    <div class="h2">Outils du projet</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">🐙</span> Versioning</div><div class="pv">GitHub — <span class="ic">Ali3ee/resaam-site</span> · repo dédié site vitrine · branche <span class="ic">main</span> protégée</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🤖</span> IA code</div><div class="pv">Claude (claude.ai) — génération HTML/CSS/JS, debugging, revue de code</div></div>
-      <div class="pr"><div class="pk"><span class="pi">✍️</span> IA contenu</div><div class="pv">ChatGPT — rédaction copywriting, SEO, meta descriptions, textes légaux</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🎨</span> Design</div><div class="pv">Figma — maquettes et design system (accès fourni par Ali)</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🚀</span> Déploiement</div><div class="pv">Vercel — CI/CD automatique sur push main, preview sur PR</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📊</span> Analytics</div><div class="pv">Plausible Analytics (privacy-first, sans cookie banner)</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📬</span> Formulaire</div><div class="pv">Formspree — gestion des soumissions de contact sans backend</div></div>
-    </div>
-    <div class="h2">Conventions Git</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">📦</span> Repo</div><div class="pv"><span class="ic">Ali3ee/resaam-site</span> — repo dédié, isolé du monorepo applicatif</div></div>
-      <div class="pr"><div class="pk"><span class="pi">⬇️</span> Clone</div><div class="pv"><span class="ic">git clone git@github.com:Ali3ee/resaam-site.git</span></div></div>
-      <div class="pr"><div class="pk"><span class="pi">💾</span> Commits</div><div class="pv"><span class="ic">feat: hero section homepage</span> · <span class="ic">fix: nav mobile overflow</span></div></div>
-      <div class="pr"><div class="pk"><span class="pi">🌿</span> Branches</div><div class="pv"><span class="ic">feature/hero-section</span> · <span class="ic">fix/nav-mobile</span> · jamais coder directement sur <span class="ic">main</span></div></div>
-      <div class="pr"><div class="pk"><span class="pi">🔍</span> PR</div><div class="pv">Pull Request sur chaque ticket terminé — Ali review avant merge</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📝</span> README</div><div class="pv">Mis à jour à chaque sprint — structure des fichiers, setup local, déploiement</div></div>
-    </div>
-    <div class="h2">Ressources utiles</div>
-    <ul class="nul">
-      <li>MDN Web Docs — référence HTML/CSS/JS (<span class="ic">developer.mozilla.org</span>)</li>
-      <li>Can I Use — compatibilité navigateurs (<span class="ic">caniuse.com</span>)</li>
-      <li>PageSpeed Insights — audit Lighthouse en ligne (<span class="ic">pagespeed.web.dev</span>)</li>
-      <li>Coolors — générateur de palettes de couleurs (<span class="ic">coolors.co</span>)</li>
-      <li>Undraw — illustrations SVG libres de droit (<span class="ic">undraw.co</span>)</li>
-      <li>Phosphor Icons — bibliothèque d'icônes cohérentes (<span class="ic">phosphoricons.com</span>)</li>
-    </ul>
-  </div>
-
-  <!-- TIMELINE -->
-  <div class="pw" id="page-timeline">
-    <div class="cov" style="background:linear-gradient(120deg,#fef3c7,#e0f2fe,#dcfce7)"></div>
-    <div class="pg-icon">📅</div>
-    <div class="pg-t">Planning — 10 semaines</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">📅</span> Début</div><div class="pv">Lundi 19 mai 2026</div></div>
-      <div class="pr"><div class="pk"><span class="pi">🏁</span> Fin</div><div class="pv">Vendredi 25 juillet 2026</div></div>
-      <div class="pr"><div class="pk"><span class="pi">⏱️</span> Volume</div><div class="pv">280h minimum · 35h/semaine · 5 sprints × 2 semaines</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📋</span> Rapport</div><div class="pv">À remettre à l'Université de Limoges — délai à confirmer avec l'enseignant référent</div></div>
-    </div>
-    <hr class="ndiv">
-    <div class="tli"><div class="tld act"></div><div><div class="tl-dt">Sem 1-2 · 19 mai → 30 mai 2026</div><div class="tl-nm">Sprint 1 — Découverte & Setup <span class="chip c-blue" style="margin-left:6px;font-size:11px">En cours</span></div><div class="tl-ds">Onboarding, audit resaam.com, benchmark 5 concurrents, définition arborescence, maquettes fil de fer homepage, setup environnement de dev. Livrable : maquettes validées par Ali.</div></div></div>
-    <div class="tli"><div class="tld"></div><div><div class="tl-dt">Sem 3-4 · 2 → 13 juin 2026</div><div class="tl-nm">Sprint 2 — Architecture & Design</div><div class="tl-ds">Design system CSS (tokens, palette, typo), structure HTML de toutes les pages, header/footer responsive, hero section intégrée. Livrable : site navigable en local avec structure complète.</div></div></div>
-    <div class="tli"><div class="tld"></div><div><div class="tl-dt">Sem 5-6 · 16 → 27 juin 2026</div><div class="tl-nm">Sprint 3 — Intégration IA & interactivité</div><div class="tl-ds">Contenu de toutes les pages généré et intégré via Claude/OpenAI, animations scroll JS, formulaire de contact fonctionnel, page "Comment ça marche". Livrable : site complet avec vrai contenu.</div></div></div>
-    <div class="tli"><div class="tld"></div><div><div class="tl-dt">Sem 7-8 · 30 juin → 11 juillet 2026</div><div class="tl-nm">Sprint 4 — Contenu final & SEO</div><div class="tl-ds">Relecture et finalisation de tous les textes, meta SEO, accessibilité RGAA, sitemap, analytics Plausible. Livrable : site SEO-ready validé par Ali sur le fond.</div></div></div>
-    <div class="tli" style="padding-bottom:0"><div class="tld"></div><div><div class="tl-dt">Sem 9-10 · 14 → 25 juillet 2026</div><div class="tl-nm">Sprint 5 — Finition & Déploiement</div><div class="tl-ds">Tests cross-browser et mobile, audit Lighthouse ≥ 90, déploiement resaam.com sur Vercel, documentation technique, présentation finale + rapport de stage. Livrable : resaam.com en production.</div></div></div>
-  </div>
-
-  <!-- CHARTE -->
-  <div class="pw" id="page-charte">
-    <div class="cov" style="background:linear-gradient(135deg,#0E9E8E 0%,#B2D8D4 60%,#E8F4F3 100%)"></div>
-    <div class="pg-icon">🎨</div>
-    <div class="pg-t">Charte graphique Resaam</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">📌</span> Version</div><div class="pv">v2.0 — interfaces SAMU, Transporter, Service</div></div>
-      <div class="pr"><div class="pk"><span class="pi">⚠️</span> Important</div><div class="pv"><span class="chip c-yellow">Les visuels d'interface sont confidentiels — ne pas publier de screenshots app sur le site vitrine</span></div></div>
-    </div>
-    <hr class="ndiv">
-
-    <div class="h1">Couleurs</div>
-    <div class="cl blue"><span class="cl-ic">💡</span><div>Ces couleurs sont extraites directement des interfaces v2.0 en production. Utilise-les telles quelles — ne pas inventer de variantes sans validation d'Ali.</div></div>
-
-    <div class="h2">Palette principale</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 20px">
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:64px;background:#0E9E8E"></div>
-        <div style="padding:10px 12px">
-          <div style="font-size:13px;font-weight:600;color:var(--text)">Primary Teal</div>
-          <div style="font-size:12px;color:var(--t3);font-family:monospace">#0E9E8E</div>
-          <div style="font-size:11px;color:var(--t2);margin-top:3px">Boutons CTA, logo, statuts actifs, stepper</div>
-        </div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:64px;background:#0A8A7C"></div>
-        <div style="padding:10px 12px">
-          <div style="font-size:13px;font-weight:600;color:var(--text)">Teal Dark</div>
-          <div style="font-size:12px;color:var(--t3);font-family:monospace">#0A8A7C</div>
-          <div style="font-size:11px;color:var(--t2);margin-top:3px">Hover sur boutons primaires</div>
-        </div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:64px;background:linear-gradient(135deg,#B2D8D4,#E8F4F3)"></div>
-        <div style="padding:10px 12px">
-          <div style="font-size:13px;font-weight:600;color:var(--text)">Teal Gradient</div>
-          <div style="font-size:12px;color:var(--t3);font-family:monospace">#B2D8D4 → #E8F4F3</div>
-          <div style="font-size:11px;color:var(--t2);margin-top:3px">Fond hero, sections mises en avant</div>
-        </div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:64px;background:#1A1F2E"></div>
-        <div style="padding:10px 12px">
-          <div style="font-size:13px;font-weight:600;color:var(--text)">Dark Navy</div>
-          <div style="font-size:12px;color:var(--t3);font-family:monospace">#1A1F2E</div>
-          <div style="font-size:11px;color:var(--t2);margin-top:3px">Texte principal, titres, logo wordmark</div>
-        </div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:64px;background:#6B7280"></div>
-        <div style="padding:10px 12px">
-          <div style="font-size:13px;font-weight:600;color:var(--text)">Grey Medium</div>
-          <div style="font-size:12px;color:var(--t3);font-family:monospace">#6B7280</div>
-          <div style="font-size:11px;color:var(--t2);margin-top:3px">Texte secondaire, labels, metadata</div>
-        </div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:64px;background:#F8F9FA;border-bottom:1px solid var(--border)"></div>
-        <div style="padding:10px 12px">
-          <div style="font-size:13px;font-weight:600;color:var(--text)">Background Light</div>
-          <div style="font-size:12px;color:var(--t3);font-family:monospace">#F8F9FA</div>
-          <div style="font-size:11px;color:var(--t2);margin-top:3px">Fond sidebar, sections alternées</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="h2">Couleurs fonctionnelles</div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 20px">
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:40px;background:#E8352A"></div>
-        <div style="padding:8px 10px"><div style="font-size:12px;font-weight:600">Urgence</div><div style="font-size:11px;color:var(--t3);font-family:monospace">#E8352A</div><div style="font-size:11px;color:var(--t2)">Motifs urgents, alertes</div></div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:40px;background:#F97316"></div>
-        <div style="padding:8px 10px"><div style="font-size:12px;font-weight:600">Warning</div><div style="font-size:11px;color:var(--t3);font-family:monospace">#F97316</div><div style="font-size:11px;color:var(--t2)">Destination, en attente</div></div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:40px;background:#3B82F6"></div>
-        <div style="padding:8px 10px"><div style="font-size:12px;font-weight:600">Info</div><div style="font-size:11px;color:var(--t3);font-family:monospace">#3B82F6</div><div style="font-size:11px;color:var(--t2)">Badges SAMU, liens</div></div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="height:40px;background:#E5E7EB"></div>
-        <div style="padding:8px 10px"><div style="font-size:12px;font-weight:600">Border</div><div style="font-size:11px;color:var(--t3);font-family:monospace">#E5E7EB</div><div style="font-size:11px;color:var(--t2)">Séparateurs, contours</div></div>
-      </div>
-    </div>
-
-    <hr class="ndiv">
-    <div class="h1">Statuts de mission — badges</div>
-    <div class="cl"><span class="cl-ic">ℹ️</span><div>Ces couleurs sont extraites de la table canonique des statuts (source : Ambulancier V2 + harmonisation en cours). À utiliser telles quelles sur le site vitrine pour illustrer le parcours patient.</div></div>
-
-    <div style="display:flex;flex-direction:column;gap:6px;margin:14px 0 24px">
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#0EA5E9;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">À ATTRIBUER</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#0EA5E9</span>
-        <span style="font-size:13px;color:var(--t2)">Demande créée, recherche de transporteur</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#032A47;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">EN ATTENTE</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#032A47</span>
-        <span style="font-size:13px;color:var(--t2)">Assigné, avant démarrage opérationnel</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#1674B9;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">EN ROUTE</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#1674B9</span>
-        <span style="font-size:13px;color:var(--t2)">Véhicule en déplacement vers le patient</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#F59E0B;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">ARRIVÉ SUR PLACE</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#F59E0B</span>
-        <span style="font-size:13px;color:var(--t2)">Véhicule arrivé, patient non encore embarqué</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#16A34A;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">PRIS EN CHARGE</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#16A34A</span>
-        <span style="font-size:13px;color:var(--t2)">Patient embarqué, en route vers destination</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#7C3AED;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">DÉPOSÉ</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#7C3AED</span>
-        <span style="font-size:13px;color:var(--t2)">Patient déposé à destination</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#64748B;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">TERMINÉE</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#64748B</span>
-        <span style="font-size:13px;color:var(--t2)">Mission close, facturation possible</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:6px">
-        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:130px;padding:5px 10px;border-radius:999px;background:#B91C1C;color:white;font-size:11px;font-weight:800;letter-spacing:.04em">ANNULÉE</span>
-        <span style="font-family:monospace;font-size:12px;color:var(--t3)">#B91C1C</span>
-        <span style="font-size:13px;color:var(--t2)">Mission annulée ou indisponible</span>
-      </div>
-    </div>
-
-    <hr class="ndiv">
-    <div class="h1">Couleur par interface</div>
-    <div class="cl yellow"><span class="cl-ic">⚠️</span><div>Chaque interface a sa propre couleur d'accent. C'est un élément clé de l'identité Resaam — sur le site vitrine, les sections dédiées à chaque cible doivent refléter ces couleurs.</div></div>
-
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0 24px">
-      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden">
-        <div style="height:8px;background:#0E9E8E"></div>
-        <div style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <div style="width:32px;height:32px;background:#0E9E8E;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="2,12 6,12 8,4 10,20 13,8 15,16 17,12 22,12"/></svg>
-            </div>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--text)">Service — Établissements</div>
-              <div style="font-size:11px;color:var(--t3)">Hôpitaux, cliniques, EHPAD</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-            <div style="width:24px;height:24px;background:#0E9E8E;border-radius:4px;flex-shrink:0"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#0E9E8E</span>
-            <span style="font-size:12px;color:var(--t2)">— Teal principal</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:24px;height:24px;background:linear-gradient(135deg,#B2D8D4,#E8F4F3);border-radius:4px;flex-shrink:0;border:1px solid var(--border)"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#B2D8D4→#E8F4F3</span>
-            <span style="font-size:12px;color:var(--t2)">— Gradient fond</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden">
-        <div style="height:8px;background:#4BA3F5"></div>
-        <div style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <div style="width:32px;height:32px;background:#4BA3F5;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="2,12 6,12 8,4 10,20 13,8 15,16 17,12 22,12"/></svg>
-            </div>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--text)">SAMU — Régulateurs</div>
-              <div style="font-size:11px;color:var(--t3)">Centres 15, plateformes SAS</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-            <div style="width:24px;height:24px;background:#4BA3F5;border-radius:4px;flex-shrink:0"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#4BA3F5</span>
-            <span style="font-size:12px;color:var(--t2)">— Sky blue</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:24px;height:24px;background:#EFF6FF;border-radius:4px;flex-shrink:0;border:1px solid var(--border)"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#EFF6FF</span>
-            <span style="font-size:12px;color:var(--t2)">— Fond actif sidebar</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden">
-        <div style="height:8px;background:#3B82F6"></div>
-        <div style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <div style="width:32px;height:32px;background:#3B82F6;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="2,12 6,12 8,4 10,20 13,8 15,16 17,12 22,12"/></svg>
-            </div>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--text)">Transporter — Ambulanciers</div>
-              <div style="font-size:11px;color:var(--t3)">Structures de transport, régulateurs</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-            <div style="width:24px;height:24px;background:#3B82F6;border-radius:4px;flex-shrink:0"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#3B82F6</span>
-            <span style="font-size:12px;color:var(--t2)">— Blue principal</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:24px;height:24px;background:#EFF6FF;border-radius:4px;flex-shrink:0;border:1px solid var(--border)"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#EFF6FF</span>
-            <span style="font-size:12px;color:var(--t2)">— Fond actif sidebar</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden">
-        <div style="height:8px;background:#0F172A"></div>
-        <div style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <div style="width:32px;height:32px;background:#0F172A;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="2,12 6,12 8,4 10,20 13,8 15,16 17,12 22,12"/></svg>
-            </div>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--text)">Ambulancier — Mobile</div>
-              <div style="font-size:11px;color:var(--t3)">App iOS / Android (Expo React Native)</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-            <div style="width:24px;height:24px;background:#0F172A;border-radius:4px;flex-shrink:0"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#0F172A</span>
-            <span style="font-size:12px;color:var(--t2)">— Dark navy (fond app)</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:24px;height:24px;background:#1E293B;border-radius:4px;flex-shrink:0"></div>
-            <span style="font-family:monospace;font-size:12px;color:var(--t3)">#1E293B</span>
-            <span style="font-size:12px;color:var(--t2)">— Cards / panneaux</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cl blue"><span class="cl-ic">💡</span><div>Sur le site vitrine, quand tu crées les sections "Pour les établissements", "Pour le SAMU", "Pour les transporteurs" — utilise la couleur d'accent de chaque interface pour le background ou les éléments visuels de la carte. Ça crée une cohérence visuelle avec le produit réel.</div></div>
-    <div class="cl yellow"><span class="cl-ic">⚠️</span><div>Ces valeurs sont issues des fichiers CSS de production. Utilise-les comme base pour ton design system — pas d'invention.</div></div>
-    <div style="background:var(--bg-h);border-radius:8px;padding:16px 20px;margin:12px 0 20px;font-family:monospace;font-size:13px;line-height:2;color:var(--text)">
-      <div><span style="color:var(--t3)">/* Texte */</span></div>
-      <div>--text-primary: <span style="color:#0E9E8E">#182033</span>;</div>
-      <div>--text-secondary: <span style="color:#0E9E8E">#667085</span>;</div>
-      <div style="margin-top:8px"><span style="color:var(--t3)">/* Fonds */</span></div>
-      <div>--bg: <span style="color:#0E9E8E">#f6f7fb</span>;</div>
-      <div>--panel: <span style="color:#0E9E8E">#ffffff</span>;</div>
-      <div style="margin-top:8px"><span style="color:var(--t3)">/* Bordures */</span></div>
-      <div>--border: <span style="color:#0E9E8E">#d9e0ea</span>;</div>
-      <div style="margin-top:8px"><span style="color:var(--t3)">/* Brand */</span></div>
-      <div>--primary: <span style="color:#0E9E8E">#0E9E8E</span>;</div>
-      <div>--primary-dark: <span style="color:#0E9E8E">#0A8A7C</span>;</div>
-      <div>--primary-soft: <span style="color:#0E9E8E">#E8F4F3</span>;</div>
-      <div style="margin-top:8px"><span style="color:var(--t3)">/* Sémantique */</span></div>
-      <div>--success: <span style="color:#0E9E8E">#16A34A</span>;</div>
-      <div>--warning: <span style="color:#0E9E8E">#F59E0B</span>;</div>
-      <div>--danger: <span style="color:#0E9E8E">#B91C1C</span>;</div>
-      <div>--info: <span style="color:#0E9E8E">#1674B9</span>;</div>
-    </div>
-
-    <hr class="ndiv">
-    <div class="h1">Typographie</div>
-    <div class="pt">
-      <div class="pr"><div class="pk"><span class="pi">🔤</span> Police</div><div class="pv"><strong>Inter</strong> — Google Fonts, libre de droits</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📏</span> Import</div><div class="pv"><span class="ic">@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')</span></div></div>
-    </div>
-
-    <div style="margin:16px 0 24px;border:1px solid var(--border);border-radius:8px;overflow:hidden">
-      <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:16px">
-        <span style="font-size:32px;font-weight:700;color:#1A1F2E;font-family:'Inter',sans-serif">Titre H1</span>
-        <span style="font-size:12px;color:var(--t3)">32px · 700 · #1A1F2E</span>
-      </div>
-      <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:16px">
-        <span style="font-size:24px;font-weight:600;color:#1A1F2E;font-family:'Inter',sans-serif">Titre H2</span>
-        <span style="font-size:12px;color:var(--t3)">24px · 600 · #1A1F2E</span>
-      </div>
-      <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:16px">
-        <span style="font-size:18px;font-weight:600;color:#1A1F2E;font-family:'Inter',sans-serif">Titre H3</span>
-        <span style="font-size:12px;color:var(--t3)">18px · 600 · #1A1F2E</span>
-      </div>
-      <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:16px">
-        <span style="font-size:16px;font-weight:400;color:#1A1F2E;font-family:'Inter',sans-serif">Corps de texte principal</span>
-        <span style="font-size:12px;color:var(--t3)">16px · 400 · #1A1F2E</span>
-      </div>
-      <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:16px">
-        <span style="font-size:14px;font-weight:400;color:#6B7280;font-family:'Inter',sans-serif">Texte secondaire, descriptions</span>
-        <span style="font-size:12px;color:var(--t3)">14px · 400 · #6B7280</span>
-      </div>
-      <div style="padding:14px 20px;display:flex;align-items:baseline;gap:16px">
-        <span style="font-size:11px;font-weight:500;color:#6B7280;font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em">LABEL / EYEBROW</span>
-        <span style="font-size:12px;color:var(--t3)">11px · 500 · uppercase · letter-spacing .08em</span>
-      </div>
-    </div>
-
-    <hr class="ndiv">
-    <div class="h1">Logo</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0 20px">
-      <div style="border:1px solid var(--border);border-radius:8px;padding:24px;display:flex;align-items:center;gap:12px">
-        <div style="width:40px;height:40px;background:#0E9E8E;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,12 6,12 8,4 10,20 13,8 15,16 17,12 22,12"/></svg>
-        </div>
-        <span style="font-size:20px;font-weight:600;color:#1A1F2E;font-family:'Inter',sans-serif">Resaam</span>
-        <span style="font-size:11px;color:var(--t3);margin-left:4px">Version standard</span>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:8px;padding:24px;background:#1A1F2E;display:flex;align-items:center;gap:12px">
-        <div style="width:40px;height:40px;background:#0E9E8E;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,12 6,12 8,4 10,20 13,8 15,16 17,12 22,12"/></svg>
-        </div>
-        <span style="font-size:20px;font-weight:600;color:white;font-family:'Inter',sans-serif">Resaam</span>
-        <span style="font-size:11px;color:#6B7280;margin-left:4px">Sur fond sombre</span>
-      </div>
-    </div>
-    <ul class="nul">
-      <li>Icône : carré teal <span class="ic">#0E9E8E</span> avec border-radius <span class="ic">10px</span>, ligne ECG blanche stroke 2.5px</li>
-      <li>Wordmark : Inter 600, couleur <span class="ic">#1A1F2E</span> sur fond clair, blanc sur fond sombre</li>
-      <li>Espace minimum autour du logo : 1× la hauteur du logo de chaque côté</li>
-      <li>Ne jamais déformer, recolorer, ou ajouter d'ombre au logo</li>
-    </ul>
-
-    <hr class="ndiv">
-    <div class="h1">Composants UI</div>
-
-    <div class="h2">Boutons</div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 20px;align-items:center">
-      <button style="background:#0E9E8E;color:white;border:none;padding:10px 20px;border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:default">Primaire</button>
-      <button style="background:transparent;color:#0E9E8E;border:1.5px solid #0E9E8E;padding:10px 20px;border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:default">Secondaire</button>
-      <button style="background:#F8F9FA;color:#1A1F2E;border:1px solid #E5E7EB;padding:10px 20px;border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:default">Ghost</button>
-      <button style="background:#E8352A;color:white;border:none;padding:10px 20px;border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:default">Danger</button>
-    </div>
-    <div class="pt" style="margin-bottom:16px">
-      <div class="pr"><div class="pk"><span class="pi">📐</span> Border-radius</div><div class="pv"><span class="ic">6px</span> sur les boutons, <span class="ic">8px</span> sur les cartes, <span class="ic">10px</span> sur le logo</div></div>
-      <div class="pr"><div class="pk"><span class="pi">📏</span> Padding bouton</div><div class="pv"><span class="ic">10px 20px</span> standard · <span class="ic">8px 14px</span> petit</div></div>
-      <div class="pr"><div class="pk"><span class="pi">✨</span> Transition</div><div class="pv"><span class="ic">transition: all 0.15s ease</span> sur tous les éléments interactifs</div></div>
-    </div>
-
-    <div class="h2">Ton éditorial</div>
-    <div class="cl green"><span class="cl-ic">✅</span><div>Court, factuel, orienté action. Des chiffres concrets plutôt que des adjectifs. Jamais de jargon médical lourd dans les textes marketing.</div></div>
-    <div style="margin:12px 0 20px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div style="border:1px solid #dcfce7;border-radius:6px;padding:12px 14px;background:#f0fdf4">
-          <div style="font-size:11px;font-weight:600;color:#0f7b6c;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">✓ À faire</div>
-          <ul class="nul" style="margin:0"><li style="font-size:13px">Réservez un transport en 30 secondes</li><li style="font-size:13px">23 transporteurs partenaires</li><li style="font-size:13px">Suivi temps réel · 100% numérique</li><li style="font-size:13px">Réservez, suivez, facturez</li></ul>
-        </div>
-        <div style="border:1px solid #fdecea;border-radius:6px;padding:12px 14px;background:#fff5f5">
-          <div style="font-size:11px;font-weight:600;color:#e03e3e;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">✗ À éviter</div>
-          <ul class="nul" style="margin:0"><li style="font-size:13px">Solution innovante de transport sanitaire</li><li style="font-size:13px">Plateforme révolutionnaire et disruptive</li><li style="font-size:13px">Optimisation synergique des flux</li><li style="font-size:13px">Écosystème holistique de coordination</li></ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="h2">Ce que Sefora peut utiliser librement</div>
-    <ul class="nul">
-      <li>Toutes les couleurs de cette charte</li>
-      <li>La police Inter (Google Fonts)</li>
-      <li>Le logo reconstruit selon les specs ci-dessus (SVG)</li>
-      <li>Les illustrations <span class="ic">undraw.co</span> filtrées avec la couleur teal <span class="ic">#0E9E8E</span></li>
-      <li>Les icônes <span class="ic">phosphoricons.com</span> en style "regular" ou "bold"</li>
-    </ul>
-
-    <div class="h2">Ce qui nécessite validation Ali</div>
-    <ul class="nul">
-      <li>Tout screenshot ou mockup des interfaces applicatives</li>
-      <li>Les textes de la page "À propos" et "Produit" — vérification factuelle</li>
-      <li>Les chiffres clés (temps de réservation, nb transporteurs, etc.)</li>
-      <li>Les logos des partenaires — vérifier la version officielle auprès d'Ali</li>
-    </ul>
-  </div>
-
-  <!-- SPRINT PAGES -->
+    <!-- SPRINT PAGES -->
   <div class="pw" id="page-sprint1"><div id="sc1"></div></div>
   <div class="pw" id="page-sprint2"><div id="sc2"></div></div>
   <div class="pw" id="page-sprint3"><div id="sc3"></div></div>
@@ -1052,6 +497,11 @@ body{display:flex;overflow:hidden;}
     <div class="ma"><button class="btn btn-d" onclick="closeMod()">Annuler</button><button class="btn btn-p" onclick="saveTk()">Créer</button></div>
   </div>
 </div>
+
+<!-- SLASH MENU -->
+<div class="slash-menu" id="slash-menu"></div>
+<!-- BLOCK MENU -->
+<div class="slash-menu" id="block-menu"></div>
 
 <!-- NEW PAGE MODAL -->
 <div class="ov" id="new-page-modal" onclick="if(event.target===this)closeNewPageModal()">
@@ -1160,7 +610,7 @@ async function loadRemote() {
       headers: { 'X-Master-Key': API_KEY }
     });
     const j = await r.json();
-    _cache = j.record || { tickets:{}, criteria:{}, comments:{}, pages:[] };
+    _cache = j.record || { tickets:{}, criteria:{}, comments:{}, pages:[], blocks:{} };
   } catch(e) {
     console.warn('JSONBin load failed, using cache', e);
     if (!_cache) _cache = { tickets:{}, criteria:{} };
@@ -1768,8 +1218,551 @@ async function init() {
   for(let i=1;i<=5;i++) rSprint(i);
   renderDash();
   renderCustomPages();
+  initBlockPages();
 }
 init();
+
+// ════════════════════════════════════════════════════
+// BLOCK EDITOR ENGINE — Notion-style
+// ════════════════════════════════════════════════════
+
+// Block types
+const BT = {
+  p:       { label:'Texte',          tag:'p',    ph:'Écris quelque chose, ou tape / pour les commandes…' },
+  h1:      { label:'Titre 1',        tag:'h1',   ph:'Titre 1' },
+  h2:      { label:'Titre 2',        tag:'h2',   ph:'Titre 2' },
+  h3:      { label:'Titre 3',        tag:'h3',   ph:'Titre 3' },
+  bullet:  { label:'Liste à puces',  tag:'li',   ph:'Élément de liste' },
+  num:     { label:'Liste numérotée',tag:'li',   ph:'Élément numéroté' },
+  todo:    { label:'Case à cocher',  tag:'div',  ph:'À faire…' },
+  callout: { label:'Encadré',        tag:'div',  ph:'Note importante…' },
+  quote:   { label:'Citation',       tag:'q',    ph:'Citation…' },
+  divider: { label:'Séparateur',     tag:'hr',   ph:'' },
+  code:    { label:'Code',           tag:'pre',  ph:'// code…' },
+};
+
+// Initial block data for each fixed page
+const PAGE_BLOCKS_DEFAULT = {
+  welcome: {
+    icon:'👋', title:'Bienvenue chez Resaam, Sefora !',
+    cover:'linear-gradient(120deg,#e0f2fe,#ede9fe,#fce7f3)',
+    blocks:[
+      {id:'b1',type:'callout',text:'💡 Ce document est ton guide de stage. Il contient tout : contexte, mission, outils, gestion des tickets. Lis-le du début à la fin avant de commencer.',done:false},
+      {id:'b2',type:'h2',text:'Informations clés'},
+      {id:'b3',type:'p',text:'👤 Tuteur : Ali HANOUT (CEO) — ali@resaam.com — +33 6 22 32 49 41'},
+      {id:'b4',type:'p',text:'📅 Début : 19 mai 2026 · Fin prévue : 25 juillet 2026 (280h minimum)'},
+      {id:'b5',type:'p',text:'📍 Lieu : 5 Parvis Alan Turing, Paris 75013 + télétravail'},
+      {id:'b6',type:'p',text:'📞 Suivi : Point hebdo visio chaque lundi matin'},
+      {id:'b7',type:'divider',text:''},
+      {id:'b8',type:'h2',text:'Checklist du premier jour'},
+      {id:'b9',type:'todo',text:'Convention de stage signée et transmise',done:true},
+      {id:'b10',type:'todo',text:'Accès GitHub configuré (Ali3ee/resaam-site)',done:true},
+      {id:'b11',type:'todo',text:'Messagerie interne Resaam opérationnelle',done:true},
+      {id:'b12',type:'todo',text:'Lecture complète de ce document',done:false},
+      {id:'b13',type:'todo',text:'Premier ticket Sprint 1 démarré (RS-001)',done:false},
+      {id:'b14',type:'divider',text:''},
+      {id:'b15',type:'h2',text:'Règles de vie'},
+      {id:'b16',type:'bullet',text:'Autonomie — Résultats comptent plus que la présence. Horaires flexibles, deadlines de sprint tenues.'},
+      {id:'b17',type:'bullet',text:'Communication — Un blocage de plus de 2h se signale immédiatement. Ne pas rester bloquée seule.'},
+      {id:'b18',type:'bullet',text:'Git discipline — Un commit = une tâche. Pas de commits "misc" sans description.'},
+      {id:'b19',type:'bullet',text:'IA = outil — Tout output IA relu, compris, amélioré avant commit.'},
+      {id:'b20',type:'bullet',text:'Documentation — Ce qui n\'est pas documenté n\'existe pas.'},
+    ]
+  },
+  context: {
+    icon:'📌', title:'Contexte Resaam',
+    cover:'linear-gradient(120deg,#dcfce7,#e0f2fe)',
+    blocks:[
+      {id:'b1',type:'p',text:'🏢 Société : RESAAM SAS — 366 rue de Vaugirard, 75015 Paris'},
+      {id:'b2',type:'p',text:'💡 Pitch : "Solution de gestion des flux de transport sanitaire"'},
+      {id:'b3',type:'p',text:'🤝 Partenaires : BPI France · Station F · French Tech Grand Paris · URPS IDF · SFMU · SAMU 93'},
+      {id:'b4',type:'divider',text:''},
+      {id:'b5',type:'h1',text:'Comprendre le produit'},
+      {id:'b6',type:'p',text:'Resaam automatise la coordination entre les acteurs du transport sanitaire. Elle remplace le téléphone, le fax et le tableur par une plateforme temps réel avec algorithmes d\'attribution et facturation automatisée CPAM.'},
+      {id:'b7',type:'callout',text:'⚠️ Le secteur du transport sanitaire est très réglementé. Tout contenu public doit être factuel, sobre et professionnel.'},
+      {id:'b8',type:'h2',text:'L\'écosystème Resaam'},
+      {id:'b9',type:'bullet',text:'Médecine de ville → Hospitalisation : programmation des transports non urgents avec annonce des délais'},
+      {id:'b10',type:'bullet',text:'SAMU/SAS → Transporteurs : affectation automatisée (SMUR, ambulances privées, associations)'},
+      {id:'b11',type:'bullet',text:'Transporteurs → SAU : bilan numérique + annonce des arrivées aux urgences'},
+      {id:'b12',type:'bullet',text:'SAU → Domicile/Transfert : programmation des sorties patients'},
+      {id:'b13',type:'bullet',text:'Connecteur Sapeurs-Pompiers : intégration flux pompiers vers les urgences'},
+      {id:'b14',type:'h2',text:'Les 4 interfaces'},
+      {id:'b15',type:'h3',text:'📡 SAMU — Pour les régulateurs (centres 15, SAS)'},
+      {id:'b16',type:'bullet',text:'3 vues : Patient (mobile), Coordinateur (dashboard web), Embarqué (app ambulancier)'},
+      {id:'b17',type:'bullet',text:'Affectation automatisée selon disponibilité et géolocalisation'},
+      {id:'b18',type:'bullet',text:'ECG connecté (synergie partenaire) — bilan numérique transmis depuis le véhicule'},
+      {id:'b19',type:'h3',text:'🏥 Service des Urgences — Tableau de gestion de flux'},
+      {id:'b20',type:'bullet',text:'Écran temps réel des véhicules en approche avec délais mis à jour en continu'},
+      {id:'b21',type:'bullet',text:'Code couleur urgence (rouge = prioritaire), motif patient affiché'},
+      {id:'b22',type:'bullet',text:'Connecteur pour admission — liaison avec le DPI de l\'établissement'},
+      {id:'b23',type:'h3',text:'💊 Prescripteurs — Réservation de transport'},
+      {id:'b24',type:'bullet',text:'Recherche et réservation : consultation, transfert, dialyse, chimio, hospitalisation'},
+      {id:'b25',type:'bullet',text:'Transports unitaires ou séries programmées · Ambulance, VSL, Taxi'},
+      {id:'b26',type:'bullet',text:'Connecteur DPI — évite la re-saisie des informations patient'},
+      {id:'b27',type:'h3',text:'🚑 Transporteurs — 3 profils'},
+      {id:'b28',type:'bullet',text:'Taxi : app mobile, réception des missions, acceptation/refus, navigation'},
+      {id:'b29',type:'bullet',text:'Régulateur : dashboard web, gestion réservations, assignation véhicules, suivi flotte'},
+      {id:'b30',type:'bullet',text:'Ambulancier : app mobile, prise en charge guidée, bilan numérique, navigation'},
+      {id:'b31',type:'divider',text:''},
+      {id:'b32',type:'callout',text:'🔒 Accès Git restreint intentionnellement. Repo de travail : Ali3ee/resaam-site uniquement. Le monorepo applicatif (resaam-source) est confidentiel.'},
+    ]
+  },
+  mission: {
+    icon:'🎯', title:'Ma mission',
+    cover:'linear-gradient(120deg,#fef3c7,#fce7f3)',
+    blocks:[
+      {id:'b1',type:'p',text:'📦 Livrable : resaam.com — refonte complète de zéro'},
+      {id:'b2',type:'p',text:'🤖 Outils IA : Claude (Anthropic) + ChatGPT (OpenAI) — code ET contenu'},
+      {id:'b3',type:'p',text:'⏱️ Durée : 10 semaines · 5 sprints · ~280 heures'},
+      {id:'b4',type:'divider',text:''},
+      {id:'b5',type:'callout',text:'🚫 Le site actuel est une onepage générique auto-générée. Elle ne reflète pas l\'identité Resaam. On repart de zéro.'},
+      {id:'b6',type:'h1',text:'Objectif principal'},
+      {id:'b7',type:'p',text:'Concevoir et développer un site vitrine professionnel pour Resaam qui donne envie à un directeur d\'hôpital ou un ambulancier de prendre contact.'},
+      {id:'b8',type:'h2',text:'Pages à créer'},
+      {id:'b9',type:'bullet',text:'Homepage — pitch global, 4 cibles, comment ça marche, partenaires, CTA'},
+      {id:'b10',type:'bullet',text:'Produit / Fonctionnalités — détail des 4 interfaces'},
+      {id:'b11',type:'bullet',text:'À propos — histoire Resaam, équipe, valeurs'},
+      {id:'b12',type:'bullet',text:'Partenaires & Certifications — BPI, Station F, HDS, CNDA'},
+      {id:'b13',type:'bullet',text:'Contact — formulaire de démo, coordonnées'},
+      {id:'b14',type:'bullet',text:'Mentions légales + Politique de confidentialité — obligatoires légalement'},
+      {id:'b15',type:'h2',text:'Critères de qualité'},
+      {id:'b16',type:'bullet',text:'📱 Responsive mobile first — testé sur iOS et Android'},
+      {id:'b17',type:'bullet',text:'⚡ Performance — Lighthouse ≥ 90 sur les 4 catégories'},
+      {id:'b18',type:'bullet',text:'🔍 SEO — title/meta uniques, sitemap.xml, schema.org'},
+      {id:'b19',type:'bullet',text:'🎨 Design — cohérent avec la charte Resaam (voir page Charte)'},
+      {id:'b20',type:'h2',text:'Règle d\'or'},
+      {id:'b21',type:'callout',text:'✅ L\'IA est un outil, pas un auteur. Tout output relu, compris, amélioré avant commit. Tu dois pouvoir expliquer chaque décision dans ton rapport de stage.'},
+    ]
+  },
+  stack: {
+    icon:'🛠️', title:'Stack & Outils',
+    cover:'linear-gradient(120deg,#f3f0ff,#e0f2fe)',
+    blocks:[
+      {id:'b1',type:'h2',text:'Tes compétences actuelles'},
+      {id:'b2',type:'p',text:'HTML / CSS : 90% · Design Web : 80% · PHP : 65% · Gestion serveur : 55% · JavaScript : 50% · Docker/Symfony : 20%'},
+      {id:'b3',type:'callout',text:'📈 Ce stage est une opportunité de monter en JS. Les animations scroll et interactions du site vont te pousser au-delà des 50% actuels.'},
+      {id:'b4',type:'divider',text:''},
+      {id:'b5',type:'h2',text:'Outils du projet'},
+      {id:'b6',type:'bullet',text:'🐙 GitHub — Ali3ee/resaam-site · repo dédié site vitrine · branche main protégée'},
+      {id:'b7',type:'bullet',text:'🤖 Claude (claude.ai) — génération HTML/CSS/JS, debugging, revue de code'},
+      {id:'b8',type:'bullet',text:'✍️ ChatGPT — rédaction copywriting, SEO, meta descriptions, textes légaux'},
+      {id:'b9',type:'bullet',text:'🎨 Figma — maquettes et design system (accès fourni par Ali)'},
+      {id:'b10',type:'bullet',text:'🚀 Vercel — CI/CD automatique sur push main, preview sur PR'},
+      {id:'b11',type:'bullet',text:'📊 Plausible Analytics — privacy-first, sans cookie banner'},
+      {id:'b12',type:'bullet',text:'📬 Formspree — gestion des soumissions de contact sans backend'},
+      {id:'b13',type:'h2',text:'Conventions Git'},
+      {id:'b14',type:'bullet',text:'Commits : feat: hero section · fix: nav mobile · chore: update deps'},
+      {id:'b15',type:'bullet',text:'Branches : feature/hero-section · fix/nav-mobile · jamais coder sur main directement'},
+      {id:'b16',type:'bullet',text:'PR : Pull Request sur chaque ticket terminé — Ali review avant merge'},
+      {id:'b17',type:'h2',text:'Ressources utiles'},
+      {id:'b18',type:'bullet',text:'MDN Web Docs — référence HTML/CSS/JS (developer.mozilla.org)'},
+      {id:'b19',type:'bullet',text:'Can I Use — compatibilité navigateurs (caniuse.com)'},
+      {id:'b20',type:'bullet',text:'PageSpeed Insights — audit Lighthouse en ligne (pagespeed.web.dev)'},
+      {id:'b21',type:'bullet',text:'Undraw — illustrations SVG libres de droit (undraw.co)'},
+      {id:'b22',type:'bullet',text:'Phosphor Icons — bibliothèque d\'icônes cohérentes (phosphoricons.com)'},
+    ]
+  },
+  timeline: {
+    icon:'📅', title:'Planning — 10 semaines',
+    cover:'linear-gradient(120deg,#fef3c7,#e0f2fe,#dcfce7)',
+    blocks:[
+      {id:'b1',type:'p',text:'📅 Début : Lundi 19 mai 2026 · 🏁 Fin : Vendredi 25 juillet 2026'},
+      {id:'b2',type:'p',text:'⏱️ Volume : 280h minimum · 35h/semaine · 5 sprints × 2 semaines'},
+      {id:'b3',type:'divider',text:''},
+      {id:'b4',type:'h2',text:'Sprint 1 — Découverte & Setup (19 mai → 30 mai)'},
+      {id:'b5',type:'p',text:'Onboarding, audit resaam.com, benchmark 5 concurrents, arborescence, maquettes fil de fer, setup environnement. Livrable : maquettes validées par Ali.'},
+      {id:'b6',type:'h2',text:'Sprint 2 — Architecture & Design (2 → 13 juin)'},
+      {id:'b7',type:'p',text:'Design system CSS, structure HTML toutes pages, header/footer responsive, hero section. Livrable : site navigable en local avec structure complète.'},
+      {id:'b8',type:'h2',text:'Sprint 3 — Intégration IA (16 → 27 juin)'},
+      {id:'b9',type:'p',text:'Contenu généré via Claude/OpenAI, animations scroll JS, formulaire de contact, page "Comment ça marche". Livrable : site complet avec vrai contenu.'},
+      {id:'b10',type:'h2',text:'Sprint 4 — Contenu & SEO (30 juin → 11 juillet)'},
+      {id:'b11',type:'p',text:'Rédaction finale, meta SEO, accessibilité RGAA, sitemap, analytics. Livrable : site SEO-ready validé par Ali.'},
+      {id:'b12',type:'h2',text:'Sprint 5 — Finition & Déploiement (14 → 25 juillet)'},
+      {id:'b13',type:'p',text:'Tests cross-browser, Lighthouse ≥ 90, déploiement resaam.com, documentation, rapport de stage. Livrable : resaam.com en production.'},
+    ]
+  },
+  charte: {
+    icon:'🎨', title:'Charte graphique Resaam',
+    cover:'linear-gradient(135deg,#0E9E8E 0%,#B2D8D4 60%,#E8F4F3 100%)',
+    blocks:[
+      {id:'b1',type:'callout',text:'⚠️ Les visuels d\'interface sont confidentiels — ne pas publier de screenshots app sur le site vitrine.'},
+      {id:'b2',type:'h1',text:'Couleurs par interface'},
+      {id:'b3',type:'h3',text:'Service (Établissements) — Teal #0E9E8E'},
+      {id:'b4',type:'p',text:'Fond login gradient : #B2D8D4 → #E8F4F3 · Boutons CTA, logo, statuts actifs'},
+      {id:'b5',type:'h3',text:'SAMU (Régulateurs) — Sky Blue #4BA3F5'},
+      {id:'b6',type:'p',text:'Fond sidebar actif : #EFF6FF · Badges, éléments interactifs SAMU'},
+      {id:'b7',type:'h3',text:'Transporter (Ambulanciers) — Blue #3B82F6'},
+      {id:'b8',type:'p',text:'Fond sidebar actif : #EFF6FF · Interface régulateur ambulancier'},
+      {id:'b9',type:'h3',text:'Ambulancier Mobile — Dark Navy #0F172A'},
+      {id:'b10',type:'p',text:'Cards et panneaux : #1E293B · App iOS/Android dark mode'},
+      {id:'b11',type:'divider',text:''},
+      {id:'b12',type:'h1',text:'Palette commune'},
+      {id:'b13',type:'bullet',text:'Texte principal : #182033 · Texte secondaire : #667085'},
+      {id:'b14',type:'bullet',text:'Fond page : #f6f7fb · Panneaux : #ffffff · Border : #d9e0ea'},
+      {id:'b15',type:'h1',text:'Statuts de mission'},
+      {id:'b16',type:'bullet',text:'À ATTRIBUER : #0EA5E9 · EN ATTENTE : #032A47'},
+      {id:'b17',type:'bullet',text:'EN ROUTE : #1674B9 · ARRIVÉ SUR PLACE : #F59E0B'},
+      {id:'b18',type:'bullet',text:'PRIS EN CHARGE : #16A34A · DÉPOSÉ : #7C3AED'},
+      {id:'b19',type:'bullet',text:'TERMINÉE : #64748B · ANNULÉE : #B91C1C'},
+      {id:'b20',type:'divider',text:''},
+      {id:'b21',type:'h1',text:'Typographie'},
+      {id:'b22',type:'bullet',text:'Police : Inter (Google Fonts) — @import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap)'},
+      {id:'b23',type:'bullet',text:'H1 : 32px 700 · H2 : 24px 600 · H3 : 18px 600 · Body : 16px 400'},
+      {id:'b24',type:'bullet',text:'Labels eyebrow : 11px 500 uppercase letter-spacing .08em'},
+      {id:'b25',type:'h1',text:'Logo'},
+      {id:'b26',type:'bullet',text:'Icône : carré teal #0E9E8E border-radius 10px, ligne ECG blanche stroke 2.5px'},
+      {id:'b27',type:'bullet',text:'Wordmark : Inter 600 · #1A1F2E sur fond clair · blanc sur fond sombre'},
+      {id:'b28',type:'h1',text:'Ton éditorial'},
+      {id:'b29',type:'bullet',text:'✓ Court, factuel, orienté action : "Réservez un transport en 30 secondes"'},
+      {id:'b30',type:'bullet',text:'✓ Chiffres concrets : < 30s, 23 transporteurs, 100% suivi temps réel'},
+      {id:'b31',type:'bullet',text:'✗ Éviter : "Solution innovante et disruptive", "Optimisation synergique"'},
+    ]
+  }
+};
+
+// ── BLOCK EDITOR CORE ──────────────────────────────────────────
+const gcblocks = () => (_cache ? (_cache.blocks||{}) : {});
+const scblocks = d => { if(_cache){ _cache.blocks = d; debounceSave(); } };
+
+let slashMenuPid = null; // page id pour le menu /
+
+function getPageBlocks(pid) {
+  const saved = gcblocks()[pid];
+  if (saved && saved.length) return saved;
+  return (PAGE_BLOCKS_DEFAULT[pid]?.blocks || []).map(b => ({...b}));
+}
+
+function savePageBlocks(pid, blocks) {
+  const all = gcblocks();
+  all[pid] = blocks;
+  scblocks(all);
+}
+
+function uid() { return 'b' + Date.now() + Math.random().toString(36).slice(2,6); }
+
+// ── RENDER PAGE ──
+function renderBlockPage(pid) {
+  const el = document.getElementById(`page-${pid}`);
+  if (!el) return;
+  const def = PAGE_BLOCKS_DEFAULT[pid] || {};
+  const icon = def.icon || '📄';
+  const title = def.title || 'Page';
+  const cover = def.cover || 'var(--bg-h)';
+  const blocks = getPageBlocks(pid);
+
+  el.innerHTML = `
+    <div class="cov" style="background:${cover}"></div>
+    <div class="pg-icon be-icon" contenteditable="false" onclick="editPageIcon('${pid}',this)">${icon}</div>
+    <div class="pg-t be-title" contenteditable="true"
+      onblur="savePageMeta('${pid}',this.textContent,'icon')"
+      spellcheck="false">${title}</div>
+    <div class="be-blocks" id="be-${pid}" data-pid="${pid}"></div>
+    <div class="be-add-btn" onclick="addBlock('${pid}','p')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Ajouter un bloc
+    </div>
+  `;
+
+  renderBlocks(pid, blocks);
+
+  // title save
+  el.querySelector('.be-title').addEventListener('blur', e => {
+    const t = e.target.textContent.trim();
+    if (pid in PAGE_BLOCKS_DEFAULT) PAGE_BLOCKS_DEFAULT[pid].title = t;
+    PT[pid] = t;
+    const sbEl = document.querySelector(`.sb-it[onclick*="'${pid}'"] .sb-tx`);
+    if (sbEl) sbEl.textContent = t;
+    document.getElementById('bc').textContent = t;
+  });
+}
+
+// ── RENDER BLOCKS ──
+function renderBlocks(pid, blocks) {
+  const container = document.getElementById(`be-${pid}`);
+  if (!container) return;
+  container.innerHTML = '';
+  blocks.forEach((b, idx) => {
+    const el = createBlockEl(pid, b, idx, blocks.length);
+    container.appendChild(el);
+  });
+}
+
+function createBlockEl(pid, b, idx, total) {
+  const wrap = document.createElement('div');
+  wrap.className = 'be-block';
+  wrap.id = `block-${b.id}`;
+  wrap.dataset.id = b.id;
+  wrap.dataset.type = b.type;
+
+  if (b.type === 'divider') {
+    wrap.innerHTML = `
+      <div class="be-block-inner be-divider-wrap">
+        <div class="be-handle" onclick="showBlockMenu('${pid}','${b.id}',this)">⠿</div>
+        <hr class="ndiv" style="margin:4px 0;flex:1">
+      </div>`;
+    return wrap;
+  }
+
+  if (b.type === 'todo') {
+    wrap.innerHTML = `
+      <div class="be-block-inner">
+        <div class="be-handle" onclick="showBlockMenu('${pid}','${b.id}',this)">⠿</div>
+        <input type="checkbox" class="be-todo-check" ${b.done?'checked':''} onchange="toggleTodo('${pid}','${b.id}',this.checked)">
+        <div class="be-editable be-todo-text ${b.done?'be-done':''}"
+          contenteditable="true"
+          data-ph="${BT.todo.ph}"
+          data-pid="${pid}" data-bid="${b.id}"
+          onkeydown="beKeyDown(event,'${pid}','${b.id}')"
+          oninput="beInput('${pid}','${b.id}',this.textContent)"
+          onfocus="beFocus(this)"
+          spellcheck="false">${escHtml(b.text)}</div>
+      </div>`;
+    return wrap;
+  }
+
+  if (b.type === 'callout') {
+    wrap.innerHTML = `
+      <div class="be-block-inner">
+        <div class="be-handle" onclick="showBlockMenu('${pid}','${b.id}',this)">⠿</div>
+        <div class="cl be-callout-inner" style="flex:1;margin:0">
+          <div class="be-editable"
+            contenteditable="true"
+            data-ph="${BT.callout.ph}"
+            data-pid="${pid}" data-bid="${b.id}"
+            onkeydown="beKeyDown(event,'${pid}','${b.id}')"
+            oninput="beInput('${pid}','${b.id}',this.textContent)"
+            onfocus="beFocus(this)"
+            spellcheck="false">${escHtml(b.text)}</div>
+        </div>
+      </div>`;
+    return wrap;
+  }
+
+  const typeClass = {
+    h1:'be-h1', h2:'be-h2', h3:'be-h3',
+    p:'be-p', bullet:'be-bullet', num:'be-num',
+    quote:'be-quote', code:'be-code'
+  }[b.type] || 'be-p';
+
+  const prefix = b.type==='bullet' ? '<span class="be-bullet-dot">•</span>' :
+                 b.type==='num'    ? `<span class="be-num-n">${idx+1}.</span>` : '';
+
+  wrap.innerHTML = `
+    <div class="be-block-inner">
+      <div class="be-handle" onclick="showBlockMenu('${pid}','${b.id}',this)">⠿</div>
+      ${prefix}
+      <div class="be-editable ${typeClass}"
+        contenteditable="true"
+        data-ph="${BT[b.type]?.ph||'Texte…'}"
+        data-pid="${pid}" data-bid="${b.id}"
+        onkeydown="beKeyDown(event,'${pid}','${b.id}')"
+        oninput="beInput('${pid}','${b.id}',this.textContent)"
+        onfocus="beFocus(this)"
+        spellcheck="false">${escHtml(b.text)}</div>
+    </div>`;
+  return wrap;
+}
+
+function escHtml(t) {
+  return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── KEYBOARD HANDLING ──
+function beKeyDown(e, pid, bid) {
+  const blocks = getPageBlocks(pid);
+  const idx = blocks.findIndex(b => b.id === bid);
+  const b = blocks[idx];
+
+  // Slash menu
+  if (e.key === '/' && e.target.textContent === '') {
+    e.preventDefault();
+    slashMenuPid = pid;
+    showSlashMenu(pid, bid, e.target);
+    return;
+  }
+  hideSlashMenu();
+
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    const newBlock = { id: uid(), type: b.type==='h1'||b.type==='h2'||b.type==='h3' ? 'p' : b.type, text:'', done:false };
+    blocks.splice(idx+1, 0, newBlock);
+    savePageBlocks(pid, blocks);
+    renderBlocks(pid, blocks);
+    setTimeout(() => focusBlock(pid, newBlock.id), 10);
+    return;
+  }
+
+  if (e.key === 'Backspace' && e.target.textContent === '') {
+    e.preventDefault();
+    if (blocks.length <= 1) return;
+    blocks.splice(idx, 1);
+    savePageBlocks(pid, blocks);
+    renderBlocks(pid, blocks);
+    const prevId = blocks[Math.max(0, idx-1)]?.id;
+    if (prevId) setTimeout(() => focusBlock(pid, prevId), 10);
+    return;
+  }
+
+  if (e.key === 'ArrowUp') {
+    if (idx > 0) { e.preventDefault(); focusBlock(pid, blocks[idx-1].id); }
+  }
+  if (e.key === 'ArrowDown') {
+    if (idx < blocks.length-1) { e.preventDefault(); focusBlock(pid, blocks[idx+1].id); }
+  }
+}
+
+function beInput(pid, bid, text) {
+  const blocks = getPageBlocks(pid);
+  const b = blocks.find(x => x.id === bid);
+  if (b) { b.text = text; savePageBlocks(pid, blocks); }
+}
+
+function beFocus(el) {
+  el.closest('.pw')?.querySelectorAll('.be-editable').forEach(e => e.classList.remove('be-focused'));
+  el.classList.add('be-focused');
+  el.closest('.be-block')?.classList.add('be-block-focused');
+  el.closest('.pw')?.querySelectorAll('.be-block').forEach(e => {
+    if (!e.contains(el)) e.classList.remove('be-block-focused');
+  });
+}
+
+function focusBlock(pid, bid) {
+  const el = document.querySelector(`#be-${pid} #block-${bid} .be-editable`);
+  if (el) { el.focus(); placeCaretAtEnd(el); }
+}
+
+function placeCaretAtEnd(el) {
+  const r = document.createRange();
+  r.selectNodeContents(el);
+  r.collapse(false);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(r);
+}
+
+function toggleTodo(pid, bid, done) {
+  const blocks = getPageBlocks(pid);
+  const b = blocks.find(x => x.id === bid);
+  if (b) { b.done = done; savePageBlocks(pid, blocks); }
+  const textEl = document.querySelector(`#block-${bid} .be-todo-text`);
+  if (textEl) textEl.classList.toggle('be-done', done);
+}
+
+// ── ADD BLOCK ──
+function addBlock(pid, type) {
+  const blocks = getPageBlocks(pid);
+  const newBlock = { id: uid(), type, text:'', done:false };
+  blocks.push(newBlock);
+  savePageBlocks(pid, blocks);
+  renderBlocks(pid, blocks);
+  setTimeout(() => focusBlock(pid, newBlock.id), 10);
+}
+
+// ── SLASH MENU ──
+function showSlashMenu(pid, bid, anchor) {
+  hideSlashMenu();
+  const menu = document.getElementById('slash-menu');
+  const types = ['p','h1','h2','h3','bullet','num','todo','callout','quote','divider','code'];
+  menu.innerHTML = types.map(t => `
+    <div class="slash-item" onclick="changeBlockType('${pid}','${bid}','${t}');hideSlashMenu()">
+      <span class="slash-icon">${slashIcon(t)}</span>
+      <span>${BT[t].label}</span>
+    </div>
+  `).join('');
+  const rect = anchor.getBoundingClientRect();
+  menu.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+  menu.style.left = rect.left + 'px';
+  menu.classList.add('on');
+  setTimeout(() => document.addEventListener('click', hideSlashMenu, {once:true}), 10);
+}
+
+function hideSlashMenu() {
+  document.getElementById('slash-menu')?.classList.remove('on');
+}
+
+function slashIcon(t) {
+  return {p:'¶',h1:'H1',h2:'H2',h3:'H3',bullet:'•',num:'1.',todo:'☑',callout:'💬',quote:'"',divider:'—',code:'</>'}[t]||'¶';
+}
+
+// ── BLOCK MENU (handle click) ──
+function showBlockMenu(pid, bid, anchor) {
+  hideBlockMenu();
+  const menu = document.getElementById('block-menu');
+  menu.dataset.pid = pid;
+  menu.dataset.bid = bid;
+  menu.innerHTML = `
+    <div class="slash-item" onclick="changeBlockType('${pid}','${bid}',prompt('Type: p,h1,h2,h3,bullet,num,todo,callout,divider'));hideBlockMenu()">✏️ Changer le type</div>
+    <div class="slash-item" onclick="duplicateBlock('${pid}','${bid}');hideBlockMenu()">📋 Dupliquer</div>
+    <div class="slash-item" onclick="moveBlock('${pid}','${bid}',-1);hideBlockMenu()">↑ Monter</div>
+    <div class="slash-item" onclick="moveBlock('${pid}','${bid}',1);hideBlockMenu()">↓ Descendre</div>
+    <div class="slash-item" style="color:var(--red)" onclick="deleteBlock('${pid}','${bid}');hideBlockMenu()">🗑 Supprimer</div>
+  `;
+  const rect = anchor.getBoundingClientRect();
+  menu.style.top = (rect.bottom + 4) + 'px';
+  menu.style.left = rect.left + 'px';
+  menu.classList.add('on');
+  setTimeout(() => document.addEventListener('click', hideBlockMenu, {once:true}), 10);
+}
+
+function hideBlockMenu() {
+  document.getElementById('block-menu')?.classList.remove('on');
+}
+
+function changeBlockType(pid, bid, type) {
+  if (!type || !BT[type]) return;
+  const blocks = getPageBlocks(pid);
+  const b = blocks.find(x => x.id === bid);
+  if (b) { b.type = type; savePageBlocks(pid, blocks); renderBlocks(pid, blocks); }
+}
+
+function duplicateBlock(pid, bid) {
+  const blocks = getPageBlocks(pid);
+  const idx = blocks.findIndex(x => x.id === bid);
+  if (idx === -1) return;
+  const newB = {...blocks[idx], id: uid()};
+  blocks.splice(idx+1, 0, newB);
+  savePageBlocks(pid, blocks);
+  renderBlocks(pid, blocks);
+}
+
+function moveBlock(pid, bid, dir) {
+  const blocks = getPageBlocks(pid);
+  const idx = blocks.findIndex(x => x.id === bid);
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= blocks.length) return;
+  [blocks[idx], blocks[newIdx]] = [blocks[newIdx], blocks[idx]];
+  savePageBlocks(pid, blocks);
+  renderBlocks(pid, blocks);
+}
+
+function deleteBlock(pid, bid) {
+  const blocks = getPageBlocks(pid).filter(x => x.id !== bid);
+  savePageBlocks(pid, blocks);
+  renderBlocks(pid, blocks);
+}
+
+// ── PAGE META ──
+function savePageMeta(pid, val, field) {
+  if (pid in PAGE_BLOCKS_DEFAULT) {
+    if (field === 'icon') PAGE_BLOCKS_DEFAULT[pid].title = val;
+  }
+}
+
+function editPageIcon(pid, el) {
+  const cur = el.textContent;
+  const emoji = prompt('Choisissez un emoji pour cette page :', cur);
+  if (!emoji) return;
+  el.textContent = emoji;
+  if (pid in PAGE_BLOCKS_DEFAULT) PAGE_BLOCKS_DEFAULT[pid].icon = emoji;
+  const sbEl = document.querySelector(`.sb-it[onclick*="'${pid}'"] .sb-em`);
+  if (sbEl) sbEl.textContent = emoji;
+}
+
+// ── INIT BLOCK PAGES ──
+function initBlockPages() {
+  Object.keys(PAGE_BLOCKS_DEFAULT).forEach(pid => renderBlockPage(pid));
+}
+
 </script>
 </body>
 </html>

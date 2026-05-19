@@ -849,11 +849,19 @@ function inlineEditTitle(tid,sid,val){
 // ── CYCLE STATUS ──
 function cycSt(tid,sid){
   const ord=['todo','progress','review','done'],cx=gc();
-  let t=SP[sid].tickets.find(x=>x.id===tid),isC=false;
-  if(!t){t=(cx[sid]||[]).find(x=>x.id===tid);isC=true;}
-  if(!t)return;
+  // cherche dans cache d'abord, sinon dans SP par défaut
+  if(!cx[sid]) cx[sid]=[];
+  let t=cx[sid].find(x=>x.id===tid);
+  if(!t){
+    // ticket par défaut — on le copie dans le cache
+    const def=SP[sid].tickets.find(x=>x.id===tid);
+    if(!def)return;
+    t={...def};
+    cx[sid].push(t);
+  }
   t.status=ord[(ord.indexOf(t.status)+1)%ord.length];
-  if(isC){cx[sid]=(cx[sid]||[]).map(x=>x.id===tid?t:x);sc(cx);}
+  cx[sid]=cx[sid].map(x=>x.id===tid?t:x);
+  sc(cx);
   rSprint(sid);toast(`${tid} → ${SL[t.status]}`);
   if(detTid===tid){document.getElementById('dp-status').value=t.status;}
 }
@@ -917,11 +925,17 @@ function saveDpProp(){
   if(!detTid||!detSid)return;
   const st=document.getElementById('dp-status').value;
   const pr=document.getElementById('dp-priority').value;
-  const cx=gc();let t=SP[detSid].tickets.find(x=>x.id===detTid),isC=false;
-  if(!t){t=(cx[detSid]||[]).find(x=>x.id===detTid);isC=true;}
-  if(!t)return;
+  const cx=gc();
+  if(!cx[detSid])cx[detSid]=[];
+  let t=cx[detSid].find(x=>x.id===detTid);
+  if(!t){
+    const def=SP[detSid].tickets.find(x=>x.id===detTid);
+    if(!def)return;
+    t={...def};cx[detSid].push(t);
+  }
   t.status=st;t.priority=pr;
-  if(isC){cx[detSid]=(cx[detSid]||[]).map(x=>x.id===detTid?t:x);sc(cx);}
+  cx[detSid]=cx[detSid].map(x=>x.id===detTid?t:x);
+  sc(cx);
   rSprint(detSid);toast(`${detTid} mis à jour ✓`);
 }
 
@@ -978,7 +992,21 @@ function nav(name){
 
 function toast(msg){const e=document.getElementById('tst');e.textContent=msg;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2300);}
 
-// ── INIT ──
+// ── POLLING (sync toutes les 15s) ──
+setInterval(async () => {
+  try {
+    const r = await fetch(BIN_URL+'/latest', { headers: { 'X-Master-Key': API_KEY } });
+    const j = await r.json();
+    const newData = j.record || { tickets:{}, criteria:{} };
+    // ne re-render que si les données ont changé
+    if (JSON.stringify(newData) !== JSON.stringify(_cache)) {
+      _cache = newData;
+      for(let i=1;i<=5;i++) rSprint(i);
+      renderDash();
+      setSyncStatus('ok');
+    }
+  } catch(e) { setSyncStatus('err'); }
+}, 15000);
 async function init() {
   setSyncStatus('loading');
   try {

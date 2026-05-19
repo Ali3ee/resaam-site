@@ -602,13 +602,13 @@ body{display:flex;overflow:hidden;}
     </div>
     <div class="dp-body">
       <div class="dp-id" id="dp-id">RS-001</div>
-      <textarea class="dp-title" id="dp-title" rows="2" onblur="saveDpTitle()"></textarea>
+      <textarea class="dp-title" id="dp-title" rows="2" oninput="saveDpTitle()"></textarea>
       <div class="dp-props">
         <div class="pr"><div class="pk"><span class="pi">🏷️</span> Statut</div><div class="pv"><select class="dp-sel" id="dp-status" onchange="saveDpProp()"><option value="todo">À faire</option><option value="progress">En cours</option><option value="review">En review</option><option value="done">Terminé</option></select></div></div>
         <div class="pr"><div class="pk"><span class="pi">🔥</span> Priorité</div><div class="pv"><select class="dp-sel" id="dp-priority" onchange="saveDpProp()"><option value="high">🔴 Haute</option><option value="med">🟡 Moyenne</option><option value="low">⚪ Basse</option></select></div></div>
       </div>
       <div class="dp-desc-label">Description</div>
-      <textarea class="dp-desc" id="dp-desc" rows="4" onblur="saveDpDesc()"></textarea>
+      <textarea class="dp-desc" id="dp-desc" rows="4" oninput="saveDpDesc()"></textarea>
       <div class="dp-ac">
         <div class="dp-ac-title">Critères d'acceptation</div>
         <div id="dp-criteria"></div>

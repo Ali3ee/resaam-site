@@ -321,6 +321,7 @@ body{display:flex;overflow:hidden;}
     <div class="tb-bc">
       <span>Resaam</span><span class="sep">/</span>
       <span class="cur" id="bc">Bienvenue</span>
+      <span id="sync-status" style="font-size:11px;margin-left:8px"></span>
     </div>
     <div class="tb-act" id="tb-act" style="display:none">
       <button class="tb-btn ghost" onclick="openSearch()" title="Rechercher">
@@ -704,10 +705,58 @@ const SPRINT_NAMES={1:'Sprint 1 — Découverte',2:'Sprint 2 — Architecture',3
 
 let curSprint=1, selTags=['html'];
 let detTid=null, detSid=null;
-const gc=()=>{try{return JSON.parse(localStorage.getItem('rs_tk')||'{}')}catch(e){return{}}};
-const sc=d=>localStorage.setItem('rs_tk',JSON.stringify(d));
-const gc2=()=>{try{return JSON.parse(localStorage.getItem('rs_cr')||'{}')}catch(e){return{}}};
-const sc2=d=>localStorage.setItem('rs_cr',JSON.stringify(d));
+// ═══════════ JSONBIN SYNC ═══════════
+const BIN_ID = '6a0c41caee5a733b12e397fc';
+const API_KEY = '$2a$10$mrExulvmIsMdK7jWpUpZjekHmeQSITbNW3zg//58tcFjDWDbpnDaW';
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+let _cache = null; // mémoire locale pour éviter les appels inutiles
+let _saveTimer = null; // debounce des saves
+
+async function loadRemote() {
+  try {
+    const r = await fetch(BIN_URL+'/latest', {
+      headers: { 'X-Master-Key': API_KEY }
+    });
+    const j = await r.json();
+    _cache = j.record || { tickets:{}, criteria:{} };
+  } catch(e) {
+    console.warn('JSONBin load failed, using cache', e);
+    if (!_cache) _cache = { tickets:{}, criteria:{} };
+  }
+}
+
+async function saveRemote() {
+  if (!_cache) return;
+  try {
+    await fetch(BIN_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type':'application/json', 'X-Master-Key': API_KEY },
+      body: JSON.stringify(_cache)
+    });
+  } catch(e) { console.warn('JSONBin save failed', e); }
+}
+
+function debounceSave() {
+  clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(saveRemote, 600);
+}
+
+// API locale — tickets
+const gc  = () => (_cache ? _cache.tickets  : {});
+const sc  = d  => { if(_cache){ _cache.tickets = d; debounceSave(); } };
+// API locale — critères
+const gc2 = () => (_cache ? _cache.criteria : {});
+const sc2 = d  => { if(_cache){ _cache.criteria = d; debounceSave(); } };
+
+// indicateur de sync dans le topbar
+function setSyncStatus(state) {
+  const el = document.getElementById('sync-status');
+  if (!el) return;
+  if (state === 'loading') { el.textContent = '⟳ Sync…'; el.style.color = 'var(--t3)'; }
+  else if (state === 'ok')  { el.textContent = '● Sync';  el.style.color = 'var(--green)'; setTimeout(()=>{ el.textContent=''; },2000); }
+  else if (state === 'err') { el.textContent = '✕ Hors ligne'; el.style.color = 'var(--red)'; }
+}
 function nxtId(){let a=[];for(let i=1;i<=5;i++){a=[...a,...SP[i].tickets,...(gc()[i]||[])]}const ns=a.map(t=>parseInt(t.id.replace('RS-',''))).filter(n=>!isNaN(n));return 'RS-'+String(Math.max(25,...ns)+1).padStart(3,'0');}
 const views={1:'table',2:'table',3:'table',4:'table',5:'table'};
 
@@ -930,8 +979,18 @@ function nav(name){
 function toast(msg){const e=document.getElementById('tst');e.textContent=msg;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2300);}
 
 // ── INIT ──
-for(let i=1;i<=5;i++)rSprint(i);
-renderDash();
+async function init() {
+  setSyncStatus('loading');
+  try {
+    await loadRemote();
+    setSyncStatus('ok');
+  } catch(e) {
+    setSyncStatus('err');
+  }
+  for(let i=1;i<=5;i++) rSprint(i);
+  renderDash();
+}
+init();
 </script>
 </body>
 </html>

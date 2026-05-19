@@ -849,109 +849,117 @@ function rSprint(sid){
 
 function swV(sid,v,btn){views[sid]=v;btn.closest('.dbvs').querySelectorAll('.dbvb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');rSprint(sid);}
 
+// ── HELPER CENTRAL — copie un ticket dans le cache si absent ──
+function ensureInCache(tid, sid) {
+  const cx = gc();
+  if (!cx[sid]) cx[sid] = [];
+  let t = cx[sid].find(x => x.id === tid);
+  if (!t) {
+    const def = SP[sid].tickets.find(x => x.id === tid);
+    if (!def) return null;
+    t = {...def};
+    cx[sid].push(t);
+  }
+  return { cx, t };
+}
+
+function updateCache(tid, sid, changes) {
+  const r = ensureInCache(tid, sid);
+  if (!r) return;
+  const { cx, t } = r;
+  Object.assign(t, changes);
+  cx[sid] = cx[sid].map(x => x.id === tid ? t : x);
+  sc(cx);
+  return t;
+}
+
 // ── INLINE EDIT ──
-function inlineEditTitle(tid,sid,val){
-  const v=val.trim();if(!v)return;
-  const cx=gc();let t=SP[sid].tickets.find(x=>x.id===tid),isC=false;
-  if(!t){t=(cx[sid]||[]).find(x=>x.id===tid);isC=true;}
-  if(!t||t.title===v)return;
-  t.title=v;
-  if(isC){cx[sid]=(cx[sid]||[]).map(x=>x.id===tid?t:x);sc(cx);}
+function inlineEditTitle(tid, sid, val) {
+  const v = val.trim(); if (!v) return;
+  const t = updateCache(tid, sid, { title: v });
+  if (!t) return;
   toast('Titre modifié ✓');
-  if(detTid===tid)document.getElementById('dp-title').value=v;
+  if (detTid === tid) document.getElementById('dp-title').value = v;
 }
 
 // ── CYCLE STATUS ──
-function cycSt(tid,sid){
-  const ord=['todo','progress','review','done'],cx=gc();
-  // cherche dans cache d'abord, sinon dans SP par défaut
-  if(!cx[sid]) cx[sid]=[];
-  let t=cx[sid].find(x=>x.id===tid);
-  if(!t){
-    // ticket par défaut — on le copie dans le cache
-    const def=SP[sid].tickets.find(x=>x.id===tid);
-    if(!def)return;
-    t={...def};
-    cx[sid].push(t);
-  }
-  t.status=ord[(ord.indexOf(t.status)+1)%ord.length];
-  cx[sid]=cx[sid].map(x=>x.id===tid?t:x);
-  sc(cx);
-  rSprint(sid);toast(`${tid} → ${SL[t.status]}`);
-  if(detTid===tid){document.getElementById('dp-status').value=t.status;}
+function cycSt(tid, sid) {
+  const ord = ['todo','progress','review','done'];
+  const r = ensureInCache(tid, sid); if (!r) return;
+  const newStatus = ord[(ord.indexOf(r.t.status) + 1) % ord.length];
+  const t = updateCache(tid, sid, { status: newStatus });
+  rSprint(sid); toast(`${tid} → ${SL[newStatus]}`);
+  if (detTid === tid) document.getElementById('dp-status').value = newStatus;
 }
 
 // ── DETAIL PANEL ──
-function openDetail(tid,sid){
-  detTid=tid;detSid=sid;
-  const t=getTicket(tid,sid);if(!t)return;
-  document.getElementById('dp-sprint-label').textContent=SPRINT_NAMES[sid];
-  document.getElementById('dp-id').textContent=tid;
-  document.getElementById('dp-title').value=t.title;
-  document.getElementById('dp-status').value=t.status;
-  document.getElementById('dp-priority').value=t.priority;
-  document.getElementById('dp-desc').value=t.desc;
+function openDetail(tid, sid) {
+  detTid = tid; detSid = sid;
+  const t = getTicket(tid, sid); if (!t) return;
+  document.getElementById('dp-sprint-label').textContent = SPRINT_NAMES[sid];
+  document.getElementById('dp-id').textContent = tid;
+  document.getElementById('dp-title').value = t.title;
+  document.getElementById('dp-status').value = t.status;
+  document.getElementById('dp-priority').value = t.priority;
+  document.getElementById('dp-desc').value = t.desc;
   renderCriteria(tid);
   document.getElementById('det-ov').classList.add('on');
 }
 
-function renderCriteria(tid){
-  const allCr=gc2();
-  const defCr=(()=>{for(let i=1;i<=5;i++){const t=SP[i].tickets.find(x=>x.id===tid);if(t)return t.criteria||[];}return[];})();
-  const cr=allCr[tid]||(defCr.map(c=>({text:c,done:false})));
-  if(!allCr[tid]){allCr[tid]=cr;sc2(allCr);}
-  document.getElementById('dp-criteria').innerHTML=cr.map((c,i)=>`<div class="dp-check-item ${c.done?'checked':''}" id="cri-${i}"><input type="checkbox" ${c.done?'checked':''} onchange="toggleCriterion(${i})"><span>${c.text}</span></div>`).join('');
+function renderCriteria(tid) {
+  const allCr = gc2();
+  const defCr = (()=>{ for(let i=1;i<=5;i++){const t=SP[i].tickets.find(x=>x.id===tid);if(t)return t.criteria||[];} return[]; })();
+  const cr = allCr[tid] || defCr.map(c => ({ text: c, done: false }));
+  if (!allCr[tid]) { allCr[tid] = cr; sc2(allCr); }
+  document.getElementById('dp-criteria').innerHTML = cr.map((c,i) =>
+    `<div class="dp-check-item ${c.done?'checked':''}" id="cri-${i}">
+      <input type="checkbox" ${c.done?'checked':''} onchange="toggleCriterion(${i})">
+      <span>${c.text}</span>
+    </div>`
+  ).join('');
 }
 
-function toggleCriterion(idx){
-  if(!detTid)return;
-  const allCr=gc2();if(!allCr[detTid])return;
-  allCr[detTid][idx].done=!allCr[detTid][idx].done;sc2(allCr);
+function toggleCriterion(idx) {
+  if (!detTid) return;
+  const allCr = gc2(); if (!allCr[detTid]) return;
+  allCr[detTid][idx].done = !allCr[detTid][idx].done;
+  sc2(allCr);
   renderCriteria(detTid);
 }
 
-function addCriterion(){
-  const text=prompt('Nouveau critère d\'acceptation :');
-  if(!text||!text.trim())return;
-  const allCr=gc2();if(!allCr[detTid])allCr[detTid]=[];
-  allCr[detTid].push({text:text.trim(),done:false});sc2(allCr);
+function addCriterion() {
+  const text = prompt('Nouveau critère d\'acceptation :');
+  if (!text || !text.trim()) return;
+  const allCr = gc2();
+  if (!allCr[detTid]) allCr[detTid] = [];
+  allCr[detTid].push({ text: text.trim(), done: false });
+  sc2(allCr);
   renderCriteria(detTid);
 }
 
-function saveDpTitle(){
-  if(!detTid||!detSid)return;
-  const val=document.getElementById('dp-title').value.trim();
-  if(!val)return;
-  inlineEditTitle(detTid,detSid,val);
+function saveDpTitle() {
+  if (!detTid || !detSid) return;
+  const val = document.getElementById('dp-title').value.trim();
+  if (!val) return;
+  updateCache(detTid, detSid, { title: val });
   rSprint(detSid);
+  toast('Titre mis à jour ✓');
 }
 
-function saveDpDesc(){
-  if(!detTid||!detSid)return;
-  const val=document.getElementById('dp-desc').value;
-  const cx=gc();let t=SP[detSid].tickets.find(x=>x.id===detTid),isC=false;
-  if(!t){t=(cx[detSid]||[]).find(x=>x.id===detTid);isC=true;}
-  if(!t)return;
-  t.desc=val;
-  if(isC){cx[detSid]=(cx[detSid]||[]).map(x=>x.id===detTid?t:x);sc(cx);}
+function saveDpDesc() {
+  if (!detTid || !detSid) return;
+  const val = document.getElementById('dp-desc').value;
+  updateCache(detTid, detSid, { desc: val });
+  toast('Description sauvegardée ✓');
 }
 
-function saveDpProp(){
-  if(!detTid||!detSid)return;
-  const st=document.getElementById('dp-status').value;
-  const pr=document.getElementById('dp-priority').value;
-  const cx=gc();
-  if(!cx[detSid])cx[detSid]=[];
-  let t=cx[detSid].find(x=>x.id===detTid);
-  if(!t){
-    const def=SP[detSid].tickets.find(x=>x.id===detTid);
-    if(!def)return;
-    t={...def};cx[detSid].push(t);
-  }
-  t.status=st;t.priority=pr;
-  cx[detSid]=cx[detSid].map(x=>x.id===detTid?t:x);
-  sc(cx);
-  rSprint(detSid);toast(`${detTid} mis à jour ✓`);
+function saveDpProp() {
+  if (!detTid || !detSid) return;
+  const st = document.getElementById('dp-status').value;
+  const pr = document.getElementById('dp-priority').value;
+  updateCache(detTid, detSid, { status: st, priority: pr });
+  rSprint(detSid);
+  toast(`${detTid} mis à jour ✓`);
 }
 
 function deleteCurrentTicket(){

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resaam — Onboarding Sefora</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--bg-h:#f1f1ef;--bg-a:#ebebea;--sb:#f7f7f5;
+  --border:#e9e9e7;--text:#37352f;--t2:#6b6b6b;--t3:#9b9a97;
+  --accent:#2383e2;--acc-bg:#ebf3fb;
+  --green:#0f7b6c;--green-bg:#dcfce7;
+  --yellow:#c97924;--yellow-bg:#fef3c7;
+  --red:#e03e3e;--red-bg:#fdecea;
+  --purple:#6940a5;--purple-bg:#f3f0ff;
+  --gray-bg:#f1f1ef;
+  --font:'Inter',-apple-system,sans-serif;
+  --r:4px;--r2:6px;--sw:240px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;}
+body{display:flex;overflow:hidden;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+::-webkit-scrollbar-thumb:hover{background:var(--t3);}
+
+/* ── SIDEBAR ── */
+.sb{width:var(--sw);min-width:var(--sw);background:var(--sb);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow-y:auto;overflow-x:hidden;user-select:none;flex-shrink:0;}
+.sb-ws{display:flex;align-items:center;gap:8px;padding:11px 12px 8px;cursor:pointer;border-radius:var(--r);margin:6px 6px 2px;transition:background .1s;}
+.sb-ws:hover{background:var(--bg-h);}
+.ws-ic{width:22px;height:22px;background:var(--text);border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ws-ic span{color:#fff;font-size:11px;font-weight:700;}
+.ws-n{font-size:13px;font-weight:600;color:var(--text);flex:1;}
+.sb-sec{padding:4px 0;}
+.sb-lbl{font-size:11px;font-weight:500;color:var(--t3);padding:6px 14px 2px;text-transform:uppercase;letter-spacing:.05em;}
+.sb-it{display:flex;align-items:center;gap:6px;padding:3px 12px 3px 8px;border-radius:var(--r);margin:0 4px;cursor:pointer;color:var(--t2);font-size:13px;transition:background .08s;white-space:nowrap;overflow:hidden;text-decoration:none;}
+.sb-it:hover{background:var(--bg-h);color:var(--text);}
+.sb-it.on{background:var(--bg-a);color:var(--text);font-weight:500;}
+.sb-em{font-size:13px;width:20px;text-align:center;flex-shrink:0;}
+.sb-tx{flex:1;overflow:hidden;text-overflow:ellipsis;}
+.sb-ct{font-size:11px;color:var(--t3);background:var(--bg-a);padding:1px 5px;border-radius:3px;flex-shrink:0;}
+.sb-it.on .sb-ct{background:var(--border);}
+.sb-hr{border:none;border-top:1px solid var(--border);margin:5px 10px;}
+.sb-bot{margin-top:auto;border-top:1px solid var(--border);padding:6px;}
+.sb-usr{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:var(--r);cursor:pointer;transition:background .1s;}
+.sb-usr:hover{background:var(--bg-h);}
+.av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2383e2,#9747ff);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;}
+.sb-un{font-size:13px;font-weight:500;color:var(--text);}
+.sb-ur{font-size:11px;color:var(--t3);}
+
+/* ── MAIN ── */
+.mn{flex:1;height:100vh;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;}
+
+/* topbar */
+.topbar{height:44px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:8px;flex-shrink:0;position:sticky;top:0;z-index:50;background:var(--bg);}
+.tb-bc{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--t3);}
+.tb-bc .sep{opacity:.4;}
+.tb-bc .cur{color:var(--text);font-weight:500;}
+.tb-act{margin-left:auto;display:flex;align-items:center;gap:4px;}
+.tb-btn{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:var(--r);font-size:13px;font-weight:500;color:var(--t2);cursor:pointer;transition:background .1s;border:none;background:transparent;font-family:var(--font);}
+.tb-btn:hover{background:var(--bg-h);color:var(--text);}
+.tb-btn.pri{background:var(--text);color:#fff;}
+.tb-btn.pri:hover{background:#2d2d2d;}
+.tb-btn.ghost{border:1px solid var(--border);}
+
+/* ── PAGES ── */
+.pw{display:none;padding:40px 80px 80px;max-width:860px;width:100%;}
+.pw.on{display:block;}
+.cov{height:140px;margin:-40px -80px 0;border-bottom:1px solid var(--border);}
+.pg-icon{font-size:48px;line-height:1;margin-top:24px;margin-bottom:2px;}
+.pg-t{font-size:36px;font-weight:700;color:var(--text);border:none;outline:none;background:transparent;width:100%;font-family:var(--font);line-height:1.2;margin-bottom:20px;cursor:default;}
+
+/* props */
+.pr{display:flex;align-items:flex-start;padding:5px 0;border-radius:var(--r);transition:background .08s;}
+.pr:hover{background:var(--bg-h);}
+.pk{width:135px;flex-shrink:0;font-size:13px;color:var(--t3);font-weight:500;display:flex;align-items:center;gap:6px;padding:2px 6px;}
+.pi{font-size:12px;opacity:.6;}
+.pv{font-size:13px;color:var(--text);padding:2px 6px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;padding:2px 7px;border-radius:3px;font-size:12px;font-weight:500;white-space:nowrap;}
+.c-blue{background:var(--acc-bg);color:var(--accent);}
+.c-green{background:var(--green-bg);color:var(--green);}
+.c-yellow{background:var(--yellow-bg);color:var(--yellow);}
+.c-red{background:var(--red-bg);color:var(--red);}
+.c-purple{background:var(--purple-bg);color:var(--purple);}
+.c-gray{background:var(--gray-bg);color:var(--t2);}
+
+.ndiv{border:none;border-top:1px solid var(--border);margin:20px 0;}
+
+/* callout */
+.cl{display:flex;gap:10px;background:var(--bg-h);border-radius:var(--r2);padding:11px 13px;margin:10px 0;font-size:14px;line-height:1.6;color:var(--text);}
+.cl-ic{font-size:17px;flex-shrink:0;margin-top:1px;}
+.cl.blue{background:var(--acc-bg);}
+.cl.green{background:var(--green-bg);}
+.cl.yellow{background:var(--yellow-bg);}
+.cl.red{background:var(--red-bg);}
+
+.h1{font-size:21px;font-weight:600;color:var(--text);margin:26px 0 7px;}
+.h2{font-size:16px;font-weight:600;color:var(--text);margin:18px 0 5px;}
+.h3{font-size:14px;font-weight:600;color:var(--text);margin:12px 0 4px;}
+.np{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:7px;}
+
+/* toggle */
+.tog{margin:1px 0;}
+.tog-h{display:flex;align-items:flex-start;gap:4px;cursor:pointer;padding:3px 4px;border-radius:var(--r);transition:background .08s;font-size:14px;line-height:1.6;color:var(--text);}
+.tog-h:hover{background:var(--bg-h);}
+.tog-ar{font-size:10px;color:var(--t3);margin-top:4px;transition:transform .15s;flex-shrink:0;}
+.tog.op .tog-ar{transform:rotate(90deg);}
+.tog-b{display:none;padding-left:20px;margin-bottom:3px;}
+.tog.op .tog-b{display:block;}
+
+/* lists */
+.nul{list-style:none;margin:3px 0 7px;}
+.nul li{display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.6;color:var(--text);padding:1px 0;}
+.nul li::before{content:'•';color:var(--t3);flex-shrink:0;margin-top:1px;}
+.nul li.done-li{color:var(--t3);text-decoration:line-through;}
+.nul li.done-li::before{content:'✓';color:var(--green);}
+
+/* checkbox list */
+.chklist{list-style:none;margin:4px 0 8px;}
+.chklist li{display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.6;padding:2px 0;}
+.chklist li input[type=checkbox]{margin-top:3px;accent-color:var(--text);cursor:pointer;flex-shrink:0;}
+
+/* inline code */
+.ic{font-family:'SFMono-Regular','Consolas',monospace;font-size:85%;color:var(--red);background:rgba(135,131,120,.1);padding:2px 5px;border-radius:3px;}
+
+/* skill bars */
+.skrow{display:flex;align-items:center;gap:12px;margin-bottom:9px;}
+.sknm{width:135px;font-size:13px;color:var(--t2);flex-shrink:0;}
+.skt{flex:1;height:5px;background:var(--border);border-radius:99px;overflow:hidden;}
+.skf{height:100%;background:var(--text);border-radius:99px;}
+.skp{font-size:12px;color:var(--t3);width:32px;text-align:right;flex-shrink:0;}
+
+/* timeline */
+.tli{display:flex;gap:14px;padding-bottom:18px;position:relative;}
+.tli:not(:last-child)::before{content:'';position:absolute;left:5px;top:20px;bottom:0;width:1px;background:var(--border);}
+.tld{width:11px;height:11px;border-radius:50%;border:2px solid var(--border);background:var(--bg);flex-shrink:0;margin-top:3px;}
+.tld.act{background:var(--text);border-color:var(--text);}
+.tl-dt{font-size:11px;color:var(--t3);font-family:monospace;margin-bottom:2px;}
+.tl-nm{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.tl-ds{font-size:13px;color:var(--t2);line-height:1.5;}
+
+/* ── DASHBOARD ── */
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.dcard{background:var(--bg);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;}
+.dc-label{font-size:12px;color:var(--t3);font-weight:500;margin-bottom:4px;}
+.dc-val{font-size:26px;font-weight:700;color:var(--text);line-height:1.1;}
+.dc-sub{font-size:12px;color:var(--t3);margin-top:2px;}
+
+.global-progress{margin-bottom:20px;}
+.gp-label{display:flex;justify-content:space-between;font-size:12px;color:var(--t3);margin-bottom:5px;}
+.gp-bar{height:6px;background:var(--border);border-radius:99px;overflow:hidden;}
+.gp-fill{height:100%;background:var(--text);border-radius:99px;transition:width .5s ease;}
+
+.sprint-overview{border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:20px;}
+.so-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .08s;}
+.so-row:last-child{border-bottom:none;}
+.so-row:hover{background:var(--bg-h);}
+.so-icon{font-size:15px;flex-shrink:0;}
+.so-name{font-size:13px;font-weight:500;color:var(--text);flex:1;}
+.so-bar-wrap{width:120px;height:4px;background:var(--border);border-radius:99px;overflow:hidden;flex-shrink:0;}
+.so-bar-fill{height:100%;background:var(--t3);border-radius:99px;transition:width .4s;}
+.so-bar-fill.active{background:var(--text);}
+.so-bar-fill.done{background:var(--green);}
+.so-pct{font-size:12px;color:var(--t3);width:30px;text-align:right;flex-shrink:0;}
+.so-chip{flex-shrink:0;}
+
+.next-tickets{margin-bottom:20px;}
+.nt-title{font-size:13px;font-weight:600;color:var(--t2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.nt-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:var(--r2);margin-bottom:6px;cursor:pointer;transition:background .08s;}
+.nt-item:hover{background:var(--bg-h);}
+.nt-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.nt-dot.high{background:var(--red);}
+.nt-dot.med{background:var(--yellow);}
+.nt-dot.low{background:var(--t3);}
+.nt-title-t{font-size:13px;font-weight:500;color:var(--text);flex:1;}
+.nt-sprint{font-size:12px;color:var(--t3);}
+.nt-id{font-size:11px;color:var(--t3);font-family:monospace;}
+
+/* ── DATABASE ── */
+.db-t{font-size:13px;font-weight:600;color:var(--t2);}
+.db-c{font-size:12px;color:var(--t3);}
+.dbvs{display:flex;gap:2px;margin:10px 0 10px;}
+.dbvb{display:flex;align-items:center;gap:5px;padding:4px 9px;border-radius:var(--r);font-size:12.5px;font-weight:500;color:var(--t3);cursor:pointer;transition:background .1s;border:none;background:transparent;font-family:var(--font);}
+.dbvb:hover{background:var(--bg-h);color:var(--text);}
+.dbvb.on{background:var(--bg-a);color:var(--text);}
+.dbt{width:100%;border-collapse:collapse;}
+.dbt th{text-align:left;font-size:12px;font-weight:500;color:var(--t3);border-bottom:1px solid var(--border);padding:5px 8px;white-space:nowrap;}
+.dbt td{padding:6px 8px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+.dbt tr:hover td{background:var(--bg-h);}
+.dbt tr:last-child td{border-bottom:none;}
+.td-ti{display:flex;align-items:center;gap:7px;font-weight:500;color:var(--text);}
+.td-id{font-family:'SFMono-Regular',monospace;font-size:11px;color:var(--t3);white-space:nowrap;}
+
+/* inline edit */
+.td-ti-edit{font-weight:500;color:var(--text);border:none;outline:none;background:transparent;font-family:var(--font);font-size:13px;width:100%;cursor:pointer;}
+.td-ti-edit:focus{cursor:text;background:var(--acc-bg);border-radius:3px;padding:1px 4px;}
+
+/* board */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.bc-ct{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--t2);margin-bottom:7px;padding:3px 0;text-transform:uppercase;letter-spacing:.05em;}
+.bc-n{font-size:11px;color:var(--t3);background:var(--bg-a);padding:1px 5px;border-radius:3px;}
+.bcard{background:var(--bg);border:1px solid var(--border);border-radius:var(--r2);padding:9px 11px;margin-bottom:5px;cursor:pointer;transition:box-shadow .1s,border-color .1s;}
+.bcard:hover{box-shadow:0 2px 8px rgba(0,0,0,.08);border-color:rgba(0,0,0,.12);}
+.bc-ti{font-size:13px;font-weight:500;color:var(--text);margin-bottom:7px;line-height:1.4;}
+.bc-ft{display:flex;align-items:center;justify-content:space-between;}
+.bc-id{font-size:10px;color:var(--t3);font-family:monospace;}
+.bc-tg{display:flex;gap:3px;flex-wrap:wrap;}
+
+/* sprint progress bar */
+.sp-prog{margin-bottom:16px;}
+.sp-l{display:flex;justify-content:space-between;font-size:12px;color:var(--t3);margin-bottom:4px;}
+.sp-b{height:3px;background:var(--border);border-radius:99px;overflow:hidden;}
+.sp-f{height:100%;background:var(--text);border-radius:99px;transition:width .4s ease;}
+
+.add-r{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--t3);padding:5px 8px;border-radius:var(--r);cursor:pointer;transition:background .08s;border:none;background:transparent;font-family:var(--font);margin-top:4px;width:100%;text-align:left;}
+.add-r:hover{background:var(--bg-h);color:var(--text);}
+
+/* acceptance criteria */
+.ac-block{background:var(--bg-h);border-radius:var(--r2);padding:8px 12px;margin-top:6px;font-size:12px;color:var(--t2);}
+.ac-title{font-weight:600;color:var(--t2);margin-bottom:4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;}
+
+/* ── TICKET DETAIL PANEL ── */
+.detail-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:200;align-items:flex-start;justify-content:flex-end;}
+.detail-overlay.on{display:flex;}
+.detail-panel{width:480px;height:100vh;background:var(--bg);border-left:1px solid var(--border);overflow-y:auto;display:flex;flex-direction:column;animation:slideIn .2s ease;}
+@keyframes slideIn{from{transform:translateX(40px);opacity:.5;}to{transform:translateX(0);opacity:1;}}
+.dp-top{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.dp-close{margin-left:auto;background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;border-radius:3px;transition:background .1s;}
+.dp-close:hover{background:var(--bg-h);color:var(--text);}
+.dp-body{padding:24px 28px;flex:1;}
+.dp-id{font-size:11px;color:var(--t3);font-family:monospace;margin-bottom:8px;}
+.dp-title{font-size:20px;font-weight:600;color:var(--text);margin-bottom:16px;border:none;outline:none;background:transparent;font-family:var(--font);width:100%;resize:none;}
+.dp-title:focus{background:var(--acc-bg);border-radius:4px;padding:4px 6px;}
+.dp-props{margin-bottom:20px;}
+.dp-desc-label{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.dp-desc{font-size:14px;color:var(--t2);line-height:1.7;border:none;outline:none;background:transparent;font-family:var(--font);width:100%;resize:vertical;min-height:80px;}
+.dp-desc:focus{background:var(--bg-h);border-radius:4px;padding:6px 8px;}
+.dp-ac{margin-top:16px;}
+.dp-ac-title{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.dp-check-item{display:flex;align-items:flex-start;gap:8px;padding:3px 0;font-size:14px;color:var(--text);}
+.dp-check-item input{margin-top:3px;accent-color:var(--text);cursor:pointer;}
+.dp-check-item.checked span{text-decoration:line-through;color:var(--t3);}
+.add-ac-btn{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--t3);border:none;background:none;cursor:pointer;font-family:var(--font);padding:4px 0;margin-top:4px;}
+.add-ac-btn:hover{color:var(--text);}
+.dp-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;}
+.dp-sel{flex:1;font-family:var(--font);font-size:13px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:5px 8px;outline:none;}
+.dp-sel:focus{border-color:var(--accent);}
+
+/* ── MODAL (new ticket) ── */
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;align-items:center;justify-content:center;}
+.ov.on{display:flex;}
+.mod{background:var(--bg);border-radius:8px;width:460px;max-width:95vw;box-shadow:0 8px 40px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.08);padding:22px;animation:su .15s ease;}
+@keyframes su{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.mod-t{font-size:15px;font-weight:600;margin-bottom:18px;}
+.fg{margin-bottom:14px;}
+.fl{font-size:11px;font-weight:500;color:var(--t3);margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.04em;}
+.fi,.fs,.fta{width:100%;font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:6px 9px;outline:none;transition:border-color .15s,box-shadow .15s;resize:vertical;}
+.fi:focus,.fs:focus,.fta:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(35,131,226,.2);}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.tp{display:flex;flex-wrap:wrap;gap:5px;}
+.tpi{padding:2px 9px;border-radius:3px;font-size:12px;font-weight:500;cursor:pointer;opacity:.35;transition:opacity .1s;}
+.tpi.sl{opacity:1;}
+.ma{display:flex;justify-content:flex-end;gap:8px;margin-top:18px;}
+.btn{padding:5px 14px;border-radius:var(--r);font-family:var(--font);font-size:14px;font-weight:500;cursor:pointer;border:1px solid transparent;transition:background .1s;}
+.btn-d{background:var(--bg-h);color:var(--text);border-color:var(--border);}
+.btn-d:hover{background:var(--bg-a);}
+.btn-p{background:var(--text);color:#fff;}
+.btn-p:hover{background:#2d2d2d;}
+
+/* toast */
+.tst{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--text);color:#fff;padding:7px 14px;border-radius:6px;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .2s ease,opacity .2s;opacity:0;z-index:9999;white-space:nowrap;}
+.tst.on{transform:translateX(-50%) translateY(0);opacity:1;}
+
+/* confirm dialog */
+.confirm-box{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 18px;box-shadow:0 4px 20px rgba(0,0,0,.15);z-index:9999;display:none;align-items:center;gap:12px;font-size:13px;}
+.confirm-box.on{display:flex;}
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sb">
+  <div class="sb-ws">
+    <div class="ws-ic"><span>R</span></div>
+    <span class="ws-n">Resaam</span>
+    <span style="color:var(--t3);font-size:10px">⌄</span>
+  </div>
+  <div class="sb-sec">
+    <a class="sb-it" onclick="nav('dashboard')" href="#"><span class="sb-em">🏠</span><span class="sb-tx">Tableau de bord</span></a>
+    <a class="sb-it on" onclick="nav('welcome')" href="#"><span class="sb-em">👋</span><span class="sb-tx">Bienvenue</span></a>
+    <a class="sb-it" onclick="nav('context')" href="#"><span class="sb-em">📌</span><span class="sb-tx">Contexte Resaam</span></a>
+    <a class="sb-it" onclick="nav('mission')" href="#"><span class="sb-em">🎯</span><span class="sb-tx">Ma mission</span></a>
+    <a class="sb-it" onclick="nav('stack')" href="#"><span class="sb-em">🛠️</span><span class="sb-tx">Stack & Outils</span></a>
+    <a class="sb-it" onclick="nav('timeline')" href="#"><span class="sb-em">📅</span><span class="sb-tx">Planning</span></a>
+  </div>
+  <hr class="sb-hr">
+  <div class="sb-sec">
+    <div class="sb-lbl">Sprints</div>
+    <a class="sb-it" onclick="nav('sprint1')" href="#"><span class="sb-em">⚡</span><span class="sb-tx">Sprint 1 — Découverte</span><span class="sb-ct" id="c1">5</span></a>
+    <a class="sb-it" onclick="nav('sprint2')" href="#"><span class="sb-em">⚡</span><span class="sb-tx">Sprint 2 — Architecture</span><span class="sb-ct" id="c2">5</span></a>
+    <a class="sb-it" onclick="nav('sprint3')" href="#"><span class="sb-em">⚡</span><span class="sb-tx">Sprint 3 — IA</span><span class="sb-ct" id="c3">5</span></a>
+    <a class="sb-it" onclick="nav('sprint4')" href="#"><span class="sb-em">⚡</span><span class="sb-tx">Sprint 4 — Contenu</span><span class="sb-ct" id="c4">5</span></a>
+    <a class="sb-it" onclick="nav('sprint5')" href="#"><span class="sb-em">⚡</span><span class="sb-tx">Sprint 5 — Finition</span><span class="sb-ct" id="c5">5</span></a>
+  </div>
+  <div class="sb-bot">
+    <div class="sb-usr">
+      <div class="av">SS</div>
+      <div><div class="sb-un">Sefora SYLLA</div><div class="sb-ur">Stagiaire · LP2 MIAW</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<div class="mn" id="mn">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="tb-bc">
+      <span>Resaam</span><span class="sep">/</span>
+      <span class="cur" id="bc">Bienvenue</span>
+    </div>
+    <div class="tb-act" id="tb-act" style="display:none">
+      <button class="tb-btn ghost" onclick="openSearch()" title="Rechercher">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="tb-btn pri" onclick="openMod(curSprint)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Nouveau ticket
+      </button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="pw" id="page-dashboard">
+    <div class="cov" style="background:linear-gradient(120deg,#f0fdf4,#eff6ff,#fdf4ff)"></div>
+    <div class="pg-icon">🏠</div>
+    <div class="pg-t">Tableau de bord</div>
+
+    <div class="dash-grid" id="dash-stats"></div>
+
+    <div class="global-progress">
+      <div class="gp-label"><span>Progression globale du stage</span><span id="gp-pct">0%</span></div>
+      <div class="gp-bar"><div class="gp-fill" id="gp-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="h2" style="margin-top:0">Avancement par sprint</div>
+    <div class="sprint-overview" id="sprint-overview"></div>
+
+    <div class="next-tickets">
+      <div class="nt-title">Prochains tickets prioritaires</div>
+      <div id="next-tickets-list"></div>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="pw on" id="page-welcome">
+    <div class="cov" style="background:linear-gradient(120deg,#e0f2fe,#ede9fe,#fce7f3)"></div>
+    <div class="pg-icon">👋</div>
+    <div class="pg-t">Bienvenue chez Resaam, Sefora !</div>
+    <div class="pt">
+      <div class="pr"><div class="pk"><span class="pi">👤</span> Tuteur</div><div class="pv">Ali HANOUT (CEO) — ali@resaam.com — +33 6 22 32 49 41</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📅</span> Début</div><div class="pv">19 mai 2026</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🏁</span> Fin prévue</div><div class="pv">25 juillet 2026 — 280h minimum (40 jours × 7h)</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📍</span> Lieu</div><div class="pv">5 Parvis Alan Turing, Paris 75013 + télétravail</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🎓</span> Formation</div><div class="pv">LP2 Métiers de l'Informatique et Application Web — Université de Limoges</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📞</span> Suivi</div><div class="pv">Point hebdo visio chaque lundi matin + messagerie instantanée</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🏷️</span> Statut</div><div class="pv"><span class="chip c-green">● En cours</span></div></div>
+    </div>
+    <hr class="ndiv">
+    <div class="cl blue"><span class="cl-ic">💡</span><div>Ce document est ton guide de stage. Il contient tout : contexte, mission, outils, gestion des tickets par sprint. Lis-le du début à la fin avant de commencer, puis reviens dessus chaque lundi.</div></div>
+    <div class="h2">Checklist du premier jour</div>
+    <ul class="nul">
+      <li class="done-li">Convention de stage signée et transmise</li>
+      <li class="done-li">Accès GitHub configuré (<span class="ic">Ali3ee/resaam-site</span>) — invitation acceptée</li>
+      <li class="done-li">Messagerie interne Resaam opérationnelle</li>
+      <li>Lecture complète de ce document onboarding</li>
+      <li>Visite de resaam.com et prise de notes (premier regard)</li>
+      <li>Premier ticket Sprint 1 démarré (RS-001 : Benchmark)</li>
+    </ul>
+    <div class="h2">Règles de vie</div>
+    <ul class="nul">
+      <li><strong>Autonomie</strong> — Résultats comptent plus que la présence. Horaires flexibles, mais les deadlines de sprint sont tenues.</li>
+      <li><strong>Communication</strong> — Un blocage de plus de 2h se signale immédiatement sur la messagerie. Ne pas rester bloquée seule.</li>
+      <li><strong>Git discipline</strong> — Un commit = une tâche. Pas de commits "misc" ou "wip" sans description.</li>
+      <li><strong>IA = outil</strong> — Tout output IA relu, compris, amélioré avant commit. L'IA est une accélératrice, pas une remplaçante.</li>
+      <li><strong>Documentation</strong> — Ce qui n'est pas documenté n'existe pas. Chaque décision technique notée.</li>
+    </ul>
+  </div>
+
+  <!-- CONTEXT -->
+  <div class="pw" id="page-context">
+    <div class="cov" style="background:linear-gradient(120deg,#dcfce7,#e0f2fe)"></div>
+    <div class="pg-icon">📌</div>
+    <div class="pg-t">Contexte Resaam</div>
+    <div class="pt">
+      <div class="pr"><div class="pk"><span class="pi">🏢</span> Société</div><div class="pv">RESAAM SAS — 366 rue de Vaugirard, 75015 Paris</div></div>
+      <div class="pr"><div class="pk"><span class="pi">💡</span> Pitch</div><div class="pv">"Solution de gestion des flux de transport sanitaire"</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🎯</span> Marché</div><div class="pv"><span class="chip c-blue">Healthtech</span> <span class="chip c-gray">SaaS B2B</span> <span class="chip c-gray">Transport sanitaire</span> <span class="chip c-gray">Régulation médicale</span></div></div>
+      <div class="pr"><div class="pk"><span class="pi">🏆</span> Certifications</div><div class="pv"><span class="chip c-green">HDS certifié</span> <span class="chip c-yellow">CNDA homologation en cours</span> <span class="chip c-gray">SESAM-Vitale sandbox</span></div></div>
+      <div class="pr"><div class="pk"><span class="pi">🤝</span> Partenaires</div><div class="pv">Mairie du 15e · French Tech Grand Paris · Station F · BPI France · URPS Médecins Libéraux IDF · SFMU · SAMU Urgences de France · SAMU 93 Bobigny</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📧</span> Contact</div><div class="pv">contact@resaam.com</div></div>
+    </div>
+    <hr class="ndiv">
+
+    <div class="h1">Comprendre le produit</div>
+    <p class="np">Resaam est une plateforme de gestion des flux de transport sanitaire. Elle connecte en temps réel l'ensemble des acteurs : SAMU/SAS, établissements de santé, médecine de ville, SMUR, ambulances privées et associations de secours. L'objectif : remplacer la coordination par téléphone et papier par un système intelligent d'affectation automatisée des missions.</p>
+
+    <div class="cl yellow"><span class="cl-ic">⚠️</span><div><strong>Important sur les visuels :</strong> les captures d'écran dans le deck commercial sont issues de l'ancienne version (legacy). Une refonte visuelle complète des interfaces est en cours. Pour le site vitrine, tu t'appuies sur les descriptions fonctionnelles — pas sur les screenshots legacy.</div></div>
+
+    <div class="h2">L'écosystème Resaam — qui connecte quoi ?</div>
+    <p class="np">Resaam s'intègre au cœur du parcours patient, de la prescription médicale jusqu'au retour au domicile :</p>
+    <ul class="nul">
+      <li><strong>Médecine de ville → Hospitalisation/Urgence</strong> — programmation des transports non urgents avec annonce des délais</li>
+      <li><strong>SAMU/SAS → Transporteurs</strong> — affectation automatisée des missions (SMUR, ambulances privées, associations)</li>
+      <li><strong>Transporteurs → SAU</strong> — bilan numérique embarqué + annonce des arrivées auprès des services d'urgences</li>
+      <li><strong>SAU → Domicile/Transfert</strong> — programmation des sorties et des retours patients</li>
+      <li><strong>Connecteur Sapeurs-Pompiers</strong> — intégration flux pompiers vers les urgences</li>
+    </ul>
+
+    <div class="h2">Les interfaces par utilisateur</div>
+
+    <div class="tog op"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>📡 Pour le SAMU — régulation intelligente (3 vues)</span></div><div class="tog-b">
+      <p style="font-size:13px;color:var(--t2);margin-bottom:8px">L'interface SAMU est déclinée en 3 vues complémentaires :</p>
+      <ul class="nul">
+        <li><strong>Vue Patient</strong> — app mobile, suivi de la mission en cours, navigation guidée</li>
+        <li><strong>Vue Coordinateur</strong> — dashboard web, liste des interventions en cours, statuts en temps réel, assignation des véhicules</li>
+        <li><strong>Vue Embarqué</strong> — app mobile ambulancier, prise en charge et navigation</li>
+        <li>Affectation automatisée des missions selon disponibilité et géolocalisation</li>
+        <li>ECG connecté (synergie partenaire) — bilan numérique transmis depuis le véhicule</li>
+      </ul>
+    </div></div>
+
+    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🏥 Pour le Service des Urgences — tableau de gestion de flux</span></div><div class="tog-b">
+      <ul class="nul">
+        <li>Écran temps réel des véhicules en approche avec délais d'arrivée mis à jour en continu</li>
+        <li>Affichage du motif du patient (ex: OAP, fracture col du fémur, parturiente, malaise…)</li>
+        <li>Code couleur urgence (rouge = prioritaire)</li>
+        <li>Connecteur pour admission — liaison avec le DPI de l'établissement</li>
+      </ul>
+    </div></div>
+
+    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>💊 Pour les Prescripteurs — réservation de transport</span></div><div class="tog-b">
+      <ul class="nul">
+        <li>Outil de recherche et réservation de transport sanitaire (consultation, transfert, dialyse, chimio, hospitalisation…)</li>
+        <li>Transports unitaires ou séries programmées</li>
+        <li>Choix du véhicule : Ambulance, VSL, Taxi</li>
+        <li>Affichage temps réel des statuts et délais</li>
+        <li>Connecteur au DPI (Dossier Patient Informatisé) — évite la re-saisie des infos patient</li>
+      </ul>
+    </div></div>
+
+    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🚑 Pour les Transporteurs — 3 profils (Taxi, Régulateur, Ambulancier)</span></div><div class="tog-b">
+      <p style="font-size:13px;color:var(--t2);margin-bottom:8px">L'interface transporteur couvre 3 types d'acteurs :</p>
+      <ul class="nul">
+        <li><strong>Taxi</strong> — app mobile, réception des missions, acceptation/refus, navigation</li>
+        <li><strong>Régulateur</strong> — dashboard web, gestion des réservations en cours, assignation de véhicules, suivi flotte</li>
+        <li><strong>Ambulancier</strong> — app mobile, prise en charge guidée, bilan numérique, navigation</li>
+        <li>Bilan numérique embarqué pour SMUR, ambulances privées et associations</li>
+      </ul>
+    </div></div>
+
+    <div class="h2">Partenaires institutionnels</div>
+    <ul class="nul">
+      <li><strong>Mairie du 15e arrondissement de Paris</strong> — ancrage territorial</li>
+      <li><strong>French Tech Grand Paris</strong> — label startup</li>
+      <li><strong>Station F</strong> — programme incubation</li>
+      <li><strong>BPI France</strong> — financement public innovation</li>
+      <li><strong>URPS Médecins Libéraux Île-de-France</strong> — partenaire médecine de ville</li>
+      <li><strong>SFMU</strong> (Société Française de Médecine d'Urgence) — partenaire scientifique</li>
+      <li><strong>SAMU Urgences de France</strong> — partenaire institutionnel national</li>
+      <li><strong>SAMU 93 Bobigny</strong> — partenaire opérationnel terrain</li>
+    </ul>
+
+    <div class="h2">Périmètre technique de ton stage</div>
+    <div class="cl red"><span class="cl-ic">🔒</span><div><strong>Accès Git restreint intentionnellement.</strong> Tu travailles uniquement sur <span class="ic">Ali3ee/resaam-site</span> (repo dédié site vitrine). Le monorepo applicatif <span class="ic">resaam-source</span> contient les interfaces métier (SAMU, Transporter, Service, backend NestJS) — confidentiel, pas d'accès. Pour toute info produit nécessaire au contenu du site, tu passes par Ali.</div></div>
+
+    <div class="h2">Ce que le site vitrine doit communiquer</div>
+    <div class="cl green"><span class="cl-ic">✅</span><div>Le site doit répondre à une question : <strong>"Pourquoi Resaam plutôt qu'un appel téléphonique ?"</strong> — pour chacune des 3 cibles principales (établissements, transporteurs, régulateurs).</div></div>
+    <ul class="nul">
+      <li><strong>Crédibilité</strong> — partenaires institutionnels de poids (SAMU, BPI, Station F), HDS, CNDA</li>
+      <li><strong>Couverture de l'écosystème</strong> — Resaam connecte TOUS les acteurs, pas juste un maillon</li>
+      <li><strong>Temps réel</strong> — bilan numérique, annonce des arrivées, statuts en direct</li>
+      <li><strong>Sécurité des données</strong> — données de santé sensibles, HDS certifié, rassurer</li>
+      <li><strong>Intégration DPI</strong> — pas de re-saisie, connecteur existant</li>
+    </ul>
+  </div>
+
+  <!-- MISSION -->
+  <div class="pw" id="page-mission">
+    <div class="cov" style="background:linear-gradient(120deg,#fef3c7,#fce7f3)"></div>
+    <div class="pg-icon">🎯</div>
+    <div class="pg-t">Ma mission</div>
+    <div class="pt">
+      <div class="pr"><div class="pk"><span class="pi">📦</span> Livrable</div><div class="pv"><span class="chip c-blue">resaam.com — refonte complète de zéro</span></div></div>
+      <div class="pr"><div class="pk"><span class="pi">🤖</span> Outils IA</div><div class="pv">Claude (Anthropic) + ChatGPT (OpenAI) — code ET contenu</div></div>
+      <div class="pr"><div class="pk"><span class="pi">⏱️</span> Durée</div><div class="pv">10 semaines · 5 sprints · ~280 heures</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🌐</span> URL cible</div><div class="pv">resaam.com (domaine existant à reprendre)</div></div>
+    </div>
+    <hr class="ndiv">
+    <div class="cl red"><span class="cl-ic">🚫</span><div><strong>Site actuel :</strong> onepage générique auto-générée, design impersonnel, contenu inadapté, ne reflète pas l'identité Resaam. On ne récupère rien — table rase.</div></div>
+    <div class="h1">Objectif principal</div>
+    <p class="np">Concevoir et développer un site vitrine professionnel pour Resaam qui donne envie à un directeur d'hôpital ou un ambulancier de prendre contact. Chaque page doit répondre à une question précise de l'utilisateur cible.</p>
+    <div class="h2">Pages à créer</div>
+    <ul class="nul">
+      <li><strong>Homepage</strong> — pitch global, 3 cibles, comment ça marche, partenaires, CTA</li>
+      <li><strong>Produit / Fonctionnalités</strong> — détail des 3 interfaces, captures d'écran ou illustrations</li>
+      <li><strong>À propos</strong> — histoire Resaam, équipe, valeurs, localisation</li>
+      <li><strong>Partenaires & Certifications</strong> — BPI, Station F, HDS, CNDA</li>
+      <li><strong>Contact</strong> — formulaire de démo, coordonnées, localisation</li>
+      <li><strong>Mentions légales + Politique de confidentialité</strong> — obligatoires légalement</li>
+    </ul>
+    <div class="h2">Critères de qualité</div>
+    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>📱 Responsive & accessibilité</span></div><div class="tog-b"><ul class="nul"><li>Mobile first — testé sur iPhone et Android (émulateur)</li><li>Contraste AA minimum sur tous les textes</li><li>Navigation clavier fonctionnelle</li><li>Alt text sur toutes les images</li></ul></div></div>
+    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>⚡ Performance</span></div><div class="tog-b"><ul class="nul"><li>Lighthouse ≥ 90 sur les 4 catégories</li><li>Images optimisées (WebP, lazy loading)</li><li>Pas de librairies JS inutiles — vanilla JS autant que possible</li><li>CSS minimal — pas de Bootstrap complet si 10% est utilisé</li></ul></div></div>
+    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🔍 SEO</span></div><div class="tog-b"><ul class="nul"><li>Title et meta description uniques par page</li><li>Structure H1/H2/H3 logique</li><li>Sitemap.xml soumis à Google Search Console</li><li>Schema.org Organization sur la homepage</li></ul></div></div>
+    <div class="tog"><div class="tog-h" onclick="this.parentElement.classList.toggle('op')"><span class="tog-ar">▶</span><span>🎨 Design</span></div><div class="tog-b"><ul class="nul"><li>Cohérent avec l'identité Resaam existante (couleurs teal/dark)</li><li>Typographie professionnelle et lisible</li><li>Illustrations ou icônes cohérentes (pas de stock photos génériques)</li><li>Animations subtiles — pas de parallax agressif</li></ul></div></div>
+  </div>
+
+  <!-- STACK -->
+  <div class="pw" id="page-stack">
+    <div class="cov" style="background:linear-gradient(120deg,#f3f0ff,#e0f2fe)"></div>
+    <div class="pg-icon">🛠️</div>
+    <div class="pg-t">Stack & Outils</div>
+    <div class="h2" style="margin-top:20px">Tes compétences actuelles</div>
+    <div style="margin:10px 0 20px">
+      <div class="skrow"><div class="sknm">HTML / CSS</div><div class="skt"><div class="skf" style="width:90%"></div></div><div class="skp">90%</div></div>
+      <div class="skrow"><div class="sknm">Design Web</div><div class="skt"><div class="skf" style="width:80%"></div></div><div class="skp">80%</div></div>
+      <div class="skrow"><div class="sknm">PHP</div><div class="skt"><div class="skf" style="width:65%"></div></div><div class="skp">65%</div></div>
+      <div class="skrow"><div class="sknm">Gestion serveur</div><div class="skt"><div class="skf" style="width:55%"></div></div><div class="skp">55%</div></div>
+      <div class="skrow"><div class="sknm">JavaScript</div><div class="skt"><div class="skf" style="width:50%"></div></div><div class="skp">50%</div></div>
+      <div class="skrow"><div class="sknm">Docker / Symfony</div><div class="skt"><div class="skf" style="width:20%"></div></div><div class="skp">20%</div></div>
+    </div>
+    <div class="cl blue"><span class="cl-ic">📈</span><div>Ce stage est une opportunité de <strong>monter en JS</strong>. Les animations scroll, la validation de formulaire et les interactions du site vont te pousser au-delà des 50% actuels.</div></div>
+    <hr class="ndiv">
+    <div class="h2">Outils du projet</div>
+    <div class="pt">
+      <div class="pr"><div class="pk"><span class="pi">🐙</span> Versioning</div><div class="pv">GitHub — <span class="ic">Ali3ee/resaam-site</span> · repo dédié site vitrine · branche <span class="ic">main</span> protégée</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🤖</span> IA code</div><div class="pv">Claude (claude.ai) — génération HTML/CSS/JS, debugging, revue de code</div></div>
+      <div class="pr"><div class="pk"><span class="pi">✍️</span> IA contenu</div><div class="pv">ChatGPT — rédaction copywriting, SEO, meta descriptions, textes légaux</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🎨</span> Design</div><div class="pv">Figma — maquettes et design system (accès fourni par Ali)</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🚀</span> Déploiement</div><div class="pv">Vercel — CI/CD automatique sur push main, preview sur PR</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📊</span> Analytics</div><div class="pv">Plausible Analytics (privacy-first, sans cookie banner)</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📬</span> Formulaire</div><div class="pv">Formspree — gestion des soumissions de contact sans backend</div></div>
+    </div>
+    <div class="h2">Conventions Git</div>
+    <div class="pt">
+      <div class="pr"><div class="pk"><span class="pi">📦</span> Repo</div><div class="pv"><span class="ic">Ali3ee/resaam-site</span> — repo dédié, isolé du monorepo applicatif</div></div>
+      <div class="pr"><div class="pk"><span class="pi">⬇️</span> Clone</div><div class="pv"><span class="ic">git clone git@github.com:Ali3ee/resaam-site.git</span></div></div>
+      <div class="pr"><div class="pk"><span class="pi">💾</span> Commits</div><div class="pv"><span class="ic">feat: hero section homepage</span> · <span class="ic">fix: nav mobile overflow</span></div></div>
+      <div class="pr"><div class="pk"><span class="pi">🌿</span> Branches</div><div class="pv"><span class="ic">feature/hero-section</span> · <span class="ic">fix/nav-mobile</span> · jamais coder directement sur <span class="ic">main</span></div></div>
+      <div class="pr"><div class="pk"><span class="pi">🔍</span> PR</div><div class="pv">Pull Request sur chaque ticket terminé — Ali review avant merge</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📝</span> README</div><div class="pv">Mis à jour à chaque sprint — structure des fichiers, setup local, déploiement</div></div>
+    </div>
+    <div class="h2">Ressources utiles</div>
+    <ul class="nul">
+      <li>MDN Web Docs — référence HTML/CSS/JS (<span class="ic">developer.mozilla.org</span>)</li>
+      <li>Can I Use — compatibilité navigateurs (<span class="ic">caniuse.com</span>)</li>
+      <li>PageSpeed Insights — audit Lighthouse en ligne (<span class="ic">pagespeed.web.dev</span>)</li>
+      <li>Coolors — générateur de palettes de couleurs (<span class="ic">coolors.co</span>)</li>
+      <li>Undraw — illustrations SVG libres de droit (<span class="ic">undraw.co</span>)</li>
+      <li>Phosphor Icons — bibliothèque d'icônes cohérentes (<span class="ic">phosphoricons.com</span>)</li>
+    </ul>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="pw" id="page-timeline">
+    <div class="cov" style="background:linear-gradient(120deg,#fef3c7,#e0f2fe,#dcfce7)"></div>
+    <div class="pg-icon">📅</div>
+    <div class="pg-t">Planning — 10 semaines</div>
+    <div class="pt">
+      <div class="pr"><div class="pk"><span class="pi">📅</span> Début</div><div class="pv">Lundi 19 mai 2026</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🏁</span> Fin</div><div class="pv">Vendredi 25 juillet 2026</div></div>
+      <div class="pr"><div class="pk"><span class="pi">⏱️</span> Volume</div><div class="pv">280h minimum · 35h/semaine · 5 sprints × 2 semaines</div></div>
+      <div class="pr"><div class="pk"><span class="pi">📋</span> Rapport</div><div class="pv">À remettre à l'Université de Limoges — délai à confirmer avec l'enseignant référent</div></div>
+    </div>
+    <hr class="ndiv">
+    <div class="tli"><div class="tld act"></div><div><div class="tl-dt">Sem 1-2 · 19 mai → 30 mai 2026</div><div class="tl-nm">Sprint 1 — Découverte & Setup <span class="chip c-blue" style="margin-left:6px;font-size:11px">En cours</span></div><div class="tl-ds">Onboarding, audit resaam.com, benchmark 5 concurrents, définition arborescence, maquettes fil de fer homepage, setup environnement de dev. Livrable : maquettes validées par Ali.</div></div></div>
+    <div class="tli"><div class="tld"></div><div><div class="tl-dt">Sem 3-4 · 2 → 13 juin 2026</div><div class="tl-nm">Sprint 2 — Architecture & Design</div><div class="tl-ds">Design system CSS (tokens, palette, typo), structure HTML de toutes les pages, header/footer responsive, hero section intégrée. Livrable : site navigable en local avec structure complète.</div></div></div>
+    <div class="tli"><div class="tld"></div><div><div class="tl-dt">Sem 5-6 · 16 → 27 juin 2026</div><div class="tl-nm">Sprint 3 — Intégration IA & interactivité</div><div class="tl-ds">Contenu de toutes les pages généré et intégré via Claude/OpenAI, animations scroll JS, formulaire de contact fonctionnel, page "Comment ça marche". Livrable : site complet avec vrai contenu.</div></div></div>
+    <div class="tli"><div class="tld"></div><div><div class="tl-dt">Sem 7-8 · 30 juin → 11 juillet 2026</div><div class="tl-nm">Sprint 4 — Contenu final & SEO</div><div class="tl-ds">Relecture et finalisation de tous les textes, meta SEO, accessibilité RGAA, sitemap, analytics Plausible. Livrable : site SEO-ready validé par Ali sur le fond.</div></div></div>
+    <div class="tli" style="padding-bottom:0"><div class="tld"></div><div><div class="tl-dt">Sem 9-10 · 14 → 25 juillet 2026</div><div class="tl-nm">Sprint 5 — Finition & Déploiement</div><div class="tl-ds">Tests cross-browser et mobile, audit Lighthouse ≥ 90, déploiement resaam.com sur Vercel, documentation technique, présentation finale + rapport de stage. Livrable : resaam.com en production.</div></div></div>
+  </div>
+
+  <!-- SPRINT PAGES -->
+  <div class="pw" id="page-sprint1"><div id="sc1"></div></div>
+  <div class="pw" id="page-sprint2"><div id="sc2"></div></div>
+  <div class="pw" id="page-sprint3"><div id="sc3"></div></div>
+  <div class="pw" id="page-sprint4"><div id="sc4"></div></div>
+  <div class="pw" id="page-sprint5"><div id="sc5"></div></div>
+</div>
+
+<!-- TICKET DETAIL PANEL -->
+<div class="detail-overlay" id="det-ov" onclick="closeDetOv(event)">
+  <div class="detail-panel" id="det-panel">
+    <div class="dp-top">
+      <span class="chip c-gray" id="dp-sprint-label">Sprint 1</span>
+      <button class="dp-close" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="dp-body">
+      <div class="dp-id" id="dp-id">RS-001</div>
+      <textarea class="dp-title" id="dp-title" rows="2" onblur="saveDpTitle()"></textarea>
+      <div class="dp-props">
+        <div class="pr"><div class="pk"><span class="pi">🏷️</span> Statut</div><div class="pv"><select class="dp-sel" id="dp-status" onchange="saveDpProp()"><option value="todo">À faire</option><option value="progress">En cours</option><option value="review">En review</option><option value="done">Terminé</option></select></div></div>
+        <div class="pr"><div class="pk"><span class="pi">🔥</span> Priorité</div><div class="pv"><select class="dp-sel" id="dp-priority" onchange="saveDpProp()"><option value="high">🔴 Haute</option><option value="med">🟡 Moyenne</option><option value="low">⚪ Basse</option></select></div></div>
+      </div>
+      <div class="dp-desc-label">Description</div>
+      <textarea class="dp-desc" id="dp-desc" rows="4" onblur="saveDpDesc()"></textarea>
+      <div class="dp-ac">
+        <div class="dp-ac-title">Critères d'acceptation</div>
+        <div id="dp-criteria"></div>
+        <button class="add-ac-btn" onclick="addCriterion()">+ Ajouter un critère</button>
+      </div>
+    </div>
+    <div class="dp-footer">
+      <button class="btn btn-d" onclick="deleteCurrentTicket()">🗑 Supprimer</button>
+      <button class="btn btn-p" style="margin-left:auto" onclick="closeDetail()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NEW TICKET -->
+<div class="ov" id="ov" onclick="closeOv(event)">
+  <div class="mod">
+    <input type="hidden" id="ms">
+    <div class="mod-t">Nouveau ticket</div>
+    <div class="fg"><label class="fl">Titre</label><input class="fi" id="ft" placeholder="Ex: Créer la section hero homepage"></div>
+    <div class="fg"><label class="fl">Description</label><textarea class="fta" id="fd" rows="3" placeholder="Contexte et détails de la tâche..."></textarea></div>
+    <div class="fr">
+      <div class="fg" style="margin-bottom:0"><label class="fl">Statut</label><select class="fs" id="fst"><option value="todo">À faire</option><option value="progress">En cours</option><option value="review">En review</option><option value="done">Terminé</option></select></div>
+      <div class="fg" style="margin-bottom:0"><label class="fl">Priorité</label><select class="fs" id="fp"><option value="high">🔴 Haute</option><option value="med" selected>🟡 Moyenne</option><option value="low">⚪ Basse</option></select></div>
+    </div>
+    <div class="fg" style="margin-top:12px"><label class="fl">Tags</label>
+      <div class="tp" id="tp">
+        <span class="tpi chip c-purple sl" data-t="html">HTML</span>
+        <span class="tpi chip c-blue" data-t="css">CSS</span>
+        <span class="tpi chip c-yellow" data-t="js">JS</span>
+        <span class="tpi chip c-green" data-t="ia">IA</span>
+        <span class="tpi chip c-red" data-t="ux">UX</span>
+        <span class="tpi chip c-gray" data-t="seo">SEO</span>
+        <span class="tpi chip c-gray" data-t="perf">Perf</span>
+      </div>
+    </div>
+    <div class="ma"><button class="btn btn-d" onclick="closeMod()">Annuler</button><button class="btn btn-p" onclick="saveTk()">Créer</button></div>
+  </div>
+</div>
+
+<div class="tst" id="tst"></div>
+
+<script>
+// ═══════════ DATA ═══════════
+const SP = {
+  1:{icon:'🔍',label:'Sprint 1 — Découverte & Setup',dates:'19 mai → 30 mai 2026',status:'current',goal:"Comprendre l'écosystème Resaam, analyser l'existant, poser les bases du projet.",
+    tickets:[
+      {id:'RS-001',title:'Benchmark 5 sites SaaS healthtech concurrents',desc:"Analyser les sites de Lomaco, Synovo, Ambulis, et 2 autres acteurs du transport sanitaire ou de la coordination médicale. Pour chacun : structure des pages, navigation, messages clés, design, CTA. Identifier ce qui fonctionne bien et ce qu'on peut faire mieux.",status:'todo',priority:'high',tags:['ux','ia'],criteria:["Tableau comparatif des 5 sites créé","Points forts / points faibles listés pour chaque","3 inspirations design identifiées et justifiées","Partagé avec Ali pour validation"]},
+      {id:'RS-002',title:"Audit complet de l'existant resaam.com",desc:"Capturer l'intégralité du site actuel (screenshots page entière + navigation). Identifier : contenu réutilisable, problèmes UX, ce qui manque, ton du message. Évaluer la crédibilité perçue actuelle.",status:'todo',priority:'high',tags:['ux'],criteria:["Screenshots complets sur desktop et mobile","Liste des problèmes UX identifiés (min 10)","Inventaire du contenu textuel réutilisable","Score de crédibilité perçue (0-10) avec justification"]},
+      {id:'RS-003',title:"Définir l'arborescence et l'architecture du nouveau site",desc:"Sur la base du benchmark et de l'audit, proposer : liste des pages, hiérarchie de navigation, nommage des URLs, structure de la homepage. Penser aux 3 cibles (établissements, ambulanciers, régulateurs).",status:'todo',priority:'high',tags:['ux','ia'],criteria:["Arborescence complète listée (toutes pages)","URLs propres et logiques définies","Navigation principale et footer conçus","Validé par Ali avant passage en maquette"]},
+      {id:'RS-004',title:"Setup complet de l'environnement de développement",desc:"Cloner le repo Ali3ee/resaam-site (invitation déjà acceptée), configurer VS Code (extensions recommandées : Prettier, Live Server, GitLens), créer la structure de dossiers initiale (assets/, css/, js/, pages/), initialiser le README. Note : tu n'as accès qu'à ce repo — le monorepo applicatif (resaam-source) est séparé et confidentiel.",status:'todo',priority:'med',tags:['html'],criteria:["Repo Ali3ee/resaam-site cloné en local","Structure de dossiers créée et committée","README initialisé avec instructions setup local","Live Server fonctionnel sur index.html","Premier commit poussé sur une branche feature/"]},
+      {id:'RS-005',title:"Maquettes fil de fer — homepage complète",desc:"Wireframes de la homepage pour desktop ET mobile. Inclure : hero, features 3 cibles, comment ça marche, partenaires, contact/CTA, footer. Outil libre (Figma, Excalidraw, paper sketch scanné).",status:'todo',priority:'med',tags:['ux','ia'],criteria:["Wireframe desktop complet (toutes sections)","Wireframe mobile complet","Logique de navigation claire","Approuvé par Ali avant implémentation"]},
+    ]},
+  2:{icon:'🏗️',label:'Sprint 2 — Architecture & Design',dates:'2 → 13 juin 2026',status:'todo',goal:'Construire les fondations solides du site : design system CSS, structure HTML complète, composants partagés.',
+    tickets:[
+      {id:'RS-006',title:'Créer le design system CSS complet (tokens & variables)',desc:"Définir et documenter toutes les variables CSS du projet : palette couleurs (primaires, secondaires, texte, fonds), typographie (font-family, tailles, poids, line-height), espacements (système en 8px), border-radius, shadows, transitions. Créer un fichier design-system.html de référence visuelle.",status:'todo',priority:'high',tags:['css','ux'],criteria:["Fichier variables.css créé avec tous les tokens","Palette couleurs cohérente avec identité Resaam","Système typographique documenté","Page de référence design-system.html créée","Review avec Ali sur les choix visuels"]},
+      {id:'RS-007',title:'Structure HTML de base — toutes les pages',desc:"Créer tous les fichiers HTML du site avec : doctype correct, meta charset/viewport, structure sémantique (header, main, footer), liens vers les CSS et JS. Pas de contenu encore — juste le squelette. Chaque page référencée dans le README.",status:'todo',priority:'high',tags:['html'],criteria:["Tous les fichiers HTML créés (min 6 pages)","Structure sémantique correcte sur toutes les pages","Liens CSS/JS présents et fonctionnels","Vérification W3C sans erreurs bloquantes"]},
+      {id:'RS-008',title:'Header responsive + navigation mobile fonctionnelle',desc:"Header sticky avec logo Resaam, navigation principale (5-6 liens), bouton CTA 'Demander une démo'. Version mobile avec menu hamburger animé. Transitions smooth. Testé sur Chrome, Firefox, et mobile (émulateur).",status:'todo',priority:'high',tags:['html','css','js'],criteria:["Header sticky fonctionnel au scroll","Menu hamburger animé sur mobile","Tous les liens de navigation actifs","Active state sur la page courante","Testé sur 3 navigateurs min"]},
+      {id:'RS-009',title:'Hero section homepage — intégrée et responsive',desc:"Première section visible de la homepage : headline percutant, sous-titre explicatif, 2 CTA (primaire + secondaire), illustration ou visuel. Typographie impactante, espacements généreux. Animation d'entrée subtile (fade-in ou slide-up).",status:'todo',priority:'high',tags:['html','css','ia'],criteria:["Headline et sous-titre rédigés et intégrés","2 CTA avec styles distincts (primary/ghost)","Illustration ou visuel intégré","Animation d'entrée CSS fonctionnelle","Pixel perfect sur desktop et mobile"]},
+      {id:'RS-010',title:'Footer global + pages légales (squelettes)',desc:"Footer commun à toutes les pages : logo, liens de navigation secondaire, liens légaux (Mentions légales, Politique de confidentialité, CGU), réseaux sociaux, copyright. Créer les pages légales avec contenu minimal (à compléter sprint 4).",status:'todo',priority:'med',tags:['html','css'],criteria:["Footer intégré sur toutes les pages","Liens légaux créés et fonctionnels","Copyright dynamique (année courante en JS)","Pages légales créées avec structure de base"]},
+    ]},
+  3:{icon:'🤖',label:'Sprint 3 — Intégration IA & interactivité',dates:'16 → 27 juin 2026',status:'todo',goal:'Utiliser Claude et OpenAI pour générer et intégrer le contenu. Ajouter les interactions JS essentielles.',
+    tickets:[
+      {id:'RS-011',title:'Générer et intégrer les textes homepage via IA',desc:"Utiliser Claude pour rédiger tous les textes homepage en s'appuyant sur le pitch deck Resaam : headline hero ('Solution de gestion des flux de transport sanitaire'), sous-titre expliquant l'écosystème complet (SAMU→transporteurs→SAU), textes des cartes par cible, section partenaires, CTA 'Demander une démo'. Documenter chaque prompt dans prompts.md. Relecture et validation Ali obligatoires avant intégration.",status:'todo',priority:'high',tags:['ia'],criteria:["Textes homepage rédigés via Claude (prompts documentés)","Pitch produit fidèle au deck commercial","Ton professionnel adapté au secteur médical","Relecture complète faite (exactitude factuelle)","Validation par Ali sur le fond"]},
+      {id:'RS-012',title:"Section 'Pour qui ?' — 4 cibles Resaam",desc:"Intégrer la section présentant les 4 profils utilisateurs Resaam : SAMU/Régulateurs (coordination intelligente), Service des Urgences (tableau de flux temps réel), Prescripteurs (réservation transport avec connecteur DPI), Transporteurs (Taxi/Régulateur/Ambulancier). Pour chaque cible : titre, bénéfice principal, 3 fonctionnalités clés, CTA. Contenu basé sur le pitch deck, généré et affiné via IA.",status:'todo',priority:'high',tags:['html','css','ia'],criteria:["4 cartes cibles intégrées et responsive","Contenu factuel validé par Ali","Hover effects CSS sur les cartes","CTA de chaque carte fonctionnel","Cohérence visuelle avec le design system"]},
+      {id:'RS-013',title:"Formulaire de contact / démo fonctionnel",desc:"Formulaire avec : nom, prénom, email, téléphone, structure (type établissement / ambulancier / autre), message optionnel. Validation JS front-end (champs requis, format email, format téléphone). Envoi via Formspree. Message de confirmation visuel. Anti-spam basique.",status:'todo',priority:'high',tags:['html','js'],criteria:["Validation JS en temps réel (feedback visuel)","Envoi Formspree configuré et testé","Message de succès affiché après envoi","Gestion des erreurs réseau","Protection anti-spam honeypot"]},
+      {id:'RS-014',title:"Animations scroll (Intersection Observer API)",desc:"Implémenter des animations d'apparition au scroll sur les sections principales : fade-in-up sur les cartes, slide-in sur les textes, counter animation sur les chiffres clés si présents. JS vanilla uniquement — pas de GSAP ou AOS pour garder le site léger.",status:'todo',priority:'med',tags:['js','css'],criteria:["Animations sur toutes les sections principales","Respect de prefers-reduced-motion","Performance non dégradée (pas de janks)","Fonctionne sans JS (graceful degradation)","Testé sur mobile (pas de lag)"]},
+      {id:'RS-015',title:"Section 'Comment ça marche' — écosystème Resaam",desc:"Créer la section expliquant le flux complet Resaam en 5 étapes : 1) Médecine de ville / prescription 2) SAMU/SAS reçoit et affecte automatiquement 3) Transporteur (SMUR/ambulance/taxi) prend en charge avec bilan numérique 4) Annonce d'arrivée au SAU en temps réel 5) Programmation du retour/transfert. Stepper horizontal desktop, vertical mobile. Contenu issu du pitch deck, illustré si possible.",status:'todo',priority:'med',tags:['html','css','ia'],criteria:["5 étapes du flux Resaam représentées","Stepper desktop (horizontal) fonctionnel","Stepper mobile (vertical) responsive","Contenu fidèle à l'écosystème réel","Animation d'activation au scroll"]},
+    ]},
+  4:{icon:'✍️',label:'Sprint 4 — Contenu final & SEO',dates:'30 juin → 11 juillet 2026',status:'todo',goal:'Finaliser tout le contenu, optimiser pour les moteurs de recherche et l\'accessibilité.',
+    tickets:[
+      {id:'RS-016',title:'Rédiger et intégrer le contenu de toutes les pages',desc:"Finaliser toutes les pages : À propos (histoire Resaam, mission, équipe Ali HANOUT), Produit (4 interfaces : SAMU, SAU, Prescripteurs, Transporteurs — fonctionnalités issues du deck), Partenaires (8 logos : Mairie 15e, French Tech Grand Paris, Station F, BPI France, URPS IDF, SFMU, SAMU Urgences de France, SAMU 93 Bobigny), Contact (formulaire démo + contact@resaam.com). Contenu approuvé par Ali.",status:'todo',priority:'high',tags:['ia','html'],criteria:["Page 'À propos' complète et intégrée","Page 'Produit' avec 4 interfaces détaillées","Page 'Partenaires' avec les 8 logos partenaires","Page 'Contact' avec formulaire et email","Approbation formelle Ali sur le contenu final"]},
+      {id:'RS-017',title:'SEO on-page complet (meta, OG, schema.org)',desc:"Pour chaque page : title tag unique et optimisé (55-60 chars), meta description (150-160 chars), balises Open Graph (og:title, og:description, og:image), Twitter Card. Sur la homepage : schema.org Organization en JSON-LD. Vérification avec Google Rich Results Test.",status:'todo',priority:'high',tags:['seo'],criteria:["Title + meta description uniques sur toutes les pages","Open Graph tags sur toutes les pages","og:image créée (1200x630px minimum)","Schema.org Organization sur homepage","Validation Google Rich Results Test"]},
+      {id:'RS-018',title:"Accessibilité RGAA — audit et corrections",desc:"Audit avec l'extension Wave ou axe DevTools. Corriger : contrastes insuffisants, images sans alt, liens sans contexte, formulaires sans labels, focus non visible, ordre de tabulation incohérent. Objectif : 0 erreur bloquante.",status:'todo',priority:'med',tags:['ux','html'],criteria:["Audit Wave ou axe complété et documenté","0 erreur bloquante d'accessibilité","Tous les ratios de contraste ≥ 4.5:1 (AA)","Focus visible et logique sur tous les éléments","Formulaire 100% accessible au clavier"]},
+      {id:'RS-019',title:'Sitemap.xml + robots.txt + Google Search Console',desc:"Générer sitemap.xml (toutes les pages publiques, dates de modification). Créer robots.txt (permettre indexation, bloquer /admin si nécessaire). Soumettre le sitemap à Google Search Console. Vérifier qu'aucune page utile n'est bloquée.",status:'todo',priority:'med',tags:['seo'],criteria:["sitemap.xml généré et valide","robots.txt configuré correctement","Propriété vérifiée dans Google Search Console","Sitemap soumis à GSC","0 erreur de crawl dans GSC"]},
+      {id:'RS-020',title:'Intégration Plausible Analytics',desc:"Intégrer Plausible Analytics (solution privacy-first, pas de cookie banner nécessaire). Configurer les events clés : clic CTA 'Demander une démo', soumission formulaire de contact, scroll 50% homepage. Documenter les events dans le README.",status:'todo',priority:'low',tags:['js','seo'],criteria:["Script Plausible intégré sur toutes les pages","Events personnalisés configurés (3 minimum)","Dashboard vérifié avec du trafic test","Documentation des events dans README","Pas de cookie banner nécessaire confirmé"]},
+    ]},
+  5:{icon:'🚀',label:'Sprint 5 — Finition & Déploiement',dates:'14 → 25 juillet 2026',status:'todo',goal:'Mettre en production, optimiser les performances, livrer une documentation irréprochable.',
+    tickets:[
+      {id:'RS-021',title:"Audit Lighthouse — objectif ≥ 90 sur les 4 catégories",desc:"Passer Lighthouse sur toutes les pages (Performance, SEO, Accessibility, Best Practices). Identifier et corriger les issues bloquantes : images non optimisées, JS bloquant le rendu, ressources non compressées, etc. Documenter les scores avant/après.",status:'todo',priority:'high',tags:['perf','seo'],criteria:["Score Performance ≥ 90 sur homepage","Score SEO ≥ 90 sur toutes les pages","Score Accessibility ≥ 90 partout","Score Best Practices ≥ 90","Screenshots des scores documentés dans README"]},
+      {id:'RS-022',title:"Tests cross-browser et cross-device complets",desc:"Tester sur Chrome, Firefox, Safari (Mac ou BrowserStack), Edge. Tester sur mobile iOS (Safari) et Android (Chrome). Créer une matrice de tests avec les résultats. Corriger tous les bugs visuels et fonctionnels identifiés.",status:'todo',priority:'high',tags:['css','html'],criteria:["Matrice de tests créée (navigateurs × pages)","0 bug bloquant sur Chrome et Firefox","Testé sur au moins 1 device iOS et 1 Android","Menu mobile testé sur tous les navigateurs","Formulaire testé et fonctionnel sur tous les navigateurs"]},
+      {id:'RS-023',title:"Déploiement production resaam.com sur Vercel",desc:"Configurer le projet sur Vercel, lier le domaine resaam.com, activer HTTPS automatique, configurer les redirections (www → non-www ou inverse), mettre en place le déploiement automatique sur push main. Tester le site en production après déploiement.",status:'todo',priority:'high',tags:['perf'],criteria:["Projet Vercel configuré et lié au repo","HTTPS activé et certificat valide","Redirections www configurées","Déploiement auto sur push main fonctionnel","Site accessible sur resaam.com en production"]},
+      {id:'RS-024',title:"Documentation technique complète",desc:"Rédiger un README exhaustif : description du projet, structure des dossiers annotée, instructions setup local (step by step), guide pour modifier le contenu (où sont les textes, comment changer les images), guide déploiement Vercel, liste des choix techniques et pourquoi.",status:'todo',priority:'med',tags:['html'],criteria:["README lisible par quelqu'un qui reprend le projet","Instructions setup local testées (elles fonctionnent)","Guide modification contenu clair","Choix techniques documentés et justifiés","Fichier prompts.md avec tous les prompts IA utilisés"]},
+      {id:'RS-025',title:"Présentation finale et rapport de stage",desc:"Préparer la présentation de soutenance (30 min) : contexte Resaam, mission, méthodologie (sprints + IA), démo live du site, résultats (Lighthouse, métriques), difficultés et apprentissages. Rapport de stage selon le format Université de Limoges.",status:'todo',priority:'med',tags:['ia','ux'],criteria:["Support de présentation créé (Canva, Figma, PPT)","Démo live préparée et testée","Bilan des apprentissages IA documenté","Rapport de stage rédigé selon le plan universitaire","Soutenance répétée au moins une fois"]},
+    ]},
+};
+
+const SL={todo:'À faire',progress:'En cours',review:'En review',done:'Terminé'};
+const CS={todo:'c-gray',progress:'c-blue',review:'c-yellow',done:'c-green'};
+const PR={high:'<span class="chip c-red" style="font-size:11px">🔴 Haute</span>',med:'<span class="chip c-yellow" style="font-size:11px">🟡 Moyenne</span>',low:'<span class="chip c-gray" style="font-size:11px">⚪ Basse</span>'};
+const TC={html:'c-purple',css:'c-blue',js:'c-yellow',ia:'c-green',ux:'c-red',seo:'c-gray',perf:'c-gray'};
+const TL={html:'HTML',css:'CSS',js:'JS',ia:'IA',ux:'UX',seo:'SEO',perf:'Perf'};
+const PT={dashboard:'Tableau de bord',welcome:'Bienvenue',context:'Contexte Resaam',mission:'Ma mission',stack:'Stack & Outils',timeline:'Planning',sprint1:'Sprint 1',sprint2:'Sprint 2',sprint3:'Sprint 3',sprint4:'Sprint 4',sprint5:'Sprint 5'};
+const SPRINT_NAMES={1:'Sprint 1 — Découverte',2:'Sprint 2 — Architecture',3:'Sprint 3 — IA',4:'Sprint 4 — Contenu',5:'Sprint 5 — Finition'};
+
+let curSprint=1, selTags=['html'];
+let detTid=null, detSid=null;
+const gc=()=>{try{return JSON.parse(localStorage.getItem('rs_tk')||'{}')}catch(e){return{}}};
+const sc=d=>localStorage.setItem('rs_tk',JSON.stringify(d));
+const gc2=()=>{try{return JSON.parse(localStorage.getItem('rs_cr')||'{}')}catch(e){return{}}};
+const sc2=d=>localStorage.setItem('rs_cr',JSON.stringify(d));
+function nxtId(){let a=[];for(let i=1;i<=5;i++){a=[...a,...SP[i].tickets,...(gc()[i]||[])]}const ns=a.map(t=>parseInt(t.id.replace('RS-',''))).filter(n=>!isNaN(n));return 'RS-'+String(Math.max(25,...ns)+1).padStart(3,'0');}
+const views={1:'table',2:'table',3:'table',4:'table',5:'table'};
+
+function getAllTickets(){let a=[];for(let i=1;i<=5;i++)a=[...a,...SP[i].tickets,...(gc()[i]||[])];return a;}
+function getTicket(tid,sid){const cx=gc()[sid]||[];return SP[sid].tickets.find(x=>x.id===tid)||cx.find(x=>x.id===tid);}
+
+// ── RENDER DASHBOARD ──
+function renderDash(){
+  const allTk=getAllTickets();
+  const done=allTk.filter(t=>t.status==='done').length;
+  const prog=allTk.filter(t=>t.status==='progress').length;
+  const total=allTk.length;
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('gp-fill').style.width=pct+'%';
+  document.getElementById('gp-pct').textContent=pct+'%';
+  document.getElementById('dash-stats').innerHTML=`
+    <div class="dcard"><div class="dc-label">Tickets terminés</div><div class="dc-val">${done}</div><div class="dc-sub">sur ${total} au total</div></div>
+    <div class="dcard"><div class="dc-label">En cours</div><div class="dc-val">${prog}</div><div class="dc-sub">${total-done-prog} restants à démarrer</div></div>
+    <div class="dcard"><div class="dc-label">Progression</div><div class="dc-val">${pct}%</div><div class="dc-sub">Sprint en cours : 1</div></div>`;
+  let ovHtml='';
+  for(let i=1;i<=5;i++){
+    const s=SP[i];const cx=gc()[i]||[];const all=[...s.tickets,...cx];
+    const d=all.filter(t=>t.status==='done').length;
+    const p=all.length?Math.round(d/all.length*100):0;
+    const isCur=s.status==='current';
+    const chip=isCur?'<span class="chip c-blue" style="font-size:11px">En cours</span>':d===all.length&&all.length>0?'<span class="chip c-green" style="font-size:11px">Terminé</span>':'<span class="chip c-gray" style="font-size:11px">À venir</span>';
+    ovHtml+=`<div class="so-row" onclick="nav('sprint${i}')"><span class="so-icon">${s.icon}</span><span class="so-name">${s.label}</span><div class="so-bar-wrap"><div class="so-bar-fill ${isCur?'active':d===all.length&&all.length>0?'done':''}" style="width:${p}%"></div></div><span class="so-pct">${p}%</span><span class="so-chip">${chip}</span></div>`;
+  }
+  document.getElementById('sprint-overview').innerHTML=ovHtml;
+  const nextTks=allTk.filter(t=>t.status!=='done').sort((a,b)=>{const o={high:0,med:1,low:2};return o[a.priority]-o[b.priority];}).slice(0,5);
+  let ntHtml='';
+  nextTks.forEach(t=>{
+    let sid=0;for(let i=1;i<=5;i++){if([...SP[i].tickets,...(gc()[i]||[])].find(x=>x.id===t.id)){sid=i;break;}}
+    ntHtml+=`<div class="nt-item" onclick="openDetail('${t.id}',${sid})"><div class="nt-dot ${t.priority}"></div><span class="nt-title-t">${t.title}</span><span class="nt-sprint">${SPRINT_NAMES[sid]}</span><span class="nt-id">${t.id}</span></div>`;
+  });
+  document.getElementById('next-tickets-list').innerHTML=ntHtml||'<p style="font-size:13px;color:var(--t3);padding:8px">Tous les tickets sont terminés 🎉</p>';
+}
+
+// ── RENDER SPRINT ──
+function rSprint(sid){
+  const s=SP[sid],cx=gc()[sid]||[],all=[...s.tickets,...cx];
+  const done=all.filter(t=>t.status==='done').length,pct=all.length?Math.round(done/all.length*100):0;
+  const stC=s.status==='current'?'c-blue':s.status==='done'?'c-green':'c-gray';
+  const stL=s.status==='current'?'● En cours':s.status==='done'?'✓ Terminé':'À venir';
+  const vw=views[sid];
+  const tRows=all.map(t=>`<tr>
+    <td><div class="td-ti"><span style="font-size:13px;margin-right:4px">📄</span><input class="td-ti-edit" value="${t.title.replace(/"/g,'&quot;')}" onblur="inlineEditTitle('${t.id}',${sid},this.value)" ondblclick="this.focus()" title="Double-clic pour modifier"></div></td>
+    <td class="td-id">${t.id}</td>
+    <td><span class="chip ${CS[t.status]}" style="font-size:12px;cursor:pointer" onclick="cycSt('${t.id}',${sid})" title="Cliquer pour changer">${SL[t.status]}</span></td>
+    <td>${PR[t.priority]}</td>
+    <td><div style="display:flex;gap:3px;flex-wrap:wrap">${t.tags.map(tg=>`<span class="chip ${TC[tg]}" style="font-size:11px">${TL[tg]}</span>`).join('')}</div></td>
+    <td><button style="background:none;border:none;cursor:pointer;color:var(--t3);font-size:12px;padding:2px 6px;border-radius:3px;font-family:var(--font);" onclick="openDetail('${t.id}',${sid})" onmouseover="this.style.background='var(--bg-h)';this.style.color='var(--text)'" onmouseout="this.style.background='none';this.style.color='var(--t3)'">↗ Ouvrir</button></td>
+  </tr>`).join('');
+  const cols=['todo','progress','review','done'],cLbl={todo:'À faire',progress:'En cours',review:'En review',done:'Terminé ✓'};
+  const bH=cols.map(c=>{const cds=all.filter(t=>t.status===c);return`<div><div class="bc-ct">${cLbl[c]}<span class="bc-n">${cds.length}</span></div>${cds.map(t=>`<div class="bcard" onclick="openDetail('${t.id}',${sid})"><div class="bc-ti">${t.title}</div><div class="bc-ft"><span class="bc-id">${t.id}</span><div class="bc-tg">${t.tags.slice(0,2).map(tg=>`<span class="chip ${TC[tg]}" style="font-size:10px;padding:1px 5px">${TL[tg]}</span>`).join('')}</div></div></div>`).join('')}</div>`;}).join('');
+  document.getElementById(`sc${sid}`).innerHTML=`
+    <div class="cov" style="background:linear-gradient(120deg,#f0f4ff,#ede9fe)"></div>
+    <div class="pg-icon">${s.icon}</div><div class="pg-t">${s.label}</div>
+    <div class="pt">
+      <div class="pr"><div class="pk"><span class="pi">📅</span> Dates</div><div class="pv">${s.dates}</div></div>
+      <div class="pr"><div class="pk"><span class="pi">🏷️</span> Statut</div><div class="pv"><span class="chip ${stC}">${stL}</span></div></div>
+      <div class="pr"><div class="pk"><span class="pi">🎯</span> Objectif</div><div class="pv">${s.goal}</div></div>
+    </div>
+    <div class="sp-prog"><div class="sp-l"><span>${done}/${all.length} tickets terminés</span><span>${pct}%</span></div><div class="sp-b"><div class="sp-f" style="width:${pct}%"></div></div></div>
+    <hr class="ndiv" style="margin:16px 0">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><span class="db-t">Tickets</span><span class="db-c">${all.length} entrées</span></div>
+    <div class="dbvs">
+      <button class="dbvb ${vw==='table'?'on':''}" onclick="swV(${sid},'table',this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg> Table</button>
+      <button class="dbvb ${vw==='board'?'on':''}" onclick="swV(${sid},'board',this)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="10"/><rect x="14" y="17" width="7" height="4"/></svg> Board</button>
+    </div>
+    <div id="vc${sid}">${vw==='table'?`<table class="dbt"><thead><tr><th>Titre</th><th>ID</th><th>Statut</th><th>Priorité</th><th>Tags</th><th></th></tr></thead><tbody>${tRows}</tbody></table>`:`<div class="board">${bH}</div>`}</div>
+    <button class="add-r" onclick="openMod(${sid})"><span style="font-size:15px">+</span> Nouveau ticket</button>`;
+  document.getElementById(`c${sid}`).textContent=all.filter(t=>t.status!=='done').length;
+}
+
+function swV(sid,v,btn){views[sid]=v;btn.closest('.dbvs').querySelectorAll('.dbvb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');rSprint(sid);}
+
+// ── INLINE EDIT ──
+function inlineEditTitle(tid,sid,val){
+  const v=val.trim();if(!v)return;
+  const cx=gc();let t=SP[sid].tickets.find(x=>x.id===tid),isC=false;
+  if(!t){t=(cx[sid]||[]).find(x=>x.id===tid);isC=true;}
+  if(!t||t.title===v)return;
+  t.title=v;
+  if(isC){cx[sid]=(cx[sid]||[]).map(x=>x.id===tid?t:x);sc(cx);}
+  toast('Titre modifié ✓');
+  if(detTid===tid)document.getElementById('dp-title').value=v;
+}
+
+// ── CYCLE STATUS ──
+function cycSt(tid,sid){
+  const ord=['todo','progress','review','done'],cx=gc();
+  let t=SP[sid].tickets.find(x=>x.id===tid),isC=false;
+  if(!t){t=(cx[sid]||[]).find(x=>x.id===tid);isC=true;}
+  if(!t)return;
+  t.status=ord[(ord.indexOf(t.status)+1)%ord.length];
+  if(isC){cx[sid]=(cx[sid]||[]).map(x=>x.id===tid?t:x);sc(cx);}
+  rSprint(sid);toast(`${tid} → ${SL[t.status]}`);
+  if(detTid===tid){document.getElementById('dp-status').value=t.status;}
+}
+
+// ── DETAIL PANEL ──
+function openDetail(tid,sid){
+  detTid=tid;detSid=sid;
+  const t=getTicket(tid,sid);if(!t)return;
+  document.getElementById('dp-sprint-label').textContent=SPRINT_NAMES[sid];
+  document.getElementById('dp-id').textContent=tid;
+  document.getElementById('dp-title').value=t.title;
+  document.getElementById('dp-status').value=t.status;
+  document.getElementById('dp-priority').value=t.priority;
+  document.getElementById('dp-desc').value=t.desc;
+  renderCriteria(tid);
+  document.getElementById('det-ov').classList.add('on');
+}
+
+function renderCriteria(tid){
+  const allCr=gc2();
+  const defCr=(()=>{for(let i=1;i<=5;i++){const t=SP[i].tickets.find(x=>x.id===tid);if(t)return t.criteria||[];}return[];})();
+  const cr=allCr[tid]||(defCr.map(c=>({text:c,done:false})));
+  if(!allCr[tid]){allCr[tid]=cr;sc2(allCr);}
+  document.getElementById('dp-criteria').innerHTML=cr.map((c,i)=>`<div class="dp-check-item ${c.done?'checked':''}" id="cri-${i}"><input type="checkbox" ${c.done?'checked':''} onchange="toggleCriterion(${i})"><span>${c.text}</span></div>`).join('');
+}
+
+function toggleCriterion(idx){
+  if(!detTid)return;
+  const allCr=gc2();if(!allCr[detTid])return;
+  allCr[detTid][idx].done=!allCr[detTid][idx].done;sc2(allCr);
+  renderCriteria(detTid);
+}
+
+function addCriterion(){
+  const text=prompt('Nouveau critère d\'acceptation :');
+  if(!text||!text.trim())return;
+  const allCr=gc2();if(!allCr[detTid])allCr[detTid]=[];
+  allCr[detTid].push({text:text.trim(),done:false});sc2(allCr);
+  renderCriteria(detTid);
+}
+
+function saveDpTitle(){
+  if(!detTid||!detSid)return;
+  const val=document.getElementById('dp-title').value.trim();
+  if(!val)return;
+  inlineEditTitle(detTid,detSid,val);
+  rSprint(detSid);
+}
+
+function saveDpDesc(){
+  if(!detTid||!detSid)return;
+  const val=document.getElementById('dp-desc').value;
+  const cx=gc();let t=SP[detSid].tickets.find(x=>x.id===detTid),isC=false;
+  if(!t){t=(cx[detSid]||[]).find(x=>x.id===detTid);isC=true;}
+  if(!t)return;
+  t.desc=val;
+  if(isC){cx[detSid]=(cx[detSid]||[]).map(x=>x.id===detTid?t:x);sc(cx);}
+}
+
+function saveDpProp(){
+  if(!detTid||!detSid)return;
+  const st=document.getElementById('dp-status').value;
+  const pr=document.getElementById('dp-priority').value;
+  const cx=gc();let t=SP[detSid].tickets.find(x=>x.id===detTid),isC=false;
+  if(!t){t=(cx[detSid]||[]).find(x=>x.id===detTid);isC=true;}
+  if(!t)return;
+  t.status=st;t.priority=pr;
+  if(isC){cx[detSid]=(cx[detSid]||[]).map(x=>x.id===detTid?t:x);sc(cx);}
+  rSprint(detSid);toast(`${detTid} mis à jour ✓`);
+}
+
+function deleteCurrentTicket(){
+  if(!detTid||!detSid)return;
+  const isDefault=SP[detSid].tickets.find(x=>x.id===detTid);
+  if(isDefault){toast('Impossible de supprimer un ticket par défaut');return;}
+  if(!confirm(`Supprimer ${detTid} ?`))return;
+  const cx=gc();cx[detSid]=(cx[detSid]||[]).filter(x=>x.id!==detTid);sc(cx);
+  closeDetail();rSprint(detSid);toast(`${detTid} supprimé`);
+}
+
+function closeDetail(){document.getElementById('det-ov').classList.remove('on');detTid=null;detSid=null;}
+function closeDetOv(e){if(e.target===document.getElementById('det-ov'))closeDetail();}
+
+// ── MODAL ──
+function openMod(sid){
+  curSprint=sid||1;
+  document.getElementById('ms').value=curSprint;
+  document.getElementById('ft').value='';
+  document.getElementById('fd').value='';
+  document.getElementById('fst').value='todo';
+  document.getElementById('fp').value='med';
+  selTags=['html'];
+  document.querySelectorAll('.tpi').forEach(el=>el.classList.toggle('sl',el.dataset.t==='html'));
+  document.getElementById('ov').classList.add('on');
+  setTimeout(()=>document.getElementById('ft').focus(),100);
+}
+document.querySelectorAll('.tpi').forEach(el=>{el.addEventListener('click',()=>{const t=el.dataset.t;if(selTags.includes(t)){selTags=selTags.filter(x=>x!==t);el.classList.remove('sl');}else{selTags.push(t);el.classList.add('sl');}});});
+function closeOv(e){if(e.target===document.getElementById('ov'))closeMod();}
+function closeMod(){document.getElementById('ov').classList.remove('on');}
+function saveTk(){
+  const title=document.getElementById('ft').value.trim();
+  if(!title){toast('Titre requis ⚠️');return;}
+  const sid=parseInt(document.getElementById('ms').value);
+  const tk={id:nxtId(),title,desc:document.getElementById('fd').value.trim()||'—',status:document.getElementById('fst').value,priority:document.getElementById('fp').value,tags:selTags.length?[...selTags]:['html']};
+  const c=gc();if(!c[sid])c[sid]=[];c[sid].push(tk);sc(c);
+  closeMod();rSprint(sid);renderDash();toast(`${tk.id} créé ✓`);
+}
+
+// ── NAVIGATION ──
+const sprintPages=new Set(['sprint1','sprint2','sprint3','sprint4','sprint5']);
+function nav(name){
+  document.querySelectorAll('.pw').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.sb-it').forEach(i=>i.classList.remove('on'));
+  document.getElementById(`page-${name}`).classList.add('on');
+  document.querySelectorAll('.sb-it').forEach(i=>{if(i.getAttribute('onclick')?.includes(`'${name}'`))i.classList.add('on');});
+  document.getElementById('bc').textContent=PT[name]||name;
+  document.getElementById('mn').scrollTop=0;
+  document.getElementById('tb-act').style.display=sprintPages.has(name)?'flex':'none';
+  if(name.startsWith('sprint'))curSprint=parseInt(name.replace('sprint',''));
+  if(name==='dashboard')renderDash();
+}
+
+function toast(msg){const e=document.getElementById('tst');e.textContent=msg;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2300);}
+
+// ── INIT ──
+for(let i=1;i<=5;i++)rSprint(i);
+renderDash();
+</script>
+</body>
+</html>

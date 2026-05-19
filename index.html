@@ -771,7 +771,7 @@ function getAllTickets(){
   }
   return a;
 }
-function getTicket(tid,sid){const cx=gc()[sid]||[];return SP[sid].tickets.find(x=>x.id===tid)||cx.find(x=>x.id===tid);}
+function getTicket(tid,sid){const cx=gc()[sid]||[];const cached=cx.find(x=>x.id===tid);if(cached)return cached;return SP[sid].tickets.find(x=>x.id===tid)||null;}
 
 // ── RENDER DASHBOARD ──
 function renderDash(){

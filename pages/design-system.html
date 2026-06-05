@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+
+    /* Communs */
+    --primary-text-color: #182033;
+    --secondary-text-color: #667085;
+    --background-color: #F6F7FB;
+    --panel-color: #FFFFFF;
+    --border-color: #D9E0EA;
+
+    /* Couleurs interfaces */
+    --service-color: #0E9E8E;
+    --samu-color: #4BA3F5;
+    --transporter-color: #3B82F6;
+    --ambulancier-color: #0F172A;
+
+    /* Status */
+    --status-assigned: #0EA5E9;
+    --status-pending: #032A47;
+    --status-en-route: #1674B9;
+    --status-on-site: #F59E0B;
+    --status-picked-up: #16A34A;
+    --status-dropped-off: #7C3AED;
+    --status-completed: #64748B;
+    --status-cancelled: #B91C1C;
+
+    /* Typographie */
+    --font-family-base: "Inter", sans-serif;
+
+    --h1-font-size: 32px;
+    --h1-font-weight: 700;
+
+    --h2-font-size: 24px;
+    --h2-font-weight: 600;
+
+    --h3-font-size: 18px;
+    --h3-font-weight: 600;
+
+    --body-font-size: 16px;
+    --body-font-weight: 400;
+
+    --eyebrow-font-size: 11px;
+    --eyebrow-font-weight: 500;
+    --eyebrow-letter-spacing: 0.08em;
+    --eyebrow-text-transform: uppercase;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background: var(--background-color);
+    color: var(--primary-text-color);
+    padding: 48px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    margin-bottom: 48px;
+    font-size: var(--h1-font-size);
+    font-weight: var(--h1-font-weight);
+}
+
+section {
+    margin-bottom: 64px;
+}
+
+.section-title {
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+    margin-bottom: 24px;
+}
+
+/* Couleurs */
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.color-card {
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.swatch {
+    height: 100px;
+    width: 100%;
+}
+
+.color-content {
+    padding: 16px;
+}
+
+.color-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.color-value {
+    font-size: 13px;
+    color: var(--secondary-text-color);
+}
+
+/* Badges */
+
+.badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.badge {
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.assigned { background: var(--status-assigned); }
+.pending { background: var(--status-pending); }
+.en-route { background: var(--status-en-route); }
+.on-site { background: var(--status-on-site); }
+.picked-up { background: var(--status-picked-up); }
+.dropped-off { background: var(--status-dropped-off); }
+.completed { background: var(--status-completed); }
+.cancelled { background: var(--status-cancelled); }
+
+/* Typographie */
+
+.type-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.type-card {
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.type-meta {
+    color: var(--secondary-text-color);
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.ds-h1 {
+    font-size: var(--h1-font-size);
+    font-weight: var(--h1-font-weight);
+}
+
+.ds-h2 {
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+}
+
+.ds-h3 {
+    font-size: var(--h3-font-size);
+    font-weight: var(--h3-font-weight);
+}
+
+.ds-body {
+    font-size: var(--body-font-size);
+    font-weight: var(--body-font-weight);
+    line-height: 1.6;
+}
+
+.ds-eyebrow {
+    font-size: var(--eyebrow-font-size);
+    font-weight: var(--eyebrow-font-weight);
+    letter-spacing: var(--eyebrow-letter-spacing);
+    text-transform: var(--eyebrow-text-transform);
+    color: var(--secondary-text-color);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="page-title">Design System</h1>
+
+    <!-- Couleurs communes -->
+    <section>
+        <h2 class="section-title">Couleurs communes</h2>
+
+        <div class="color-grid">
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--background-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Background</div>
+                    <div class="color-value">#F6F7FB</div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--panel-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Panel</div>
+                    <div class="color-value">#FFFFFF</div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--border-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Border</div>
+                    <div class="color-value">#D9E0EA</div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--primary-text-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Primary Text</div>
+                    <div class="color-value">#182033</div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--secondary-text-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Secondary Text</div>
+                    <div class="color-value">#667085</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Couleurs métiers -->
+    <section>
+        <h2 class="section-title">Couleurs métiers</h2>
+
+        <div class="color-grid">
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--service-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Service</div>
+                    <div class="color-value">#0E9E8E</div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--samu-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">SAMU</div>
+                    <div class="color-value">#4BA3F5</div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--transporter-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Transporteur</div>
+                    <div class="color-value">#3B82F6</div>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="swatch" style="background: var(--ambulancier-color);"></div>
+                <div class="color-content">
+                    <div class="color-name">Ambulancier</div>
+                    <div class="color-value">#0F172A</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Status -->
+    <section>
+        <h2 class="section-title">Statuts</h2>
+
+        <div class="badge-group">
+            <span class="badge assigned">Assigned</span>
+            <span class="badge pending">Pending</span>
+            <span class="badge en-route">En Route</span>
+            <span class="badge on-site">On Site</span>
+            <span class="badge picked-up">Picked Up</span>
+            <span class="badge dropped-off">Dropped Off</span>
+            <span class="badge completed">Completed</span>
+            <span class="badge cancelled">Cancelled</span>
+        </div>
+    </section>
+
+    <!-- Typographie -->
+    <section>
+        <h2 class="section-title">Typographie</h2>
+
+        <div class="type-list">
+
+            <div class="type-card">
+                <div class="type-meta">Eyebrow · 11px · 500</div>
+                <div class="ds-eyebrow">Transport sanitaire</div>
+            </div>
+
+            <div class="type-card">
+                <div class="type-meta">H1 · 32px · 700</div>
+                <div class="ds-h1">Heading 1</div>
+            </div>
+
+            <div class="type-card">
+                <div class="type-meta">H2 · 24px · 600</div>
+                <div class="ds-h2">Heading 2</div>
+            </div>
+
+            <div class="type-card">
+                <div class="type-meta">H3 · 18px · 600</div>
+                <div class="ds-h3">Heading 3</div>
+            </div>
+
+            <div class="type-card">
+                <div class="type-meta">Body · 16px · 400</div>
+                <div class="ds-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

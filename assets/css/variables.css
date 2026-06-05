@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap);
+
+:root {
+    /* Communs */
+    --primary-text-color : #182033;
+    --secondary-text-color : #667085;
+    --background-color : #F6F7FB;
+    --panel-color : #FFF;
+    --border-color : #D9E0EA;
+    
+    /* Couleurs interfaces */
+    --service-color : #0E9E8E;
+    --samu-color : #4BA3F5;
+    --transporter-color : #3B82F6;
+    --ambulancier-color : #0F172A;
+
+    /* Status */
+    --status-assigned: #0EA5E9;      
+    --status-pending: #032A47;       
+    --status-en-route: #1674B9;      
+    --status-on-site: #F59E0B;       
+    --status-picked-up: #16A34A;     
+    --status-dropped-off: #7C3AED;   
+    --status-completed: #64748B;     
+    --status-cancelled: #B91C1C; 
+    
+    /* Police de caractères */
+    --font-family-base: "Inter", sans-serif;
+
+    /* H1 */
+    --h1-font-size: 32px;
+    --h1-font-weight: 700;
+
+    /* H2 */
+    --h2-font-size: 24px;
+    --h2-font-weight: 600;
+
+    /* H3 */
+    --h3-font-size: 18px;
+    --h3-font-weight: 600;
+
+    /* Body */
+    --body-font-size: 16px;
+    --body-font-weight: 400;
+
+    /* Eyebrow / Label */
+    --eyebrow-font-size: 11px;
+    --eyebrow-font-weight: 500;
+    --eyebrow-letter-spacing: 0.08em;
+    --eyebrow-text-transform: uppercase;
+}

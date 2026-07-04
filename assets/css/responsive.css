@@ -23,7 +23,6 @@ main {
 }
 
 /* Conteneurs fluides */
-.header-inner,
 .footer-inner,
 .home-hero,
 .home-about,
@@ -61,23 +60,6 @@ main {
 
 /* Tablettes et petits écrans */
 @media (max-width: 1100px) {
-    .header-inner {
-        padding: 1rem 1.25rem;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .nav-list {
-        flex-wrap: wrap;
-        margin-left: 0;
-    }
-
-    .header-actions {
-        margin-left: 0;
-        width: 100%;
-        justify-content: flex-end;
-    }
-
     .home-hero,
     .home-about {
         width: min(100%, 1000px);
@@ -210,63 +192,6 @@ main {
 
 /* Mobiles */
 @media (max-width: 760px) {
-    .header {
-        position: static;
-        background-color: #fff;
-        border-bottom: 1px solid rgba(102, 112, 133, 0.16);
-    }
-
-    .header-inner {
-        align-items: flex-start;
-        padding: 1rem 1rem 1.1rem;
-    }
-
-    .nav-list {
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-        gap: .35rem;
-    }
-
-    .nav-item {
-        width: 100%;
-    }
-
-    .nav-link {
-        width: 100%;
-        justify-content: space-between;
-        padding: .7rem .8rem;
-    }
-
-    .dropdown {
-        position: static;
-        width: 100%;
-        margin-top: .35rem;
-        box-shadow: none;
-        border: 1px solid rgba(102, 112, 133, 0.16);
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        display: none;
-    }
-
-    .nav-item:hover .dropdown,
-    .nav-item:focus-within .dropdown {
-        display: none;
-    }
-
-    .header-actions {
-        flex-direction: column;
-        align-items: stretch;
-        gap: .6rem;
-    }
-
-    .header-actions .button {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-    }
-
     .home-hero {
         padding-top: 2rem;
         padding-bottom: 2rem;
@@ -374,10 +299,6 @@ main {
 
 /* Très petits écrans */
 @media (max-width: 480px) {
-    .header-inner {
-        padding: 0.9rem 0.9rem 1rem;
-    }
-
     .logo,
     .footer-logo {
         font-size: 15px;

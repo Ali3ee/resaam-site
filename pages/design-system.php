@@ -25,9 +25,7 @@
     <p class="p2">Paragraphe petit</p>
     <div class="icon"><i class="fa-solid fa-paperclip"></i></div>
     <span class="chip-light">Exemple chip</span>
-    <div class="chip-dark">
-        <p>Exemple chip</p>
-    </div>
+    <div class="chip-dark"><p>Exemple chip</p></div>
     <a href="#" class="button button-blue">Demander une demo</a>
     <a href="#" class="button button-transparent">Nous contacter</a>
     <a href="#" class="button button-transparent-dark">Nous contacter</a>

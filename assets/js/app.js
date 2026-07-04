@@ -107,3 +107,4 @@ document.querySelectorAll('.faq-question').forEach(button => {
         }
     });
 });
+

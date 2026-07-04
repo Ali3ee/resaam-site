@@ -503,3 +503,151 @@ main {
         gap: 1.25rem;
     }
 }
+
+@media (max-width: 960px) {
+    .about-hero {
+        min-height: auto;
+        padding: 8rem 1.5rem 3rem;
+    }
+
+    .about-hero h1 {
+        max-width: 100%;
+    }
+
+    .about-hero h1 br {
+        display: none;
+    }
+
+    .about-hero .p1 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .about-hero {
+        padding: 7rem 1.25rem 2.5rem;
+        gap: .75rem;
+    }
+
+    .about-hero h1 {
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
+        line-height: 1.15;
+    }
+
+    .about-hero .p1 {
+        font-size: 15px;
+        line-height: 1.6rem;
+    }
+
+    .about-hero .p1 br {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        padding: 6.5rem 1rem 2rem;
+    }
+}
+
+@media (max-width: 960px) {
+    .about-story-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 3rem;
+    }
+
+    .story-left h2 {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .about-story {
+        padding: 3.5rem 1rem;
+    }
+
+    .about-story-inner {
+        gap: 2.5rem;
+    }
+
+    .timeline {
+        gap: 2rem;
+        padding-left: 1.5rem;
+    }
+
+    .timeline::before {
+        left: 4px;
+    }
+
+    .timeline-dot {
+        left: -1.5rem;
+    }
+
+    .timeline-title {
+        font-size: 17px;
+    }
+
+    .timeline-text {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 960px) {
+    .mission-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 760px) {
+    .mission {
+        padding: 3.5rem 1rem;
+    }
+
+    .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .mission .titles h2 br {
+        display: none;
+    }
+}
+
+@media (max-width: 960px) {
+    .valeurs-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .valeurs-box-element:nth-child(3) {
+        border-left: none;
+    }
+
+    .valeurs-box-element:nth-child(2),
+    .valeurs-box-element:nth-child(4) {
+        border-left: solid 1px #6670854D;
+    }
+}
+
+@media (max-width: 760px) {
+    .valeurs {
+        padding: 3.5rem 1rem;
+    }
+
+    .valeurs .titles h2 br {
+        display: none;
+    }
+
+    .valeurs-box {
+        grid-template-columns: 1fr;
+    }
+
+    .valeurs-box-element {
+        border-left: none !important;
+        border-top: solid 1px #6670854D;
+    }
+
+    .valeurs-box-element:first-child {
+        border-top: none;
+    }
+}

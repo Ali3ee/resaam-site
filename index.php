@@ -25,8 +25,8 @@
 
             <div class="home-hero-left">
                 <span class="eyebrow-blue">Coordination du transport sanitaire</span>
-                <h1>Le transport sanitaire, coordonné pour tous <br> les acteurs du soin.</h1>
-                <p class="p1">Resaam connecte hôpitaux, SAMU et sociétés d'ambulances sur une plateforme unifiée — pour dispatcher plus vite, fiabiliser chaque mission et reprendre le contrôle de <br>votre flotte.</p>
+                <h1>Le transport sanitaire, coordonné pour tous  les acteurs du soin.</h1>
+                <p class="p1">Resaam connecte hôpitaux, SAMU et sociétés d'ambulances sur une plateforme unifiée — pour dispatcher plus vite, fiabiliser chaque mission et reprendre le contrôle de votre flotte.</p>
 
                 <div class="hero-buttons">
                     <a href="#" class="button button-blue">Demander une demo</a>
@@ -87,9 +87,9 @@
 
             <div class="home-about-left">
                 <span class="eyebrow-blue">L'entreprise</span>
-                <h2>Né du terrain,<br>pensé pour la régulation.</h2>
-                <p class="p1">Resaam est né d'un constat simple : la coordination <br> du transport sanitaire reposait encore sur des outils <br> inadaptés — appels téléphoniques, feuilles de calcul, communications silotées.</p>
-                <p class="p2">Notre plateforme unifie hôpitaux, sociétés d'ambulances et régulateurs <br> SAMU sur un même espace numérique, sécurisé et conforme HDS,<br> pour que chaque transport soit tracé, piloté et optimisé en temps réel.</p>
+                <h2>Né du terrain,pensé pour la régulation.</h2>
+                <p class="p1">Resaam est né d'un constat simple : la coordination  du transport sanitaire reposait encore sur des outils  inadaptés — appels téléphoniques, feuilles de calcul, communications silotées.</p>
+                <p class="p2">Notre plateforme unifie hôpitaux, sociétés d'ambulances et régulateurs  SAMU sur un même espace numérique, sécurisé et conforme HDS, pour que chaque transport soit tracé, piloté et optimisé en temps réel.</p>
                 <a href="#" class="button button-white-fleche">Découvrir notre histoire</a>
             </div>
 
@@ -103,8 +103,8 @@
 
             <div class="titles">
                 <span class="eyebrow-blue">Nos solutions</span>
-                <h2>Trois solutions pour toute<br>la chaîne de transport.</h2>
-                <p class="p2">Chaque espace est pensé pour son utilisateur — interfaces épurées, données en temps réel,<br> conformité maximale à chaque étape.</p>
+                <h2>Trois solutions pour toutela chaîne de transport.</h2>
+                <p class="p2">Chaque espace est pensé pour son utilisateur — interfaces épurées, données en temps réel, conformité maximale à chaque étape.</p>
             </div>
 
             <div class="home-solutions-items">
@@ -113,8 +113,8 @@
 
                     <div class="left">
                         <span class="chip-light">UPH · destiné au SAMU & aux ATSU</span>
-                        <h3>Urgence pré-hospitalière. <br>Dispatchez en quelques <br>secondes.</h3>
-                        <p class="p2">La bonne ambulance, au bon endroit, au bon moment. <br>Resaam donne à vos régulateurs une vue temps réel sur la flotte disponible et automatise l'affectation des interventions UPH.</p>
+                        <h3>Urgence pré-hospitalière. Dispatchez en quelques secondes.</h3>
+                        <p class="p2">La bonne ambulance, au bon endroit, au bon moment. Resaam donne à vos régulateurs une vue temps réel sur la flotte disponible et automatise l'affectation des interventions UPH.</p>
                         <ul class="check-list">
                             <li class="check-item">
                                 <span class="check-icon"><i class="ti ti-check"></i></span>
@@ -144,8 +144,8 @@
                 <div class="home-solutions-item-reverse">
                         <div class="left">
                             <span class="chip-light">Exemple chip</span>
-                            <h3>Urgence pré-hospitalière. <br>Dispatchez en quelques <br>secondes.</h3>
-                            <p class="p2">La bonne ambulance, au bon endroit, au bon moment. <br>Resaam donne à vos régulateurs une vue temps réel sur la flotte disponible et automatise l'affectation des interventions UPH.</p>
+                            <h3>Urgence pré-hospitalière. Dispatchez en quelques secondes.</h3>
+                            <p class="p2">La bonne ambulance, au bon endroit, au bon moment. Resaam donne à vos régulateurs une vue temps réel sur la flotte disponible et automatise l'affectation des interventions UPH.</p>
                             <ul class="check-list">
                                 <li class="check-item">
                                     <span class="check-icon"><i class="ti ti-check"></i></span>
@@ -176,8 +176,8 @@
 
                     <div class="left">
                         <span class="chip-light">Exemple chip</span>
-                        <h3>Urgence pré-hospitalière. <br>Dispatchez en quelques <br>secondes.</h3>
-                        <p class="p2">La bonne ambulance, au bon endroit, au bon moment. Resaam donne à <br> vos régulateurs une vue temps réel sur la flotte disponible et automatise<br> l'affectation des interventions UPH.</p>
+                        <h3>Urgence pré-hospitalière. Dispatchez en quelques secondes.</h3>
+                        <p class="p2">La bonne ambulance, au bon endroit, au bon moment. Resaam donne à  vos régulateurs une vue temps réel sur la flotte disponible et automatise l'affectation des interventions UPH.</p>
                         <ul class="check-list">
                             <li class="check-item">
                                 <span class="check-icon"><i class="ti ti-check"></i></span>

@@ -108,3 +108,190 @@ document.querySelectorAll('.faq-question').forEach(button => {
     });
 });
 
+// --------------- FAQ : Accordéon ---------------
+document.querySelectorAll('.faq-question').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        item.classList.toggle('active');
+    });
+});
+
+// --------------- FAQ : Filtres par catégorie ---------------
+const faqFilters = document.querySelectorAll('.faq-filter');
+const faqGroups = document.querySelectorAll('.faq-group');
+const faqEmpty = document.querySelector('.faq-empty');
+
+faqFilters.forEach((filter) => {
+    filter.addEventListener('click', () => {
+        faqFilters.forEach((f) => f.classList.remove('active'));
+        filter.classList.add('active');
+
+        const target = filter.dataset.filter;
+        let visibleCount = 0;
+
+        faqGroups.forEach((group) => {
+            const match = target === 'all' || group.dataset.category === target;
+            group.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+        });
+
+        faqEmpty.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+});
+
+// --------------- CONTACT : Config des canaux ---------------
+const formAccessKey = document.getElementById('form-access-key');
+const formSubject = document.getElementById('form-subject');
+const formHeader = document.getElementById('contact-form-header');
+const formHeaderIcon = document.getElementById('contact-form-header-icon');
+const formHeaderTitle = document.getElementById('contact-form-header-title');
+const formHeaderDesc = document.getElementById('contact-form-header-desc');
+const formExtraFields = document.getElementById('contact-form-extra-fields');
+const formProfileGroup = document.getElementById('contact-form-profile-group');
+const formMessageLabel = document.getElementById('contact-form-message-label');
+const submitBtnText = document.querySelector('#contact-form .btn-text');
+const messageTextarea = document.getElementById('message');
+
+const channelConfig = {
+    demo: {
+        icon: 'ti-rocket',
+        title: 'Demander une démo',
+        desc: null,
+        accessKey: 'VOTRE_CLE_FORMULAIRE_PRINCIPAL',
+        subject: 'Nouvelle demande de démo - Site Resaam',
+        submitLabel: 'Envoyer ma demande',
+        messageRequired: false,
+        showHeader: false,
+        showExtra: true
+    },
+    message: {
+        icon: 'ti-message',
+        title: 'Envoyer un message',
+        desc: null,
+        accessKey: 'VOTRE_CLE_FORMULAIRE_PRINCIPAL',
+        subject: 'Nouveau message - Site Resaam',
+        submitLabel: 'Envoyer le message',
+        messageRequired: true,
+        showHeader: false,
+        showExtra: true
+    },
+    commercial: {
+        icon: 'ti-mail',
+        title: "Contacter l'équipe commerciale",
+        desc: "Décrivez votre besoin, un membre de l'équipe commerciale vous répond sous 24h ouvrées.",
+        accessKey: 'VOTRE_CLE_COMMERCIAL',
+        subject: 'Nouvelle demande commerciale - Site Resaam',
+        submitLabel: 'Envoyer',
+        messageRequired: true,
+        showHeader: true,
+        showExtra: false
+    },
+    support: {
+        icon: 'ti-headset',
+        title: 'Contacter le support client',
+        desc: 'Décrivez votre problème technique, notre équipe support vous répond dans les meilleurs délais.',
+        accessKey: 'VOTRE_CLE_SUPPORT',
+        subject: 'Nouvelle demande support - Site Resaam',
+        submitLabel: 'Envoyer',
+        messageRequired: true,
+        showHeader: true,
+        showExtra: false
+    }
+};
+
+function applyChannel(target) {
+    const config = channelConfig[target];
+    if (!config) return;
+
+    formAccessKey.value = config.accessKey;
+    formSubject.value = config.subject;
+    submitBtnText.textContent = config.submitLabel;
+    messageTextarea.required = config.messageRequired;
+    messageTextarea.placeholder = config.messageRequired
+        ? 'Décrivez votre demande...'
+        : 'Décrivez brièvement votre contexte et vos besoins...';
+    formMessageLabel.textContent = config.messageRequired ? 'Message' : 'Message (optionnel)';
+
+    // Header contextualisé (visible seulement pour commercial / support)
+    if (config.showHeader) {
+        formHeaderIcon.innerHTML = `<i class="ti ${config.icon}"></i>`;
+        formHeaderTitle.textContent = config.title;
+        formHeaderDesc.textContent = config.desc;
+        formHeader.style.display = 'flex';
+    } else {
+        formHeader.style.display = 'none';
+    }
+
+    // Champs établissement/téléphone masqués pour commercial/support (formulaire plus court)
+    formExtraFields.style.display = config.showExtra ? 'flex' : 'none';
+    formProfileGroup.style.display = config.showExtra ? 'flex' : 'none';
+
+    // Onglets actifs uniquement pour demo/message
+    document.querySelectorAll('.contact-tab').forEach((tab) => {
+        tab.classList.toggle('active', tab.dataset.formTarget === target);
+    });
+}
+
+// Boutons "Email commercial" / "Support client"
+document.querySelectorAll('[data-form-target]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const target = btn.dataset.formTarget;
+        applyChannel(target);
+
+        // Scroll vers le formulaire sur mobile/tablette
+        if (window.innerWidth < 960) {
+            document.getElementById('contact-form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+// --------------- WEB3FORMS : Soumission ---------------
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('.cta-form-submit');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const originalText = btnText.textContent;
+
+    submitBtn.disabled = true;
+    btnText.textContent = 'Envoi en cours...';
+
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: json
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showFormFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
+            form.reset();
+        } else {
+            showFormFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ou de nous contacter par téléphone.');
+        }
+    } catch (error) {
+        showFormFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
+    } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = originalText;
+    }
+});
+
+function showFormFeedback(form, type, message) {
+    const existing = form.querySelector('.form-feedback');
+    if (existing) existing.remove();
+
+    const feedback = document.createElement('p');
+    feedback.className = `form-feedback form-feedback-${type}`;
+    feedback.textContent = message;
+    form.appendChild(feedback);
+}

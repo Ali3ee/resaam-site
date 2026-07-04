@@ -651,3 +651,66 @@ main {
         border-top: none;
     }
 }
+
+@media (max-width: 760px) {
+    .faq-hero {
+        padding: 7rem 1.25rem 3rem;
+    }
+
+    .faq-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        margin: 0 -1rem 2.5rem;
+        padding: 0 1rem;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .faq-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .faq-filter {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 960px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .contact-hero {
+        padding: 7rem 1.25rem 3rem;
+    }
+
+    .contact-section {
+        padding: 3rem 1.25rem;
+    }
+
+    .contact-info h2 {
+        font-size: 26px;
+    }
+
+    .cta-form-row {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .profile-select {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-card {
+        padding: 1.5rem;
+    }
+
+    .contact-modal {
+        padding: 1.75rem;
+    }
+}

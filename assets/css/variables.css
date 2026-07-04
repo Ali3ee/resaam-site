@@ -280,4 +280,5 @@ main {
 .check-item span:last-child {
     font-size: 15px;
     color: var(--title-color);
+    width: 100%;
 }

@@ -1,6 +1,7 @@
 <?php require_once __DIR__ . '/config.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
     <title>Accueil | Resaam</title>
 </head>
+
 <body>
 
     <?php include __DIR__ . '/templates/header.php'; ?>
@@ -102,7 +105,7 @@
 
             <div class="titles">
                 <span class="eyebrow-blue">Nos solutions</span>
-                <h2>Trois solutions pour toute<br>la chaîne de transport.</h2>
+                <h2>Trois solutions pour toute<br> la chaîne de transport.</h2>
                 <p class="p2">Chaque espace est pensé pour son utilisateur — interfaces épurées, données en temps réel,<br> conformité maximale à chaque étape.</p>
             </div>
 
@@ -141,34 +144,34 @@
                 </div>
 
                 <div class="home-solutions-item-reverse">
-                        <div class="left">
-                            <span class="chip-light">Exemple chip</span>
-                            <h3>Urgence pré-hospitalière. <br>Dispatchez en quelques <br>secondes.</h3>
-                            <p class="p2">La bonne ambulance, au bon endroit, au bon moment. <br>Resaam donne à vos régulateurs une vue temps réel sur la flotte disponible et automatise l'affectation des interventions UPH.</p>
-                            <ul class="check-list">
-                                <li class="check-item">
-                                    <span class="check-icon"><i class="ti ti-check"></i></span>
-                                    <span>Création d'intervention et affectation automatique en 1 clic</span>
-                                </li>
-                                <li class="check-item">
-                                    <span class="check-icon"><i class="ti ti-check"></i></span>
-                                    <span>Suivi ETA en temps réel, alertes et escalades automatiques</span>
-                                </li>
-                                <li class="check-item">
-                                    <span class="check-icon"><i class="ti ti-check"></i></span>
-                                    <span>Fiche bilan patient partagée entre équipes</span>
-                                </li>
-                                <li class="check-item">
-                                    <span class="check-icon"><i class="ti ti-check"></i></span>
-                                    <span>Traçabilité complète de chaque dossier</span>
-                                </li>
-                            </ul>
-                            <a href="#" class="button button-white-fleche">En savoir plus</a>
-                        </div>
+                    <div class="left">
+                        <span class="chip-light">Exemple chip</span>
+                        <h3>Urgence pré-hospitalière. <br>Dispatchez en quelques <br>secondes.</h3>
+                        <p class="p2">La bonne ambulance, au bon endroit, au bon moment. <br>Resaam donne à vos régulateurs une vue temps réel sur la flotte disponible et automatise l'affectation des interventions UPH.</p>
+                        <ul class="check-list">
+                            <li class="check-item">
+                                <span class="check-icon"><i class="ti ti-check"></i></span>
+                                <span>Création d'intervention et affectation automatique en 1 clic</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon"><i class="ti ti-check"></i></span>
+                                <span>Suivi ETA en temps réel, alertes et escalades automatiques</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon"><i class="ti ti-check"></i></span>
+                                <span>Fiche bilan patient partagée entre équipes</span>
+                            </li>
+                            <li class="check-item">
+                                <span class="check-icon"><i class="ti ti-check"></i></span>
+                                <span>Traçabilité complète de chaque dossier</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="button button-white-fleche">En savoir plus</a>
+                    </div>
 
-                        <div class="right">
-                            <img src="<?= BASE_URL ?>/assets/images/home-t-p.png" alt="uph">
-                        </div>
+                    <div class="right">
+                        <img src="<?= BASE_URL ?>/assets/images/home-t-p.png" alt="uph">
+                    </div>
                 </div>
 
                 <div class="home-solutions-item">
@@ -207,10 +210,283 @@
 
         </section>
 
+        <section class="chiffres">
+
+            <span class="eyebrow-blue">Resaam en chiffres</span>
+            <h2>Des resultats mesurables<br> dès le premier mois</h2>
+
+            <div class="chiffres-box">
+
+                <div class="chiffres-box-element">
+                    <span class="chiffres-title blue">148+</span>
+                    <p class="p2">transport coordonnées par jour</p>
+                </div>
+
+                <div class="chiffres-box-element">
+                    <span class="chiffres-title">-9min</span>
+                    <p class="p2">Délai moyen de dispatch</p>
+                </div>
+
+                <div class="chiffres-box-element">
+                    <span class="chiffres-title">99.9%</span>
+                    <p class="p2">Disponibilité de la plateforme</p>
+                </div>
+
+                <div class="chiffres-box-element">
+                    <span class="chiffres-title">23</span>
+                    <p class="p2">Structures de santé partenaires connectées</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="dark-securite">
+            <span class="eyebrow-yellow">Sécurité &amp; conformité</span>
+            <h2>Vos données de santé,<br>protégées au plus haut niveau.</h2>
+            <p class="p2">Le transport sanitaire manipule des données médicales sensibles. Resaam est conçu pour répondre aux exigences les plus strictes du secteur de la santé en France.</p>
+
+            <div class="securite-grid">
+
+                <div class="securite-card">
+                    <div class="securite-icon"><i class="ti ti-shield-check"></i></div>
+                    <h4>Hébergement HDS agréé</h4>
+                    <p>Données hébergées en France chez un prestataire certifié HDS, conformément aux exigences de l'ANS et du Code de la santé publique.</p>
+                </div>
+
+                <div class="securite-card">
+                    <div class="securite-icon"><i class="ti ti-lock"></i></div>
+                    <h4>Chiffrement de bout en bout</h4>
+                    <p>Toutes les communications sont chiffrées en TLS 1.3. Les données au repos sont chiffrées avec des clés gérées par votre organisation.</p>
+                </div>
+
+                <div class="securite-card">
+                    <div class="securite-icon"><i class="ti ti-shield-lock"></i></div>
+                    <h4>Conformité RGPD</h4>
+                    <p>Privacy by Design, DPA disponible, droit à l'oubli respecté. Resaam ne commercialise aucune donnée de santé de ses utilisateurs.</p>
+                </div>
+
+                <div class="securite-card">
+                    <div class="securite-icon"><i class="ti ti-history"></i></div>
+                    <h4>Traçabilité totale</h4>
+                    <p>Chaque action est journalisée — utilisateur, horodatage, contexte. L'audit trail complet est exportable pour vos obligations réglementaires.</p>
+                </div>
+
+                <div class="securite-card">
+                    <div class="securite-icon"><i class="ti ti-users"></i></div>
+                    <h4>Contrôle d'accès granulaire</h4>
+                    <p>Rôles et permissions configurables par structure. SSO disponible. Authentification multi-facteurs pour tous les accès sensibles.</p>
+                </div>
+
+                <div class="securite-card">
+                    <div class="securite-icon"><i class="ti ti-server-2"></i></div>
+                    <h4>Haute disponibilité 24/7</h4>
+                    <p>Infrastructure redondante, SLA 99,9 %, sauvegardes automatiques horaires. Resaam est opérationnel 24h/24, 7j/7, 365j/an.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="temoignages">
+            <span class="eyebrow-blue">Ils nous font confiance</span>
+            <h2>Ce qu'en disent nos utilisateurs.</h2>
+
+            <div class="temoignages-slider" id="temoignagesSlider">
+
+                <div class="temoignage-track" id="temoignageTrack">
+
+                    <div class="temoignage-card">
+                        <span class="temoignage-quote-icon">"</span>
+                        <p class="temoignage-text">Depuis Resaam, nos délais de dispatch ont été divisés par deux. Les régulateurs ont enfin une vue complète sur la flotte en temps réel — c'est un changement de paradigme pour notre activité.</p>
+                        <div class="temoignage-author">
+                            <div class="temoignage-avatar">DM</div>
+                            <div class="temoignage-author-info">
+                                <b>Dr. Dominique Martel</b>
+                                <span>Directeur médical · SAMU 78</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="temoignage-card">
+                        <span class="temoignage-quote-icon">"</span>
+                        <p class="temoignage-text">La traçabilité complète de chaque transport nous a fait gagner un temps précieux lors de nos audits. L'équipe support est également très réactive.</p>
+                        <div class="temoignage-author">
+                            <div class="temoignage-avatar">SL</div>
+                            <div class="temoignage-author-info">
+                                <b>Sophie Lambert</b>
+                                <span>Responsable qualité · Hôpital de Poissy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="temoignage-card">
+                        <span class="temoignage-quote-icon">"</span>
+                        <p class="temoignage-text">Nos ambulanciers utilisent Resaam au quotidien sans aucune friction. L'affectation automatique nous a permis d'augmenter le nombre de courses traitées par jour.</p>
+                        <div class="temoignage-author">
+                            <div class="temoignage-avatar">TR</div>
+                            <div class="temoignage-author-info">
+                                <b>Thomas Renard</b>
+                                <span>Directeur d'exploitation · Sainte-Anne Ambulances</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="temoignage-card">
+                        <span class="temoignage-quote-icon">"</span>
+                        <p class="temoignage-text">Un déploiement rapide et un accompagnement sérieux. La conformité HDS et RGPD était un prérequis non-négociable pour nous, Resaam a coché toutes les cases.</p>
+                        <div class="temoignage-author">
+                            <div class="temoignage-avatar">CV</div>
+                            <div class="temoignage-author-info">
+                                <b>Camille Vidal</b>
+                                <span>DSI · CHU Versailles</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="temoignage-nav temoignage-prev" id="temoignagePrev" aria-label="Témoignage précédent">
+                    <i class="ti ti-chevron-left"></i>
+                </button>
+                <button class="temoignage-nav temoignage-next" id="temoignageNext" aria-label="Témoignage suivant">
+                    <i class="ti ti-chevron-right"></i>
+                </button>
+
+                <div class="temoignage-dots" id="temoignageDots"></div>
+
+            </div>
+        </section>
+
+        <div class="faq-wrapper">
+            <section class="faq">
+                <div class="titles">
+                    <span class="eyebrow-blue">FAQ</span>
+                    <h2>Questions fréquentes</h2>
+                </div>
+
+                <div class="faq-list">
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Combien de temps pour déployer Resaam dans mon établissement ?</span>
+                            <span class="faq-icon"><i class="ti ti-plus"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Le déploiement standard prend en moyenne 2 à 4 semaines, incluant la configuration, l'intégration avec vos outils existants et la formation des équipes.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Mes données de santé sont-elles hébergées en France ?</span>
+                            <span class="faq-icon"><i class="ti ti-plus"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Oui, toutes les données sont hébergées en France chez un prestataire certifié HDS, conformément aux exigences de l'ANS.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Resaam s'intègre-t-il à mon logiciel métier existant ?</span>
+                            <span class="faq-icon"><i class="ti ti-plus"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Resaam propose des connecteurs et une API pour s'intégrer à la majorité des logiciels métiers utilisés par les hôpitaux, SAMU et sociétés d'ambulances.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Qui peut utiliser la plateforme Resaam ?</span>
+                            <span class="faq-icon"><i class="ti ti-plus"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Resaam s'adresse aux hôpitaux, SAMU, ATSU et sociétés de transport sanitaire souhaitant coordonner leurs missions sur une plateforme unique.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Y a-t-il un engagement de durée minimum ?</span>
+                            <span class="faq-icon"><i class="ti ti-plus"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Non, nos offres sont sans engagement de durée minimum. Vous pouvez résilier à tout moment selon les conditions contractuelles.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <section class="cta-contact">
+            <div class="cta-contact-inner">
+
+                <div class="cta-contact-header">
+                    <span class="eyebrow-light">Passez à l'étape suivante</span>
+                    <h2>Prêt à fiabiliser vos<br>transports sanitaires ?</h2>
+                    <p>Nos experts vous présentent Resaam en 30 minutes, adapté à votre contexte et organisation. Aucun engagement.</p>
+                </div>
+
+                <div class="cta-form-card">
+                    <h3>Demander une démonstration</h3>
+
+                    <form action="#" method="POST" class="cta-form">
+
+                        <div class="cta-form-row">
+                            <div class="cta-form-group">
+                                <label for="prenom">Prénom</label>
+                                <input type="text" id="prenom" name="prenom" placeholder="Jean">
+                            </div>
+                            <div class="cta-form-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" id="nom" name="nom" placeholder="Dupont">
+                            </div>
+                        </div>
+
+                        <div class="cta-form-group">
+                            <label for="email">E-mail professionnel</label>
+                            <input type="email" id="email" name="email" placeholder="j.dupont@etablissement.fr">
+                        </div>
+
+                        <div class="cta-form-row">
+                            <div class="cta-form-group">
+                                <label for="structure">Établissement / Structure</label>
+                                <input type="text" id="structure" name="structure" placeholder="CHU de Versailles">
+                            </div>
+                            <div class="cta-form-group">
+                                <label for="profil">Vous êtes</label>
+                                <select id="profil" name="profil">
+                                    <option value="" selected disabled>— Votre profil —</option>
+                                    <option value="hopital">Hôpital</option>
+                                    <option value="samu">SAMU / ATSU</option>
+                                    <option value="ambulance">Société d'ambulances</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="cta-form-group">
+                            <label for="message">Message (optionnel)</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Décrivez brièvement votre contexte..."></textarea>
+                        </div>
+
+                        <button type="submit" class="button button-blue cta-form-submit">Envoyer ma demande</button>
+
+                        <p class="cta-form-footer">Réponse sous 24h ouvrées · Données chiffrées et hébergées en France</p>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
     <?php include __DIR__ . '/templates/footer.php'; ?>
 
     <script src="<?= BASE_URL ?>/assets/js/app.js"></script>
 </body>
+
 </html>

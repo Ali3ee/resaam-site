@@ -44,43 +44,31 @@
         </section>
 
         <section class="partners-section">
-            <p class="partners-label">Ils coordonnent leurs transports avec Resaam</p>
+            <p class="partners-label">Ils font confiance à Resaam</p>
 
             <div class="partners-track">
                 <div class="partners-inner">
                     <!-- premiere moitié -->
-                    <span class="partner-logo"><span class="partner-dot"></span>CHU Versailles</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>SAMU 78</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Sainte-Anne Ambulances</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Groupe Santé</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Hôpital de Poissy</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>CHU Versailles</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>SAMU 78</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Sainte-Anne Ambulances</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Groupe Santé</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Hôpital de Poissy</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>CHU Versailles</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>SAMU 78</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Sainte-Anne Ambulances</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Groupe Santé</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Hôpital de Poissy</span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-93-bobigny.png" alt="SAMU 93 Bobigny"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-78.png" alt="SAMU 78"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/assurance-maladie-bdr.png" alt="L'Assurance Maladie Bouches-du-Rhône"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/sos-medecins-grand-paris.png" alt="SOS Médecins Grand Paris"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/urps-medecins-idf.png" alt="URPS Médecins Libéraux Île-de-France"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/keolis-sante.png" alt="Keolis Santé"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/bpifrance.png" alt="Bpifrance"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/french-tech-grand-paris.png" alt="La French Tech Grand Paris"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/station-f.png" alt="Station F"></span>
 
-                    <!-- deuxième moitié -->
-                    <span class="partner-logo"><span class="partner-dot"></span>CHU Versailles</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>SAMU 78</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Sainte-Anne Ambulances</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Groupe Santé</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Hôpital de Poissy</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>CHU Versailles</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>SAMU 78</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Sainte-Anne Ambulances</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Groupe Santé</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Hôpital de Poissy</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>CHU Versailles</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>SAMU 78</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Sainte-Anne Ambulances</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Groupe Santé</span>
-                    <span class="partner-logo"><span class="partner-dot"></span>Hôpital de Poissy</span>
+                    <!-- deuxième moitié (identique, pour la boucle infinie) -->
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-93-bobigny.png" alt="SAMU 93 Bobigny"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-78.png" alt="SAMU 78"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/assurance-maladie-bdr.png" alt="L'Assurance Maladie Bouches-du-Rhône"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/sos-medecins-grand-paris.png" alt="SOS Médecins Grand Paris"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/urps-medecins-idf.png" alt="URPS Médecins Libéraux Île-de-France"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/keolis-sante.png" alt="Keolis Santé"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/bpifrance.png" alt="Bpifrance"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/french-tech-grand-paris.png" alt="La French Tech Grand Paris"></span>
+                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/station-f.png" alt="Station F"></span>
                 </div>
             </div>
         </section>

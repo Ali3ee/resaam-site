@@ -101,17 +101,10 @@
                         </div>
 
                         <div class="solutions-panel-visual">
-                            <div class="solutions-visual-row">
-                                <div class="solutions-img-frame" style="--ar:4/3;">
-                                    <!-- Emplacement image : liste des véhicules en mission (interface établissement) -->
-                                    <img src="<?= BASE_URL ?>/assets/images/etablissement-vehicules-mission.png"
-                                         alt="Liste des véhicules en mission avec statut et délai d'arrivée">
-                                </div>
-                                <div class="solutions-img-frame" style="--ar:4/3;">
-                                    <!-- Emplacement image : localisation en temps réel des ambulances -->
-                                    <img src="<?= BASE_URL ?>/assets/images/etablissement-localisation.png"
-                                         alt="Carte de localisation en temps réel des ambulances">
-                                </div>
+                            <div class="solutions-img-frame" style="--ar:4/3;">
+                                <!-- Emplacement image : liste des véhicules en mission (interface établissement) -->
+                                <img src="<?= BASE_URL ?>/assets/images/etablissement-vehicules-mission.png"
+                                    alt="Liste des véhicules en mission avec statut et délai d'arrivée">
                             </div>
 
                             <div class="solutions-stats-grid">
@@ -197,11 +190,6 @@
                                 <!-- Emplacement image : missions en temps réel (interface transporteur) -->
                                 <img src="<?= BASE_URL ?>/assets/images/transporteur-missions-temps-reel.png"
                                      alt="Missions en temps réel côté transporteur avec statuts et délais">
-                            </div>
-                            <div class="solutions-img-frame" style="--ar:16/9;">
-                                <!-- Emplacement image : localisation de la flotte de véhicules -->
-                                <img src="<?= BASE_URL ?>/assets/images/transporteur-localisation-flotte.png"
-                                     alt="Localisation en temps réel de la flotte de véhicules">
                             </div>
 
                             <div class="solutions-stats-grid">

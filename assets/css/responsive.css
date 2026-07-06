@@ -737,3 +737,9 @@ main {
     }
 }
 
+@media (max-width: 760px) {
+    .partner-logo {
+        height: 30px;
+        margin-right: 2.5rem;
+    }
+}

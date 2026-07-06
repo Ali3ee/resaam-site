@@ -1525,6 +1525,7 @@ body.nav-locked {
     justify-content: center;
     gap: .6rem;
     margin-bottom: 3rem;
+    width: 100%;
 }
 
 .faq-filter {
@@ -2484,4 +2485,3 @@ body.nav-locked {
 #platform-card .contact-info-list {
     margin-bottom: .25rem;
 }
- 

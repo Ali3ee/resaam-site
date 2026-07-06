@@ -1,4 +1,3 @@
-<?php require_once __DIR__ . '/config.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,7 +14,70 @@
 
 <body>
 
-    <?php include __DIR__ . '/templates/header.php'; ?>
+    <header class="header">
+        <div class="header-inner">
+
+            <a href="/index.html" class="logo">
+                <img src="/assets/images/resaam.png" alt="Logo RESAAM" class="logo-img">
+                <span>Resaam</span>
+            </a>
+
+            <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav" id="mainNav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <button class="nav-link" type="button" aria-expanded="false">
+                            Solutions
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg>
+                        </button>
+
+                        <div class="dropdown">
+                            <div class="dropdown-inner">
+                                <a href="/pages/uph.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-bell-ringing"></i></span>
+                                    <span>
+                                        <strong>UPH</strong>
+                                        <span class="p2">Urgence pré-hospitalière · destiné au SAMU &amp; aux ATSU</span>
+                                    </span>
+                                </a>
+                                <a href="/pages/transport-programme.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-truck-delivery"></i></span>
+                                    <span>
+                                        <strong>Transport programmé</strong>
+                                        <span class="p2">Gestion du transport sanitaire · destiné aux établissements de santé</span>
+                                    </span>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="/pages/outil-metier.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-clipboard-list"></i></span>
+                                    <span>
+                                        <strong>Régulation</strong>
+                                        <span class="p2">RH, flotte &amp; facturation · destiné aux ambulanciers — bientôt</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="/pages/a-propos.html" class="nav-link">À propos</a></li>
+                    <li class="nav-item"><a href="/pages/faq.html" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="/pages/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <a href="/pages/connexion.html" class="button button-white">Se connecter</a>
+                    <a href="/pages/contact.html" class="button button-blue">Demander une démo</a>
+                </div>
+            </nav>
+
+            <div class="nav-overlay"></div>
+
+        </div>
+    </header>
 
     <main>
         <div class="hero-glow" aria-hidden="true">
@@ -31,14 +93,14 @@
                 <p class="p1">Resaam connecte hôpitaux, SAMU et sociétés d'ambulances sur une plateforme unifiée — pour dispatcher plus vite, fiabiliser chaque mission et reprendre le contrôle de <br>votre flotte.</p>
 
                 <div class="hero-buttons">
-                    <a href="#" class="button button-blue">Demander une demo</a>
-                    <a href="#" class="button button-transparent">Nous contacter</a>
+                    <a href="/pages/contact.html" class="button button-blue">Demander une demo</a>
+                    <a href="/pages/contact.html" class="button button-transparent">Nous contacter</a>
                 </div>
             </div>
 
             <div class="home-hero-right">
                 <div class="cadre">
-                    <img src="<?= BASE_URL ?>/assets/images/hero-placeholder.png" alt="image hero page d'accueil">
+                    <img src="/assets/images/hero-placeholder.png" alt="image hero page d'accueil">
                 </div>
             </div>
         </section>
@@ -49,26 +111,26 @@
             <div class="partners-track">
                 <div class="partners-inner">
                     <!-- premiere moitié -->
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-93-bobigny.png" alt="SAMU 93 Bobigny"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-78.png" alt="SAMU 78"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/assurance-maladie-bdr.png" alt="L'Assurance Maladie Bouches-du-Rhône"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/sos-medecins-grand-paris.png" alt="SOS Médecins Grand Paris"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/urps-medecins-idf.png" alt="URPS Médecins Libéraux Île-de-France"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/keolis-sante.png" alt="Keolis Santé"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/bpifrance.png" alt="Bpifrance"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/french-tech-grand-paris.png" alt="La French Tech Grand Paris"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/station-f.png" alt="Station F"></span>
+                    <span class="partner-logo"><img src="/assets/images/samu-93-bobigny.png" alt="SAMU 93 Bobigny"></span>
+                    <span class="partner-logo"><img src="/assets/images/samu-78.png" alt="SAMU 78"></span>
+                    <span class="partner-logo"><img src="/assets/images/assurance-maladie-bdr.png" alt="L'Assurance Maladie Bouches-du-Rhône"></span>
+                    <span class="partner-logo"><img src="/assets/images/sos-medecins-grand-paris.png" alt="SOS Médecins Grand Paris"></span>
+                    <span class="partner-logo"><img src="/assets/images/urps-medecins-idf.png" alt="URPS Médecins Libéraux Île-de-France"></span>
+                    <span class="partner-logo"><img src="/assets/images/keolis-sante.png" alt="Keolis Santé"></span>
+                    <span class="partner-logo"><img src="/assets/images/bpifrance.png" alt="Bpifrance"></span>
+                    <span class="partner-logo"><img src="/assets/images/french-tech-grand-paris.png" alt="La French Tech Grand Paris"></span>
+                    <span class="partner-logo"><img src="/assets/images/station-f.png" alt="Station F"></span>
 
                     <!-- deuxième moitié (identique, pour la boucle infinie) -->
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-93-bobigny.png" alt="SAMU 93 Bobigny"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/samu-78.png" alt="SAMU 78"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/assurance-maladie-bdr.png" alt="L'Assurance Maladie Bouches-du-Rhône"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/sos-medecins-grand-paris.png" alt="SOS Médecins Grand Paris"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/urps-medecins-idf.png" alt="URPS Médecins Libéraux Île-de-France"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/keolis-sante.png" alt="Keolis Santé"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/bpifrance.png" alt="Bpifrance"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/french-tech-grand-paris.png" alt="La French Tech Grand Paris"></span>
-                    <span class="partner-logo"><img src="<?= BASE_URL ?>/assets/images/station-f.png" alt="Station F"></span>
+                    <span class="partner-logo"><img src="/assets/images/samu-93-bobigny.png" alt="SAMU 93 Bobigny"></span>
+                    <span class="partner-logo"><img src="/assets/images/samu-78.png" alt="SAMU 78"></span>
+                    <span class="partner-logo"><img src="/assets/images/assurance-maladie-bdr.png" alt="L'Assurance Maladie Bouches-du-Rhône"></span>
+                    <span class="partner-logo"><img src="/assets/images/sos-medecins-grand-paris.png" alt="SOS Médecins Grand Paris"></span>
+                    <span class="partner-logo"><img src="/assets/images/urps-medecins-idf.png" alt="URPS Médecins Libéraux Île-de-France"></span>
+                    <span class="partner-logo"><img src="/assets/images/keolis-sante.png" alt="Keolis Santé"></span>
+                    <span class="partner-logo"><img src="/assets/images/bpifrance.png" alt="Bpifrance"></span>
+                    <span class="partner-logo"><img src="/assets/images/french-tech-grand-paris.png" alt="La French Tech Grand Paris"></span>
+                    <span class="partner-logo"><img src="/assets/images/station-f.png" alt="Station F"></span>
                 </div>
             </div>
         </section>
@@ -80,11 +142,11 @@
                 <h2>Né du terrain,<br>pensé pour la régulation.</h2>
                 <p class="p1">Resaam est né d'un constat simple : la coordination <br> du transport sanitaire reposait encore sur des outils <br> inadaptés — appels téléphoniques, feuilles de calcul, communications silotées.</p>
                 <p class="p2">Notre plateforme unifie hôpitaux, sociétés d'ambulances et régulateurs <br> SAMU sur un même espace numérique, sécurisé et conforme HDS,<br> pour que chaque transport soit tracé, piloté et optimisé en temps réel.</p>
-                <a href="#" class="button button-white-fleche">Découvrir notre histoire</a>
+                <a href="/pages/a-propos.html" class="button button-white-fleche">Découvrir notre histoire</a>
             </div>
 
             <div class="home-about-right">
-                <img src="<?= BASE_URL ?>/assets/images/home-about.png" alt="">
+                <img src="/assets/images/home-about.png" alt="">
             </div>
 
         </section>
@@ -123,11 +185,11 @@
                                 <span>Traçabilité complète de chaque dossier</span>
                             </li>
                         </ul>
-                        <a href="#" class="button button-white-fleche">En savoir plus</a>
+                        <a href="/pages/uph.html" class="button button-white-fleche">En savoir plus</a>
                     </div>
 
                     <div class="right">
-                        <img src="<?= BASE_URL ?>/assets/images/home-uph.png" alt="uph">
+                        <img src="/assets/images/home-uph.png" alt="uph">
                     </div>
                 </div>
 
@@ -154,11 +216,11 @@
                                 <span>Traçabilité complète de chaque dossier</span>
                             </li>
                         </ul>
-                        <a href="#" class="button button-white-fleche">En savoir plus</a>
+                        <a href="/pages/transport-programme.html" class="button button-white-fleche">En savoir plus</a>
                     </div>
 
                     <div class="right">
-                        <img src="<?= BASE_URL ?>/assets/images/home-t-p.png" alt="uph">
+                        <img src="/assets/images/home-t-p.png" alt="uph">
                     </div>
                 </div>
 
@@ -186,11 +248,11 @@
                                 <span>Traçabilité complète de chaque dossier</span>
                             </li>
                         </ul>
-                        <a href="#" class="button button-white-fleche">En savoir plus</a>
+                        <a href="/pages/outil-metier.html" class="button button-white-fleche">En savoir plus</a>
                     </div>
 
                     <div class="right">
-                        <img src="<?= BASE_URL ?>/assets/images/home-regulation.png" alt="uph">
+                        <img src="/assets/images/home-regulation.png" alt="uph">
                     </div>
                 </div>
 
@@ -472,9 +534,59 @@
 
     </main>
 
-    <?php include __DIR__ . '/templates/footer.php'; ?>
+    <footer class="footer">
+        <div class="footer-inner">
 
-    <script src="<?= BASE_URL ?>/assets/js/app.js"></script>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/index.html" class="footer-logo">
+                        <img src="/assets/images/resaam.png" alt="Logo RESAAM" class="footer-logo-img">
+                        <span>Resaam</span>
+                    </a>
+                    <p class="footer-tagline">Plateforme SaaS de coordination du transport sanitaire pour le secteur ambulancier et médical en France.</p>
+                    <div class="footer-badge">
+                        <i class="ti ti-shield-check"></i>
+                        <span>HDS · Hébergé en France</span>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5 class="footer-col-title">Solutions</h5>
+                    <ul class="footer-links">
+                        <li><a href="/pages/uph.html">UPH</a></li>
+                        <li><a href="/pages/transport-programme.html">Transport programmé</a></li>
+                        <li><a href="/pages/outil-metier.html">Régulation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5 class="footer-col-title">Entreprise</h5>
+                    <ul class="footer-links">
+                        <li><a href="/pages/a-propos.html">À propos</a></li>
+                        <li><a href="/pages/faq.html">FAQ</a></li>
+                        <li><a href="/pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5 class="footer-col-title">Légal</h5>
+                    <ul class="footer-links">
+                        <li><a href="/pages/mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="/pages/confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="/pages/condition-d-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; <?= date('Y') ?> Resaam SAS · Tous droits réservés</span>
+                <span>Conçu pour les professionnels du transport sanitaire</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="/assets/js/app.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,102 @@
+<!-- Converted to static HTML: removed PHP config include -->
+    <header class="header">
+        <div class="header-inner">
+
+            <a href="/index.html" class="logo">
+                <img src="/assets/images/resaam.png" alt="Logo RESAAM" class="logo-img">
+                <span>Resaam</span>
+            </a>
+
+            <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav" id="mainNav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <button class="nav-link" type="button" aria-expanded="false">
+                            Solutions
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </button>
+
+                        <div class="dropdown">
+                            <div class="dropdown-inner">
+                                <a href="/pages/uph.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-bell-ringing"></i></span>
+                                    <span>
+                                        <strong>UPH</strong>
+                                        <span class="p2">Urgence pré-hospitalière · destiné au SAMU &amp; aux ATSU</span>
+                                    </span>
+                                </a>
+                                <a href="/pages/transport-programme.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-truck-delivery"></i></span>
+                                    <span>
+                                        <strong>Transport programmé</strong>
+                                        <span class="p2">Gestion du transport sanitaire · destiné aux établissements de santé</span>
+                                    </span>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="/pages/outil-metier.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-clipboard-list"></i></span>
+                                    <span>
+                                        <strong>Régulation</strong>
+                                        <span class="p2">RH, flotte &amp; facturation · destiné aux ambulanciers — bientôt</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="/pages/a-propos.html" class="nav-link">À propos</a></li>
+                    <li class="nav-item"><a href="/pages/faq.html" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="/pages/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <a href="/pages/connexion.html" class="button button-white">Se connecter</a>
+                    <a href="/pages/contact.html" class="button button-blue">Demander une démo</a>
+                </div>
+            </nav>
+
+            <div class="nav-overlay"></div>
+
+        </div>
+    </header>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+
+<body>
+    <?php include __DIR__ . '/../templates/header.php'; ?>
+
+    <h1>Exemple h1</h1>
+    <h2>Exemple h2</h2>
+    <h3>Exemple h3</h3>
+    <p class="p1">Paragraphe grand</p>
+    <p class="p2">Paragraphe petit</p>
+    <div class="icon"><i class="fa-solid fa-paperclip"></i></div>
+    <span class="chip-light">Exemple chip</span>
+    <div class="chip-dark"><p>Exemple chip</p></div>
+    <a href="/pages/contact.html" class="button button-blue">Demander une demo</a>
+    <a href="/pages/contact.html" class="button button-transparent">Nous contacter</a>
+    <a href="/pages/contact.html" class="button button-transparent-dark">Nous contacter</a>
+    <span class="eyebrow-blue">Fonctionnalités</span>
+    <span class="eyebrow-yellow">Fonctionnalités</span>
+</body>
+
+</html>

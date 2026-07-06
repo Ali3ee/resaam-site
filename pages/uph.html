@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../config.php'; ?>
+<!-- Converted to static HTML: removed PHP config include -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -7,15 +7,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/variables.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/variables.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
     <title>Nos solutions : Urgence Pré-Hospitalière</title>
 </head>
 
 <body>
 
-    <?php include __DIR__ . '/../templates/header.php'; ?>
+    <header class="header">
+        <div class="header-inner">
+
+            <a href="/index.html" class="logo">
+                <img src="/assets/images/resaam.png" alt="Logo RESAAM" class="logo-img">
+                <span>Resaam</span>
+            </a>
+
+            <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav" id="mainNav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <button class="nav-link" type="button" aria-expanded="false">
+                            Solutions
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </button>
+
+                        <div class="dropdown">
+                            <div class="dropdown-inner">
+                                <a href="/pages/uph.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-bell-ringing"></i></span>
+                                    <span>
+                                        <strong>UPH</strong>
+                                        <span class="p2">Urgence pré-hospitalière · destiné au SAMU &amp; aux ATSU</span>
+                                    </span>
+                                </a>
+                                <a href="/pages/transport-programme.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-truck-delivery"></i></span>
+                                    <span>
+                                        <strong>Transport programmé</strong>
+                                        <span class="p2">Gestion du transport sanitaire · destiné aux établissements de santé</span>
+                                    </span>
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="/pages/outil-metier.html" class="dropdown-item">
+                                    <span class="icon"><i class="ti ti-clipboard-list"></i></span>
+                                    <span>
+                                        <strong>Régulation</strong>
+                                        <span class="p2">RH, flotte &amp; facturation · destiné aux ambulanciers — bientôt</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="/pages/a-propos.html" class="nav-link">À propos</a></li>
+                    <li class="nav-item"><a href="/pages/faq.html" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="/pages/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <a href="/pages/connexion.html" class="button button-white">Se connecter</a>
+                    <a href="/pages/contact.html" class="button button-blue">Demander une démo</a>
+                </div>
+            </nav>
+
+            <div class="nav-overlay"></div>
+
+        </div>
+    </header>
 
     <main>
 
@@ -26,8 +91,8 @@
             <p class="p1">Resaam relie ambulanciers, ATSU, SAMU et services des urgences autour des mêmes
                 données, transmises en temps réel, du départ de la mission jusqu'à l'arrivée du patient.</p>
             <div class="solutions-hero-buttons">
-                <a href="#" class="button button-blue">Demander une démo</a>
-                <a href="#" class="button button-transparent">Nous contacter</a>
+                <a href="/pages/contact.html" class="button button-blue">Demander une démo</a>
+                <a href="/pages/contact.html" class="button button-transparent">Nous contacter</a>
             </div>
         </section>
 
@@ -87,19 +152,19 @@
                                         urgences en temps réel</span>
                                 </li>
                             </ul>
-                            <a href="#" class="button button-white-fleche">En savoir plus</a>
+                            <a href="/pages/uph.html" class="button button-white-fleche">En savoir plus</a>
                         </div>
 
                         <div class="solutions-panel-visual">
                             <div class="solutions-visual-row">
                                 <div class="solutions-img-frame" style="--ar:3/4;">
                                     <!-- Emplacement image : fiche bilan patient sur mobile (ambulancier) -->
-                                    <img src="<?= BASE_URL ?>/assets/images/ambulancier-fiche-mobile.png"
+                                     <img src="/assets/images/ambulancier-fiche-mobile.png"
                                          alt="Fiche bilan patient sur l'application mobile ambulancier">
                                 </div>
                                 <div class="solutions-img-frame" style="--ar:3/4;">
                                     <!-- Emplacement image : électrocardiogramme transmis en temps réel -->
-                                    <img src="<?= BASE_URL ?>/assets/images/ambulancier-ecg.png"
+                                     <img src="/assets/images/ambulancier-ecg.png"
                                          alt="Électrocardiogramme transmis en temps réel au SAMU et aux urgences">
                                 </div>
                             </div>
@@ -127,14 +192,14 @@
                                     <span>Gestion des gardes préfectorales (tableau de garde, dossier RMG, ...)</span>
                                 </li>
                             </ul>
-                            <a href="#" class="button button-white-fleche">En savoir plus</a>
+                            <a href="/pages/uph.html" class="button button-white-fleche">En savoir plus</a>
                         </div>
 
                         <div class="solutions-panel-visual">
                             <div class="solutions-img-frame" style="--ar:16/11;">
                                 <!-- Emplacement image : tableau de bord statistiques ATSU -->
-                                <img src="<?= BASE_URL ?>/assets/images/atsu-dashboard.png"
-                                     alt="Tableau de bord ATSU : véhicules, interventions et taux de refus">
+                                  <img src="/assets/images/atsu-dashboard.png"
+                                      alt="Tableau de bord ATSU : véhicules, interventions et taux de refus">
                             </div>
                         </div>
                     </div>
@@ -168,34 +233,34 @@
                                     <span>Traçabilité complète et historique des prises en charge</span>
                                 </li>
                             </ul>
-                            <a href="#" class="button button-white-fleche">En savoir plus</a>
+                            <a href="/pages/uph.html" class="button button-white-fleche">En savoir plus</a>
                         </div>
 
                         <div class="solutions-panel-visual">
                             <div class="solutions-img-frame" style="--ar:16/9;">
                                 <!-- Emplacement image : tableau d'arrivée des ambulances -->
-                                <img src="<?= BASE_URL ?>/assets/images/urgences-arrivees.png"
+                                    <img src="/assets/images/urgences-arrivees.png"
                                      alt="Tableau d'arrivée des ambulances côté service des urgences">
                             </div>
                             <div class="solutions-visual-row solutions-visual-row-2x2">
                                 <div class="solutions-img-frame" style="--ar:4/3;">
                                     <!-- Emplacement image : constantes en temps réel -->
-                                    <img src="<?= BASE_URL ?>/assets/images/urgences-constantes.png"
+                                     <img src="/assets/images/urgences-constantes.png"
                                          alt="Constantes du patient en temps réel">
                                 </div>
                                 <div class="solutions-img-frame" style="--ar:4/3;">
                                     <!-- Emplacement image : fiche bilan patient -->
-                                    <img src="<?= BASE_URL ?>/assets/images/urgences-fiche-bilan.png"
+                                     <img src="/assets/images/urgences-fiche-bilan.png"
                                          alt="Fiche bilan patient transmise au service des urgences">
                                 </div>
                                 <div class="solutions-img-frame" style="--ar:4/3;">
                                     <!-- Emplacement image : statut des transmissions -->
-                                    <img src="<?= BASE_URL ?>/assets/images/urgences-transmissions.png"
+                                     <img src="/assets/images/urgences-transmissions.png"
                                          alt="Statut des transmissions de données synchronisées">
                                 </div>
                                 <div class="solutions-img-frame" style="--ar:4/3;">
                                     <!-- Emplacement image : alertes & surveillance -->
-                                    <img src="<?= BASE_URL ?>/assets/images/urgences-alertes.png"
+                                     <img src="/assets/images/urgences-alertes.png"
                                          alt="Alertes et surveillance en cas de dépassement des seuils">
                                 </div>
                             </div>
@@ -237,24 +302,24 @@
                                         export instantané</span>
                                 </li>
                             </ul>
-                            <a href="#" class="button button-white-fleche">En savoir plus</a>
+                            <a href="/pages/uph.html" class="button button-white-fleche">En savoir plus</a>
                         </div>
 
                         <div class="solutions-panel-visual">
                             <div class="solutions-img-frame" style="--ar:16/9;">
                                 <!-- Emplacement image : interventions en cours (interface SAMU) -->
-                                <img src="<?= BASE_URL ?>/assets/images/samu-interventions.png"
-                                     alt="Liste des interventions en cours côté SAMU">
+                                  <img src="/assets/images/samu-interventions.png"
+                                      alt="Liste des interventions en cours côté SAMU">
                             </div>
                             <div class="solutions-visual-row">
                                 <div class="solutions-img-frame" style="--ar:1/1;">
                                     <!-- Emplacement image : flotte ambulances en temps réel -->
-                                    <img src="<?= BASE_URL ?>/assets/images/samu-flotte.png"
+                                     <img src="/assets/images/samu-flotte.png"
                                          alt="Flotte d'ambulances en temps réel sur la carte">
                                 </div>
                                 <div class="solutions-img-frame" style="--ar:1/1;">
                                     <!-- Emplacement image : fiche bilan patient avec électrocardiogramme -->
-                                    <img src="<?= BASE_URL ?>/assets/images/samu-fiche-ecg.png"
+                                     <img src="/assets/images/samu-fiche-ecg.png"
                                          alt="Fiche bilan patient avec électrocardiogramme vue par le SAMU">
                                 </div>
                             </div>
@@ -267,9 +332,59 @@
 
     </main>
 
-    <?php include __DIR__ . '/../templates/footer.php'; ?>
+    <footer class="footer">
+        <div class="footer-inner">
 
-    <script src="<?= BASE_URL ?>/assets/js/app.js"></script>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/index.html" class="footer-logo">
+                        <img src="/assets/images/resaam.png" alt="Logo RESAAM" class="footer-logo-img">
+                        <span>Resaam</span>
+                    </a>
+                    <p class="footer-tagline">Plateforme SaaS de coordination du transport sanitaire pour le secteur ambulancier et médical en France.</p>
+                    <div class="footer-badge">
+                        <i class="ti ti-shield-check"></i>
+                        <span>HDS · Hébergé en France</span>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5 class="footer-col-title">Solutions</h5>
+                    <ul class="footer-links">
+                        <li><a href="/pages/uph.html">UPH</a></li>
+                        <li><a href="/pages/transport-programme.html">Transport programmé</a></li>
+                        <li><a href="/pages/outil-metier.html">Régulation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5 class="footer-col-title">Entreprise</h5>
+                    <ul class="footer-links">
+                        <li><a href="/pages/a-propos.html">À propos</a></li>
+                        <li><a href="/pages/faq.html">FAQ</a></li>
+                        <li><a href="/pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5 class="footer-col-title">Légal</h5>
+                    <ul class="footer-links">
+                        <li><a href="/pages/mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="/pages/confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="/pages/condition-d-utilisation.html">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Resaam SAS · Tous droits réservés</span>
+                <span>Conçu pour les professionnels du transport sanitaire</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="/assets/js/app.js"></script>
     <script>
         document.querySelectorAll('.solutions-tabbtn').forEach(function (btn) {
             btn.addEventListener('click', function () {

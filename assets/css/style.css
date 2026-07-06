@@ -2417,3 +2417,71 @@ body.nav-locked {
         width: 130px;
     }
 }
+
+/* =======================================================
+   PAGE CONNEXION
+   ======================================================= */
+ 
+.auth-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2.5rem 2rem 6rem;
+    box-sizing: border-box;
+}
+ 
+.auth-container {
+    width: 100%;
+    max-width: 440px;
+}
+ 
+.auth-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-color);
+    margin-top: -.25rem;
+}
+ 
+.auth-remember {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+}
+ 
+.auth-remember input {
+    accent-color: var(--blue-background-color);
+    width: 14px;
+    height: 14px;
+}
+ 
+.auth-forgot {
+    color: var(--eybrow-blue-color);
+    font-weight: 600;
+}
+ 
+.auth-forgot:hover {
+    text-decoration: underline;
+}
+ 
+.auth-back {
+    display: block;
+    margin: 1.5rem auto 0;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+ 
+.auth-back:hover {
+    color: var(--title-color);
+}
+ 
+#platform-card .contact-info-list {
+    margin-bottom: .25rem;
+}
+ 

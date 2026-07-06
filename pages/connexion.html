@@ -82,18 +82,72 @@
     </header>
 
     <main>
-        <section class="auth">
-            <div class="auth-card">
-                <h1>Se connecter</h1>
-                <form>
-                    <label for="email">Email</label>
-                    <input id="email" type="email">
-                    <label for="password">Mot de passe</label>
-                    <input id="password" type="password">
-                    <button class="button button-blue" type="submit">Se connecter</button>
-                </form>
+
+        <section class="about-hero">
+            <div class="hero-glow" aria-hidden="true">
+                <div class="hero-glow-top"></div>
+                <div class="hero-glow-bottom"></div>
+            </div>
+
+            <span class="eyebrow-blue">Connexion</span>
+            <h1>Accédez à votre espace</h1>
+            <p class="p1">Identifiez-vous une seule fois : Resaam vous oriente automatiquement vers le ou les espaces associés à votre compte.</p>
+        </section>
+
+        <section class="auth-section">
+            <div class="auth-container">
+
+                <!-- Étape 1 : identifiants -->
+                <div class="contact-form-card" id="login-card">
+                    <form class="cta-form" id="login-form" novalidate>
+
+                        <div class="cta-form-group">
+                            <label for="email">E-mail professionnel</label>
+                            <input type="email" id="email" name="email" placeholder="j.dupont@etablissement.fr" required autocomplete="username">
+                        </div>
+
+                        <div class="cta-form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+                        </div>
+
+                        <div class="auth-row">
+                            <label class="auth-remember">
+                                <input type="checkbox" id="remember" name="remember">
+                                <span>Rester connecté</span>
+                            </label>
+                            <a href="/pages/contact.html" class="auth-forgot">Mot de passe oublié ?</a>
+                        </div>
+
+                        <button type="submit" class="button button-blue cta-form-submit" id="login-submit">
+                            <span class="btn-text">Se connecter</span>
+                        </button>
+
+                        <p class="cta-form-footer">Connexion sécurisée · Hébergement de données de santé (HDS)</p>
+                    </form>
+                </div>
+
+                <!-- Étape 2 : sélection de l'espace (si plusieurs plateformes) -->
+                <div class="contact-form-card" id="platform-card" style="display:none;">
+
+                    <div class="contact-form-header" style="display:flex;">
+                        <div class="contact-form-header-icon"><i class="ti ti-apps"></i></div>
+                        <div>
+                            <strong id="platform-user-label">Bonjour</strong>
+                            <p id="platform-count-label">Choisissez l'espace auquel vous souhaitez accéder.</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-list" id="platform-list">
+                        <!-- espaces générés dynamiquement en JS -->
+                    </div>
+
+                    <button type="button" class="auth-back" id="platform-back">← Se connecter avec un autre compte</button>
+                </div>
+
             </div>
         </section>
+
     </main>
 
     <footer class="footer">
@@ -149,6 +203,139 @@
     </footer>
 
     <script src="/assets/js/app.js"></script>
+    <script>
+    (() => {
+        const loginForm    = document.getElementById('login-form');
+        const loginCard    = document.getElementById('login-card');
+        const platformCard = document.getElementById('platform-card');
+        const platformList = document.getElementById('platform-list');
+        const userLabel    = document.getElementById('platform-user-label');
+        const countLabel   = document.getElementById('platform-count-label');
+        const backBtn      = document.getElementById('platform-back');
+        const submitBtn    = document.getElementById('login-submit');
+
+        if (!loginForm) return;
+
+        // ---------------------------------------------------------------
+        // Point d'intégration avec l'API Express.
+        // En dev, configurer le proxy Vite vers le port du serveur Express.
+        // ---------------------------------------------------------------
+        const API_LOGIN_URL = '/api/auth/login';
+
+        // Icônes cohérentes avec le menu "Solutions" du header
+        const PLATFORM_ICONS = {
+            'uph': 'ti-bell-ringing',
+            'transport-programme': 'ti-truck-delivery',
+            'outil-metier': 'ti-clipboard-list'
+        };
+
+        function clearFeedback(){
+            const existing = loginForm.querySelector('.form-feedback');
+            if (existing) existing.remove();
+        }
+
+        function showFeedback(type, message){
+            clearFeedback();
+            const el = document.createElement('div');
+            el.className = `form-feedback form-feedback-${type}`;
+            el.textContent = message;
+            loginForm.appendChild(el);
+        }
+
+        function setLoading(isLoading){
+            submitBtn.disabled = isLoading;
+            submitBtn.querySelector('.btn-text').textContent = isLoading
+                ? 'Connexion en cours...'
+                : 'Se connecter';
+        }
+
+        function renderPlatforms(user, platforms){
+            userLabel.textContent = `Bonjour ${user.name || user.email}`;
+            countLabel.textContent = platforms.length > 1
+                ? `Votre compte a accès à ${platforms.length} espaces. Choisissez celui que vous souhaitez ouvrir.`
+                : `Choisissez l'espace auquel vous souhaitez accéder.`;
+
+            platformList.innerHTML = '';
+            platforms.forEach((p) => {
+                const item = document.createElement('a');
+                item.href = p.url;
+                item.className = 'contact-info-item';
+                item.innerHTML = `
+                    <div class="icon"><i class="ti ${PLATFORM_ICONS[p.id] || 'ti-apps'}"></i></div>
+                    <div class="contact-info-text">
+                        <strong>${p.name}</strong>
+                        <span>${p.url.replace(/^https?:\/\//, '')}</span>
+                    </div>
+                    <i class="ti ti-chevron-right contact-info-arrow"></i>
+                `;
+                platformList.appendChild(item);
+            });
+
+            loginCard.style.display = 'none';
+            platformCard.style.display = 'block';
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearFeedback();
+
+            const email    = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || !password){
+                showFeedback('error', 'Veuillez renseigner votre e-mail et votre mot de passe.');
+                return;
+            }
+
+            setLoading(true);
+            try {
+                const response = await fetch(API_LOGIN_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (!response.ok){
+                    throw new Error(response.status === 401
+                        ? 'Identifiants incorrects.'
+                        : 'Une erreur est survenue. Merci de réessayer.');
+                }
+
+                // Réponse attendue depuis l'API Express, par exemple :
+                // {
+                //   user: { name: "Jeanne Dupont", email: "jeanne@etablissement.fr" },
+                //   platforms: [
+                //     { id: "uph", name: "UPH", url: "https://uph.resaam.fr/sso?token=..." },
+                //     { id: "transport-programme", name: "Transport programmé", url: "https://transport.resaam.fr/sso?token=..." }
+                //   ]
+                // }
+                const data = await response.json();
+                const platforms = data.platforms || [];
+
+                if (platforms.length === 0){
+                    showFeedback('error', "Aucun espace n'est associé à ce compte.");
+                } else if (platforms.length === 1){
+                    // Une seule plateforme accessible → redirection directe
+                    window.location.href = platforms[0].url;
+                } else {
+                    // Plusieurs plateformes → affichage du sélecteur
+                    renderPlatforms(data.user || { email }, platforms);
+                }
+            } catch (err){
+                showFeedback('error', err.message || 'Connexion impossible.');
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        backBtn.addEventListener('click', () => {
+            platformCard.style.display = 'none';
+            loginCard.style.display = 'block';
+            loginForm.reset();
+            clearFeedback();
+        });
+    })();
+    </script>
 
 </body>
 

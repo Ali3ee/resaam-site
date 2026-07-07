@@ -2727,6 +2727,82 @@ body.nav-locked {
     background: var(--dark-background-color);
 }
 
+.floating-actions {
+    position: fixed;
+    right: 30px;
+    bottom: 96px;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .4rem;
+    border: 1px solid rgba(22, 116, 185, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 16px 36px rgba(11, 22, 31, 0.16);
+    z-index: 998;
+}
+
+.floating-actions-link {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    color: var(--blue-background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.floating-actions-link:hover {
+    color: #fff;
+    background-color: var(--blue-background-color);
+    transform: scale(1.06);
+}
+
+.floating-actions-link svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.floating-actions-link:nth-child(2) svg {
+    fill: currentColor;
+    stroke: none;
+}
+
+.floating-actions-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 50%;
+    bottom: calc(100% + 12px);
+    transform: translateX(50%) translateY(4px);
+    padding: .45rem .65rem;
+    border-radius: 8px;
+    background: var(--dark-background-color);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.floating-actions-link:hover::after,
+.floating-actions-link:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(50%) translateY(0);
+}
+
 @media (max-width: 768px) {
     .back-to-top {
         bottom: 20px;
@@ -2734,9 +2810,28 @@ body.nav-locked {
         width: 44px;
         height: 44px;
     }
+
+    .floating-actions {
+        right: 20px;
+        bottom: 84px;
+        gap: .25rem;
+        padding: .3rem;
+    }
+
+    .floating-actions-link {
+        width: 42px;
+        height: 42px;
+    }
+
+    .floating-actions-link svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .floating-actions-link::after {
+        display: none;
+    }
 }
-
-
 
 
 

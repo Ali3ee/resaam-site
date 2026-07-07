@@ -2720,7 +2720,7 @@ body.nav-locked {
 }
 
 .back-to-top:hover {
-    background: var(--color-blue-dark, #1d4ed8);
+    background: var(--dark-background-color);
 }
 
 @media (max-width: 768px) {

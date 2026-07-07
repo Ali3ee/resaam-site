@@ -320,6 +320,66 @@
     }
 })();
 
+// --------------- CTA FORM (page d'accueil) : envoi AJAX sans redirection ---------------
+(function () {
+    const ctaForm = document.getElementById('cta-form');
+    if (!ctaForm) return; // rien à faire sur les pages sans ce formulaire
+
+    ctaForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // empêche la soumission classique -> plus de redirection vers Web3Forms
+
+        const form = e.target;
+        const submitBtn = form.querySelector('.cta-form-submit');
+        const originalText = submitBtn ? submitBtn.textContent : null;
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+        }
+
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
+                body: json
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showCtaFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
+                form.reset();
+            } else {
+                showCtaFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ou de nous contacter par téléphone.');
+            }
+        } catch (error) {
+            showCtaFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+    });
+
+    function showCtaFeedback(form, type, message) {
+        const existing = form.querySelector('.form-feedback');
+        if (existing) existing.remove();
+
+        const feedback = document.createElement('p');
+        feedback.className = `form-feedback form-feedback-${type}`;
+        feedback.textContent = message;
+        form.appendChild(feedback);
+    }
+})();
+
 // --------------- MENU MOBILE ---------------
 (function () {
     const burger = document.querySelector('.burger');

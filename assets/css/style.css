@@ -1669,6 +1669,18 @@ body.nav-locked {
     flex-shrink: 0;
 }
 
+.contact-info-whatsapp .icon {
+    background-color: rgba(37, 211, 102, 0.14);
+    color: #25D366;
+}
+
+.contact-info-whatsapp .icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    display: block;
+    fill: currentColor;
+}
+
 .contact-info-text {
     display: flex;
     flex-direction: column;
@@ -2760,6 +2772,15 @@ body.nav-locked {
     transform: scale(1.06);
 }
 
+.floating-actions-link:nth-child(2) {
+    color: #25D366;
+}
+
+.floating-actions-link:nth-child(2):hover {
+    color: #fff;
+    background-color: #25D366;
+}
+
 .floating-actions-link svg {
     width: 22px;
     height: 22px;
@@ -2832,7 +2853,6 @@ body.nav-locked {
         display: none;
     }
 }
-
 
 
 

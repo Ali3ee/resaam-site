@@ -753,3 +753,113 @@ main {
         margin-right: 2.5rem;
     }
 }
+
+@media (max-width: 1024px) {
+    .legal-wrapper {
+        gap: 2.5rem;
+    }
+ 
+    .legal-toc {
+        flex: 0 0 220px;
+    }
+}
+ 
+/* Tablette / petit écran (≤ 900px) : sommaire passe au-dessus, non sticky */
+@media (max-width: 900px) {
+    .legal-hero {
+        padding: 7rem 1.5rem 2.5rem;
+        min-height: auto;
+    }
+ 
+    .legal-section {
+        padding: 3rem 1.5rem 4rem;
+    }
+ 
+    .legal-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+ 
+    .legal-toc {
+        position: static;
+        top: auto;
+        flex: 1 1 auto;
+        width: 100%;
+        max-height: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: .25rem;
+    }
+ 
+    .legal-toc-title {
+        grid-column: 1 / -1;
+    }
+ 
+    .legal-content {
+        gap: 2rem;
+    }
+}
+ 
+/* Mobile (≤ 600px) */
+@media (max-width: 600px) {
+    .legal-hero {
+        padding: 6rem 1.25rem 2rem;
+        gap: .75rem;
+    }
+ 
+    .legal-hero h1 {
+        font-size: 1.6rem;
+        max-width: 100%;
+    }
+ 
+    .legal-hero .p1 {
+        font-size: 14px;
+    }
+ 
+    .legal-updated {
+        font-size: 11px;
+        text-align: left;
+        padding: .4rem .9rem;
+    }
+ 
+    .legal-section {
+        padding: 2rem 1.25rem 3rem;
+    }
+ 
+    .legal-toc {
+        grid-template-columns: 1fr;
+        padding: 1.1rem;
+    }
+ 
+    .legal-toc a {
+        padding: .5rem;
+        font-size: 13px;
+    }
+ 
+    .legal-block h2 {
+        font-size: 18px;
+        flex-wrap: wrap;
+        gap: .4rem;
+        scroll-margin-top: 5.5rem;
+    }
+ 
+    .legal-block h3 {
+        font-size: 15px;
+        scroll-margin-top: 5.5rem;
+    }
+ 
+    .legal-block p,
+    .legal-block ul li {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+ 
+    .legal-intro {
+        font-size: 14.5px;
+        max-width: 100%;
+    }
+ 
+    .legal-contact-box {
+        padding: 1.25rem;
+    }
+}

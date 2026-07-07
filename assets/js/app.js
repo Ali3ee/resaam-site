@@ -148,14 +148,124 @@
     });
 })();
 
-// --------------- CONTACT : Web3Forms ---------------
+// --------------- CONTACT : Config des canaux + Web3Forms ---------------
 (function () {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return; // rien à faire sur les pages sans formulaire de contact
 
-    // Clé d'accès Web3Forms centralisée ici : elle est injectée dans les
-    // données envoyées même si le champ caché du HTML est absent ou erroné.
+    // Une seule clé d'accès Web3Forms pour tous les canaux : c'est le même
+    // formulaire physique, seul l'affichage (onglets, header, champs) change.
     const WEB3FORMS_ACCESS_KEY = '6e4c85f6-d56e-4b60-94f0-127209c74d20';
+
+    const formAccessKey = document.getElementById('form-access-key');
+    const formSubject = document.getElementById('form-subject');
+    const formHeader = document.getElementById('contact-form-header');
+    const formHeaderIcon = document.getElementById('contact-form-header-icon');
+    const formHeaderTitle = document.getElementById('contact-form-header-title');
+    const formHeaderDesc = document.getElementById('contact-form-header-desc');
+    const formExtraFields = document.getElementById('contact-form-extra-fields');
+    const formProfileGroup = document.getElementById('contact-form-profile-group');
+    const formMessageLabel = document.getElementById('contact-form-message-label');
+    const submitBtnText = contactForm.querySelector('.btn-text');
+    const messageTextarea = document.getElementById('message');
+
+    let currentChannel = 'demo'; // canal actif par défaut, doit matcher l'onglet .active du HTML
+
+    const channelConfig = {
+        demo: {
+            icon: 'ti-rocket',
+            title: 'Demander une démo',
+            desc: null,
+            subject: 'Nouvelle demande de démo - Site Resaam',
+            submitLabel: 'Envoyer ma demande',
+            messageRequired: false,
+            showHeader: false,
+            showExtra: true
+        },
+        message: {
+            icon: 'ti-message',
+            title: 'Envoyer un message',
+            desc: null,
+            subject: 'Nouveau message - Site Resaam',
+            submitLabel: 'Envoyer le message',
+            messageRequired: true,
+            showHeader: false,
+            showExtra: true
+        },
+        commercial: {
+            icon: 'ti-mail',
+            title: "Contacter l'équipe commerciale",
+            desc: "Décrivez votre besoin, un membre de l'équipe commerciale vous répond sous 24h ouvrées.",
+            subject: 'Nouvelle demande commerciale - Site Resaam',
+            submitLabel: 'Envoyer',
+            messageRequired: true,
+            showHeader: true,
+            showExtra: false
+        },
+        support: {
+            icon: 'ti-headset',
+            title: 'Contacter le support client',
+            desc: 'Décrivez votre problème technique, notre équipe support vous répond dans les meilleurs délais.',
+            subject: 'Nouvelle demande support - Site Resaam',
+            submitLabel: 'Envoyer',
+            messageRequired: true,
+            showHeader: true,
+            showExtra: false
+        }
+    };
+
+    function applyChannel(target) {
+        const config = channelConfig[target];
+        if (!config) return;
+        currentChannel = target;
+
+        if (formAccessKey) formAccessKey.value = WEB3FORMS_ACCESS_KEY;
+        if (formSubject) formSubject.value = config.subject;
+        if (submitBtnText) submitBtnText.textContent = config.submitLabel;
+        if (messageTextarea) {
+            messageTextarea.required = config.messageRequired;
+            messageTextarea.placeholder = config.messageRequired
+                ? 'Décrivez votre demande...'
+                : 'Décrivez brièvement votre contexte et vos besoins...';
+        }
+        if (formMessageLabel) {
+            formMessageLabel.textContent = config.messageRequired ? 'Message' : 'Message (optionnel)';
+        }
+
+        if (formHeader) {
+            if (config.showHeader) {
+                if (formHeaderIcon) formHeaderIcon.innerHTML = `<i class="ti ${config.icon}"></i>`;
+                if (formHeaderTitle) formHeaderTitle.textContent = config.title;
+                if (formHeaderDesc) formHeaderDesc.textContent = config.desc;
+                formHeader.style.display = 'flex';
+            } else {
+                formHeader.style.display = 'none';
+            }
+        }
+
+        if (formExtraFields) formExtraFields.style.display = config.showExtra ? 'flex' : 'none';
+        if (formProfileGroup) formProfileGroup.style.display = config.showExtra ? 'flex' : 'none';
+
+        document.querySelectorAll('[data-form-target]').forEach((btn) => {
+            btn.classList.toggle('active', btn.dataset.formTarget === target);
+        });
+    }
+
+    document.querySelectorAll('[data-form-target]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.formTarget;
+            applyChannel(target);
+
+            if (window.innerWidth < 960) {
+                const card = document.getElementById('contact-form-card');
+                if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // État initial cohérent avec channelConfig (plutôt que de dépendre
+    // uniquement de ce qui est codé en dur dans le HTML)
+    applyChannel(currentChannel);
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -169,7 +279,7 @@
 
         const formData = new FormData(form);
         const object = Object.fromEntries(formData);
-        object.access_key = WEB3FORMS_ACCESS_KEY;
+        object.access_key = WEB3FORMS_ACCESS_KEY; // garantie, même si le champ caché a été altéré
         const json = JSON.stringify(object);
 
         try {
@@ -187,6 +297,7 @@
             if (result.success) {
                 showFormFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
                 form.reset();
+                applyChannel(currentChannel); // réapplique l'état du canal après le reset natif
             } else {
                 showFormFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ou de nous contacter par téléphone.');
             }

@@ -2591,6 +2591,10 @@ body.nav-locked {
     gap: 2.5rem;
 }
 
+.legal-block {
+    scroll-margin-top: 7rem;
+}
+
 .legal-block h2 {
     font-size: 22px;
     display: flex;

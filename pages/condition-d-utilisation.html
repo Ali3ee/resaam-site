@@ -9,89 +9,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/variables.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
-    <title>Conditions d'utilisations</title>
-</head>
-
-<body>
-
-    <header class="header">
-        <div class="header-inner">
-
-            <a href="/index.html" class="logo">
-                <img src="/assets/images/resaam.png" alt="Logo RESAAM" class="logo-img">
-                <span>Resaam</span>
-            </a>
-
-            <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <nav class="nav" id="mainNav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <button class="nav-link" type="button" aria-expanded="false">
-                            Solutions
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="m6 9 6 6 6-6"></path>
-                            </svg>
-                        </button>
-
-                        <div class="dropdown">
-                            <div class="dropdown-inner">
-                                <a href="/pages/uph.html" class="dropdown-item">
-                                    <span class="icon"><i class="ti ti-bell-ringing"></i></span>
-                                    <span>
-                                        <strong>UPH</strong>
-                                        <span class="p2">Urgence pré-hospitalière · destiné au SAMU &amp; aux ATSU</span>
-                                    </span>
-                                </a>
-                                <a href="/pages/transport-programme.html" class="dropdown-item">
-                                    <span class="icon"><i class="ti ti-truck-delivery"></i></span>
-                                    <span>
-                                        <strong>Transport programmé</strong>
-                                        <span class="p2">Gestion du transport sanitaire · destiné aux établissements de santé</span>
-                                    </span>
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="/pages/outil-metier.html" class="dropdown-item">
-                                    <span class="icon"><i class="ti ti-clipboard-list"></i></span>
-                                    <span>
-                                        <strong>Régulation</strong>
-                                        <span class="p2">RH, flotte &amp; facturation · destiné aux ambulanciers — bientôt</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a href="/pages/a-propos.html" class="nav-link">À propos</a></li>
-                    <li class="nav-item"><a href="/pages/faq.html" class="nav-link">FAQ</a></li>
-                    <li class="nav-item"><a href="/pages/contact.html" class="nav-link">Contact</a></li>
-                </ul>
-
-                <div class="header-actions">
-                    <a href="/pages/connexion.html" class="button button-white">Se connecter</a>
-                    <a href="/pages/contact.html" class="button button-blue">Demander une démo</a>
-                </div>
-            </nav>
-
-            <div class="nav-overlay"></div>
-
-        </div>
-    </header>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/variables.css">
-    <link rel="stylesheet" href="/assets/css/responsive.css">
-    <title>Conditions d'utilisation</title>
+    <title>Conditions d'utilisation | Resaam</title>
 </head>
 
 <body>
@@ -164,12 +82,181 @@
     </header>
 
     <main>
-        <section class="legal">
-            <div class="container">
-                <h1>Conditions d'utilisation</h1>
-                <p>Contenu des conditions d'utilisation...</p>
+
+        <section class="legal-hero">
+            <span class="eyebrow-blue">Légal</span>
+            <h1>Conditions d'utilisation</h1>
+            <p class="p1">Les règles applicables à l'accès et à l'utilisation de la plateforme Resaam par les sociétés d'ambulance, services de régulation (SAMU) et établissements de santé.</p>
+            <span class="legal-updated"><i class="ti ti-shield-check"></i> Conforme RGPD · Hébergement HDS en France</span>
+        </section>
+
+        <section class="legal-section">
+            <div class="legal-wrapper">
+
+                <nav class="legal-toc" aria-label="Sommaire">
+                    <span class="legal-toc-title">Sommaire</span>
+                    <a href="#objet">1. Objet et champ d'application</a>
+                    <a href="#definitions">2. Définitions</a>
+                    <a href="#acces-plateforme">3. Accès à la plateforme</a>
+                    <a href="#comptes-utilisateurs">4. Création et gestion des comptes</a>
+                    <a href="#description-services">5. Description des services</a>
+                    <a href="#obligations-utilisateurs">6. Obligations des utilisateurs</a>
+                    <a href="#propriete-intellectuelle">7. Propriété intellectuelle</a>
+                    <a href="#donnees-personnelles">8. Protection des données personnelles</a>
+                    <a href="#disponibilite-maintenance">9. Disponibilité et maintenance</a>
+                    <a href="#responsabilite">10. Responsabilité</a>
+                    <a href="#duree-resiliation">11. Durée, suspension et résiliation</a>
+                    <a href="#droit-applicable">12. Droit applicable et juridiction</a>
+                    <a href="#modification-cgu">13. Modification des conditions</a>
+                </nav>
+
+                <div class="legal-content">
+
+                    <p class="legal-intro">Les présentes conditions d'utilisation (ci-après les « CGU ») régissent l'accès et l'utilisation de la plateforme SaaS Resaam, éditée par la société RESAAM, société par actions simplifiée au capital de 1 000 euros, immatriculée au RCS de Paris sous le numéro 853 719 672, dont le siège social est situé 366 T rue de Vaugirard, 75015 Paris (ci-après « RESAAM » ou « l'Éditeur »).</p>
+
+                    <p class="legal-intro">Elles sont destinées exclusivement aux utilisateurs professionnels agissant pour le compte de leur organisation (sociétés d'ambulance, SAMU, ATSU, hôpitaux ou autres établissements de santé, ci-après les « Utilisateurs »), dans le cadre de la mise à disposition d'une solution de coordination du transport sanitaire et de mise en relation entre ces différents acteurs.</p>
+
+                    <p class="legal-intro">Toute connexion à la plateforme ou toute utilisation de ses fonctionnalités implique l'acceptation pleine et entière des présentes CGU par l'Utilisateur ainsi que, le cas échéant, par l'organisation professionnelle pour le compte de laquelle il agit.</p>
+
+                    <div class="legal-block" id="objet">
+                        <h2><span class="legal-num">01</span> Objet et champ d'application</h2>
+                        <p>Les présentes CGU ont pour objet de définir les conditions dans lesquelles RESAAM met à disposition des Utilisateurs sa plateforme de coordination du transport sanitaire, ainsi que les droits et obligations respectifs des parties dans ce cadre.</p>
+                        <p>Elles s'appliquent à l'ensemble des fonctionnalités proposées par la plateforme, qu'il s'agisse du module dédié à l'urgence pré-hospitalière (UPH), du module de transport programmé ou de tout autre module rendu disponible ultérieurement par RESAAM.</p>
+                        <p>Les CGU complètent, sans s'y substituer, les conditions particulières et contrats conclus entre RESAAM et ses clients professionnels, notamment en matière tarifaire ou de niveau de service.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="definitions">
+                        <h2><span class="legal-num">02</span> Définitions</h2>
+                        <p>Dans le cadre des présentes CGU, les termes suivants ont la signification indiquée ci-dessous :</p>
+                        <ul>
+                            <li><strong>Plateforme :</strong> le service SaaS édité par RESAAM, accessible via un navigateur ou une application dédiée, permettant la coordination du transport sanitaire</li>
+                            <li><strong>Utilisateur :</strong> toute personne physique agissant à titre professionnel, disposant d'un compte sur la plateforme pour le compte d'une société d'ambulance, d'un SAMU, d'une ATSU ou d'un établissement de santé</li>
+                            <li><strong>Client :</strong> l'organisation professionnelle ayant souscrit un contrat avec RESAAM pour l'accès de ses collaborateurs à la plateforme</li>
+                            <li><strong>Compte :</strong> l'espace personnel permettant à un Utilisateur de se connecter et d'utiliser les fonctionnalités de la plateforme</li>
+                            <li><strong>Course ou intervention :</strong> toute demande de transport sanitaire ou d'intervention gérée via la plateforme</li>
+                        </ul>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="acces-plateforme">
+                        <h2><span class="legal-num">03</span> Accès à la plateforme</h2>
+                        <p>L'accès à la plateforme est strictement réservé aux Utilisateurs professionnels dont l'organisation a préalablement souscrit un contrat avec RESAAM ou a été autorisée par un Client à accéder à la plateforme.</p>
+                        <p>L'accès nécessite une connexion internet ainsi qu'un matériel compatible (ordinateur, tablette ou smartphone). RESAAM ne saurait être tenue responsable des difficultés d'accès liées à l'environnement technique de l'Utilisateur, notamment à sa connexion internet ou à son matériel.</p>
+                        <p>RESAAM se réserve le droit de refuser ou de suspendre l'accès à la plateforme à toute personne ne justifiant pas de sa qualité d'Utilisateur professionnel habilité par un Client.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="comptes-utilisateurs">
+                        <h2><span class="legal-num">04</span> Création et gestion des comptes utilisateurs</h2>
+                        <p>La création des comptes Utilisateurs est réalisée par RESAAM ou par les administrateurs habilités du Client, en fonction des modalités convenues contractuellement.</p>
+                        <p>Chaque Utilisateur est responsable de la confidentialité de ses identifiants de connexion (email ou téléphone, mot de passe). Toute connexion réalisée à l'aide de ces identifiants est réputée émaner de l'Utilisateur concerné, sauf preuve contraire d'une utilisation frauduleuse.</p>
+                        <p>En cas de perte, de vol ou de suspicion d'utilisation non autorisée de ses identifiants, l'Utilisateur s'engage à en informer sans délai son administrateur ou RESAAM afin que les mesures nécessaires soient prises.</p>
+                        <p>Le Client demeure responsable de la mise à jour des droits d'accès de ses collaborateurs, notamment en cas de départ ou de changement de fonction d'un Utilisateur, et doit alors procéder à la désactivation du compte concerné.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="description-services">
+                        <h2><span class="legal-num">05</span> Description des services</h2>
+                        <p>La plateforme permet notamment :</p>
+                        <ul>
+                            <li>La mise en relation entre sociétés d'ambulance, services de régulation (SAMU) et établissements de santé pour la coordination des courses et interventions</li>
+                            <li>Le suivi en temps réel ou quasi temps réel des interventions et de la localisation des véhicules, selon les fonctionnalités activées pour le Client concerné</li>
+                            <li>La gestion et la traçabilité des demandes de transport sanitaire, qu'il s'agisse d'urgence pré-hospitalière ou de transport programmé</li>
+                        </ul>
+                        <p>RESAAM se réserve le droit de faire évoluer, ajouter ou retirer des fonctionnalités de la plateforme, notamment afin d'en améliorer la performance, la sécurité ou l'ergonomie, sans que cela ne puisse ouvrir droit à indemnisation, sous réserve du respect des engagements contractuels applicables au Client concerné.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="obligations-utilisateurs">
+                        <h2><span class="legal-num">06</span> Obligations des utilisateurs</h2>
+                        <p>Chaque Utilisateur s'engage à :</p>
+                        <ul>
+                            <li>Utiliser la plateforme conformément à sa destination professionnelle et aux instructions de son organisation</li>
+                            <li>Renseigner des informations exactes, complètes et à jour lors de l'utilisation des fonctionnalités de la plateforme</li>
+                            <li>Ne pas porter atteinte au bon fonctionnement, à la sécurité ou à l'intégrité de la plateforme, notamment en tentant d'accéder à des données ou fonctionnalités non autorisées</li>
+                            <li>Ne pas céder, partager ou transférer ses identifiants de connexion à un tiers non habilité</li>
+                            <li>Respecter la réglementation applicable à son activité professionnelle, notamment en matière de transport sanitaire et de secret médical</li>
+                        </ul>
+                        <p>Tout manquement à ces obligations pourra entraîner la suspension ou la résiliation de l'accès de l'Utilisateur concerné, sans préjudice des éventuelles actions que RESAAM ou le Client se réservent le droit d'engager.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="propriete-intellectuelle">
+                        <h2><span class="legal-num">07</span> Propriété intellectuelle</h2>
+                        <p>La plateforme, sa structure, son architecture, ses fonctionnalités, ainsi que l'ensemble des éléments qui la composent (textes, graphismes, logos, bases de données, logiciels) sont la propriété exclusive de RESAAM ou de ses concédants, et sont protégés par les dispositions du Code de la propriété intellectuelle.</p>
+                        <p>L'accès à la plateforme n'emporte aucune cession de droits de propriété intellectuelle au profit de l'Utilisateur ou du Client. Il est concédé à l'Utilisateur un droit d'usage personnel, non exclusif et non transférable, limité à la durée du contrat conclu entre RESAAM et le Client.</p>
+                        <p>Toute reproduction, représentation, modification ou exploitation non autorisée, totale ou partielle, de la plateforme ou de ses éléments est strictement interdite.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="donnees-personnelles">
+                        <h2><span class="legal-num">08</span> Protection des données personnelles</h2>
+                        <p>Le traitement des données à caractère personnel réalisé dans le cadre de l'utilisation de la plateforme est décrit dans la <a href="/pages/confidentialite.html" class="legal-link">politique de confidentialité</a> de RESAAM, qui fait partie intégrante des présentes CGU.</p>
+                        <p>En utilisant la plateforme, l'Utilisateur reconnaît avoir pris connaissance de cette politique et des modalités de traitement de ses données personnelles, conformément au RGPD et à la loi Informatique et Libertés.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="disponibilite-maintenance">
+                        <h2><span class="legal-num">09</span> Disponibilité et maintenance</h2>
+                        <p>RESAAM met en œuvre les moyens raisonnables pour assurer une disponibilité continue de la plateforme, dans les conditions et selon les niveaux de service éventuellement définis contractuellement avec le Client.</p>
+                        <p>RESAAM se réserve le droit de procéder à des opérations de maintenance, planifiées ou non, pouvant entraîner une interruption temporaire de l'accès à la plateforme. Dans la mesure du possible, les opérations de maintenance planifiées feront l'objet d'une information préalable auprès des Clients.</p>
+                        <p>RESAAM ne saurait être tenue responsable des interruptions de service résultant de causes qui lui sont extérieures, notamment de dysfonctionnements liés aux réseaux de télécommunication, aux fournisseurs d'hébergement ou à des cas de force majeure.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="responsabilite">
+                        <h2><span class="legal-num">10</span> Responsabilité</h2>
+                        <p>La plateforme constitue un outil de coordination et de mise en relation entre sociétés d'ambulance, SAMU et établissements de santé. Elle ne se substitue pas aux obligations professionnelles, médicales et réglementaires incombant à chaque acteur dans le cadre de son activité.</p>
+                        <p>RESAAM ne saurait être tenue responsable des décisions opérationnelles ou médicales prises par les Utilisateurs ou leurs organisations sur la base des informations transmises via la plateforme, ni des conséquences résultant d'une utilisation non conforme aux présentes CGU.</p>
+                        <p>La responsabilité de RESAAM ne pourra être engagée qu'en cas de faute prouvée directement imputable à la plateforme, et sera, dans tous les cas, limitée conformément aux stipulations prévues dans les conditions contractuelles conclues avec le Client.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="duree-resiliation">
+                        <h2><span class="legal-num">11</span> Durée, suspension et résiliation</h2>
+                        <p>Les présentes CGU s'appliquent pendant toute la durée d'utilisation de la plateforme par l'Utilisateur, dans le cadre du contrat conclu entre RESAAM et le Client.</p>
+                        <p>RESAAM se réserve le droit de suspendre ou de résilier l'accès d'un Utilisateur à la plateforme, notamment en cas de manquement aux présentes CGU, d'utilisation frauduleuse ou de résiliation du contrat conclu avec le Client concerné.</p>
+                        <p>La fin de l'accès d'un Utilisateur à la plateforme n'affecte pas la validité des traitements et opérations réalisés antérieurement, ni les obligations de conservation des données applicables à RESAAM.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="droit-applicable">
+                        <h2><span class="legal-num">12</span> Droit applicable et juridiction compétente</h2>
+                        <p>Les présentes CGU sont soumises au droit français.</p>
+                        <p>En cas de litige relatif à leur interprétation ou à leur exécution, et à défaut de résolution amiable, les tribunaux compétents du ressort du siège social de RESAAM seront seuls compétents, sauf disposition légale d'ordre public contraire.</p>
+                    </div>
+
+                    <hr class="legal-divider">
+
+                    <div class="legal-block" id="modification-cgu">
+                        <h2><span class="legal-num">13</span> Modification des conditions d'utilisation</h2>
+                        <p>RESAAM se réserve le droit de modifier à tout moment les présentes CGU, notamment pour tenir compte des évolutions légales, réglementaires, techniques ou fonctionnelles de la plateforme.</p>
+                        <p>En cas de modification substantielle, les Utilisateurs et Clients seront informés par tout moyen approprié, via la plateforme ou par l'intermédiaire de leur organisation. La poursuite de l'utilisation de la plateforme après entrée en vigueur des nouvelles CGU vaut acceptation de celles-ci.</p>
+                    </div>
+
+                    <div class="legal-contact-box">
+                        <strong>Une question sur ces conditions ?</strong>
+                        <span>Notre équipe reste à votre disposition pour toute demande relative aux présentes conditions d'utilisation.</span>
+                        <a href="mailto:contact@resaam.com">contact@resaam.com</a>
+                    </div>
+
+                </div>
+
             </div>
         </section>
+
     </main>
 
     <footer class="footer">
@@ -225,6 +312,7 @@
     </footer>
 
     <script src="/assets/js/app.js"></script>
+
 </body>
 
 </html>

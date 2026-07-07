@@ -482,22 +482,28 @@
                 <div class="cta-form-card">
                     <h3>Demander une démonstration</h3>
 
-                    <form action="#" method="POST" class="cta-form">
+                    <form action="https://api.web3forms.com/submit" method="POST" class="cta-form" id="cta-form">
+
+                        <input type="hidden" name="access_key" value="6e4c85f6-d56e-4b60-94f0-127209c74d20">
+                        <input type="hidden" name="subject" value="Demande démo ou information">
+                        <input type="hidden" name="from_name" value="Formulaire de contact">
+
+                        <input type="checkbox" name="botcheck" style="display:none;">
 
                         <div class="cta-form-row">
                             <div class="cta-form-group">
                                 <label for="prenom">Prénom</label>
-                                <input type="text" id="prenom" name="prenom" placeholder="Jean">
+                                <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
                             </div>
                             <div class="cta-form-group">
                                 <label for="nom">Nom</label>
-                                <input type="text" id="nom" name="nom" placeholder="Dupont">
+                                <input type="text" id="nom" name="nom" placeholder="Dupont" required>
                             </div>
                         </div>
 
                         <div class="cta-form-group">
                             <label for="email">E-mail professionnel</label>
-                            <input type="email" id="email" name="email" placeholder="j.dupont@etablissement.fr">
+                            <input type="email" id="email" name="email" placeholder="j.dupont@etablissement.fr" required>
                         </div>
 
                         <div class="cta-form-row">
@@ -525,6 +531,8 @@
                         <button type="submit" class="button button-blue cta-form-submit">Envoyer ma demande</button>
 
                         <p class="cta-form-footer">Réponse sous 24h ouvrées · Données chiffrées et hébergées en France</p>
+
+                        <p id="cta-form-result"></p>
 
                     </form>
                 </div>

@@ -357,7 +357,7 @@
                 showCtaFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
                 form.reset();
             } else {
-                showCtaFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ou de nous contacter par téléphone.');
+                showCtaFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ultérieurement');
             }
         } catch (error) {
             showCtaFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");

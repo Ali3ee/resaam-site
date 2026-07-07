@@ -17,6 +17,10 @@ ol {
     list-style: none;
 }
 
+strong {
+    color: #4d576e;
+}
+
 /* --------------- BASES -------------- */
 
 /* Couleurs */

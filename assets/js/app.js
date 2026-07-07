@@ -23,10 +23,16 @@
     if (!slider) return;
 
     const track = document.getElementById('temoignageTrack');
-    const cards = track.querySelectorAll('.temoignage-card');
     const dotsWrap = document.getElementById('temoignageDots');
     const prevBtn = document.getElementById('temoignagePrev');
     const nextBtn = document.getElementById('temoignageNext');
+
+    // Garde : si un élément attendu manque, on arrête proprement au lieu de
+    // laisser une exception planter le reste du script (FAQ, contact, menu...)
+    if (!track || !dotsWrap || !prevBtn || !nextBtn) return;
+
+    const cards = track.querySelectorAll('.temoignage-card');
+    if (!cards.length) return;
 
     let current = 0;
     let autoplayTimer = null;
@@ -142,130 +148,28 @@
     });
 })();
 
-// --------------- CONTACT : Config des canaux + Web3Forms ---------------
+// --------------- CONTACT : Web3Forms ---------------
 (function () {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return; // rien à faire sur les pages sans formulaire de contact
 
-    const formAccessKey = document.getElementById('form-access-key');
-    const formSubject = document.getElementById('form-subject');
-    const formHeader = document.getElementById('contact-form-header');
-    const formHeaderIcon = document.getElementById('contact-form-header-icon');
-    const formHeaderTitle = document.getElementById('contact-form-header-title');
-    const formHeaderDesc = document.getElementById('contact-form-header-desc');
-    const formExtraFields = document.getElementById('contact-form-extra-fields');
-    const formProfileGroup = document.getElementById('contact-form-profile-group');
-    const formMessageLabel = document.getElementById('contact-form-message-label');
-    const submitBtnText = contactForm.querySelector('.btn-text');
-    const messageTextarea = document.getElementById('message');
-
-    const channelConfig = {
-        demo: {
-            icon: 'ti-rocket',
-            title: 'Demander une démo',
-            desc: null,
-            accessKey: 'VOTRE_CLE_FORMULAIRE_PRINCIPAL',
-            subject: 'Nouvelle demande de démo - Site Resaam',
-            submitLabel: 'Envoyer ma demande',
-            messageRequired: false,
-            showHeader: false,
-            showExtra: true
-        },
-        message: {
-            icon: 'ti-message',
-            title: 'Envoyer un message',
-            desc: null,
-            accessKey: 'VOTRE_CLE_FORMULAIRE_PRINCIPAL',
-            subject: 'Nouveau message - Site Resaam',
-            submitLabel: 'Envoyer le message',
-            messageRequired: true,
-            showHeader: false,
-            showExtra: true
-        },
-        commercial: {
-            icon: 'ti-mail',
-            title: "Contacter l'équipe commerciale",
-            desc: "Décrivez votre besoin, un membre de l'équipe commerciale vous répond sous 24h ouvrées.",
-            accessKey: 'VOTRE_CLE_COMMERCIAL',
-            subject: 'Nouvelle demande commerciale - Site Resaam',
-            submitLabel: 'Envoyer',
-            messageRequired: true,
-            showHeader: true,
-            showExtra: false
-        },
-        support: {
-            icon: 'ti-headset',
-            title: 'Contacter le support client',
-            desc: 'Décrivez votre problème technique, notre équipe support vous répond dans les meilleurs délais.',
-            accessKey: 'VOTRE_CLE_SUPPORT',
-            subject: 'Nouvelle demande support - Site Resaam',
-            submitLabel: 'Envoyer',
-            messageRequired: true,
-            showHeader: true,
-            showExtra: false
-        }
-    };
-
-    function applyChannel(target) {
-        const config = channelConfig[target];
-        if (!config) return;
-
-        if (formAccessKey) formAccessKey.value = config.accessKey;
-        if (formSubject) formSubject.value = config.subject;
-        if (submitBtnText) submitBtnText.textContent = config.submitLabel;
-        if (messageTextarea) {
-            messageTextarea.required = config.messageRequired;
-            messageTextarea.placeholder = config.messageRequired
-                ? 'Décrivez votre demande...'
-                : 'Décrivez brièvement votre contexte et vos besoins...';
-        }
-        if (formMessageLabel) {
-            formMessageLabel.textContent = config.messageRequired ? 'Message' : 'Message (optionnel)';
-        }
-
-        if (formHeader) {
-            if (config.showHeader) {
-                if (formHeaderIcon) formHeaderIcon.innerHTML = `<i class="ti ${config.icon}"></i>`;
-                if (formHeaderTitle) formHeaderTitle.textContent = config.title;
-                if (formHeaderDesc) formHeaderDesc.textContent = config.desc;
-                formHeader.style.display = 'flex';
-            } else {
-                formHeader.style.display = 'none';
-            }
-        }
-
-        if (formExtraFields) formExtraFields.style.display = config.showExtra ? 'flex' : 'none';
-        if (formProfileGroup) formProfileGroup.style.display = config.showExtra ? 'flex' : 'none';
-
-        document.querySelectorAll('.contact-tab').forEach((tab) => {
-            tab.classList.toggle('active', tab.dataset.formTarget === target);
-        });
-    }
-
-    document.querySelectorAll('[data-form-target]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const target = btn.dataset.formTarget;
-            applyChannel(target);
-
-            if (window.innerWidth < 960) {
-                const card = document.getElementById('contact-form-card');
-                if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
+    // Clé d'accès Web3Forms centralisée ici : elle est injectée dans les
+    // données envoyées même si le champ caché du HTML est absent ou erroné.
+    const WEB3FORMS_ACCESS_KEY = '6e4c85f6-d56e-4b60-94f0-127209c74d20';
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const form = e.target;
         const submitBtn = form.querySelector('.cta-form-submit');
-        const btnText = submitBtn.querySelector('.btn-text');
-        const originalText = btnText.textContent;
+        const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+        const originalText = btnText ? btnText.textContent : null;
 
-        submitBtn.disabled = true;
-        btnText.textContent = 'Envoi en cours...';
+        if (submitBtn) submitBtn.disabled = true;
+        if (btnText) btnText.textContent = 'Envoi en cours...';
 
         const formData = new FormData(form);
         const object = Object.fromEntries(formData);
+        object.access_key = WEB3FORMS_ACCESS_KEY;
         const json = JSON.stringify(object);
 
         try {
@@ -289,8 +193,8 @@
         } catch (error) {
             showFormFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
         } finally {
-            submitBtn.disabled = false;
-            btnText.textContent = originalText;
+            if (submitBtn) submitBtn.disabled = false;
+            if (btnText) btnText.textContent = originalText;
         }
     });
 
@@ -361,4 +265,3 @@
         });
     }
 })();
-

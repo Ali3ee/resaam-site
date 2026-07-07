@@ -1,0 +1,92 @@
+/* =========================================================
+   ANIMATIONS.CSS — Apparitions au scroll (RESAAM)
+   -----------------------------------------------------------
+   Fonctionnement :
+   - Chaque élément ciblé démarre "caché" (opacité 0 + léger
+     décalage) via [data-aos].
+   - Quand il entre dans le viewport, animations.js ajoute la
+     classe .aos-in qui déclenche la transition finale.
+   - Types disponibles via data-aos="..." :
+       fade-up | fade-down | fade-left | fade-right |
+       fade-in | zoom-in | scale-up
+   - Réglages optionnels :
+       data-aos-delay="150"    (ms)
+       data-aos-duration="800" (ms)
+       data-aos-once="false"   (rejoue à chaque passage)
+   - Groupes avec stagger automatique :
+       data-aos-group="ma-liste" sur le conteneur parent
+   ========================================================= */
+
+:root {
+    --aos-duration: 700ms;
+    --aos-distance: 40px;
+    --aos-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --aos-stagger-step: 90ms;
+}
+
+/* État initial : caché */
+[data-aos] {
+    opacity: 0;
+    transition-property: opacity, transform, filter;
+    transition-duration: var(--aos-duration);
+    transition-timing-function: var(--aos-ease);
+    will-change: opacity, transform;
+}
+
+/* Directions */
+[data-aos="fade-up"] {
+    transform: translateY(var(--aos-distance));
+}
+
+[data-aos="fade-down"] {
+    transform: translateY(calc(var(--aos-distance) * -1));
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(var(--aos-distance));
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(calc(var(--aos-distance) * -1));
+}
+
+[data-aos="fade-in"] {
+    transform: translateY(0);
+}
+
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-aos="scale-up"] {
+    transform: scale(0.85);
+    filter: blur(2px);
+}
+
+/* État final : visible */
+[data-aos].aos-in {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+}
+
+/* Durée / délai personnalisés (posés en JS via style inline
+   à partir des attributs data-aos-duration / data-aos-delay) */
+
+/* Réduction de mouvement : on respecte les préférences système */
+@media (prefers-reduced-motion: reduce) {
+    [data-aos] {
+        transition-duration: 1ms !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
+/* Petit utilitaire pour désactiver totalement les animations
+   (ex : impression, ou page qui veut s'en passer) */
+.no-aos [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+}

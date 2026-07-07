@@ -77,14 +77,14 @@ h3 {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
     font-family: "Inter", sans-serif;
     min-height: 100vh;
     background-color: var(--primary-background-color);
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 main {

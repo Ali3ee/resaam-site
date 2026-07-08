@@ -864,3 +864,21 @@ main {
     }
 }
 
+@media (max-width: 992px) {
+    .hero-features {
+        flex-direction: column;
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .hero-feature {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #E5E7EB;
+        min-width: auto;
+    }
+
+    .hero-feature:last-child {
+        border-bottom: none;
+    }
+}

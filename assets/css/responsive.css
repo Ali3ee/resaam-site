@@ -50,6 +50,8 @@ main {
     .home-hero {
         min-height: 92svh;
         padding-top: clamp(6rem, 8vh, 8rem);
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 
     .home-about {
@@ -64,6 +66,14 @@ main {
     .home-about {
         width: min(100%, 1000px);
         gap: 2rem;
+    }
+
+    .home-hero-left {
+        flex-basis: calc(48% - 1rem);
+    }
+
+    .home-hero-right {
+        flex-basis: calc(52% - 1rem);
     }
 
     .home-solutions,

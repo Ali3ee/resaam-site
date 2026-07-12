@@ -1,5 +1,5 @@
 /* =========================================================
-   ANIMATIONS.JS — Apparitions au scroll (RESAAM)
+   ANIMATIONS.JS — Apparitions au scroll (REELIA)
    -----------------------------------------------------------
    1) Étiquette automatiquement les blocs "connus" du site
       (sections, cartes, titres, images...) avec data-aos,

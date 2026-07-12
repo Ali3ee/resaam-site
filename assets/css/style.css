@@ -1,14 +1,76 @@
 /* --------------- HEADER --------------- */
 
-.header {
+:root {
+    --brand-transition-height: 34px;
+}
+
+.brand-transition {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    z-index: 120;
+    min-height: var(--brand-transition-height);
+    padding: .45rem 3rem;
+    background: var(--blue-background-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.brand-transition p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.brand-transition-close {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color .15s ease, transform .15s ease;
+}
+
+.brand-transition-close:hover {
+    background: rgba(255, 255, 255, 0.26);
+    transform: translateY(-50%) scale(1.04);
+}
+
+body.brand-transition-dismissed .brand-transition {
+    display: none;
+}
+
+.header {
+    position: fixed;
+    top: var(--brand-transition-height);
     left: 0;
     right: 0;
     z-index: 100;
     background-color: transparent;
     border-bottom: 1px solid transparent;
-    transition: background-color 0.22s, border-color 0.22s, backdrop-filter 0.22s;
+    transition: top .2s ease, background-color 0.22s, border-color 0.22s, backdrop-filter 0.22s;
+}
+
+body.brand-transition-dismissed .header {
+    top: 0;
 }
 
 .header.scrolled {
@@ -35,6 +97,25 @@
     font-weight: 700;
     font-size: 17px;
     flex-shrink: 0;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1;
+}
+
+.logo-brand {
+    color: var(--title-color);
+}
+
+.logo-legacy {
+    color: var(--text-color);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
 .logo-img {
@@ -211,6 +292,26 @@
 /* ===================================================== */
 /* RESPONSIVE HEADER                                      */
 /* ===================================================== */
+
+@media (max-width: 600px) {
+    :root {
+        --brand-transition-height: 42px;
+    }
+
+    .brand-transition {
+        padding: .5rem 2.75rem .5rem 1rem;
+    }
+
+    .brand-transition p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .logo-legacy {
+        display: none;
+    }
+}
 
 @media (max-width: 900px) {
     .header {
@@ -1315,6 +1416,28 @@ body.nav-locked {
     padding-top: 6rem;
     padding-bottom: 3rem;
     border-bottom: solid 1px #6670854D;
+}
+
+.brand-transition-note {
+    width: min(100%, 760px);
+    margin-top: 1rem;
+    padding: 1.15rem 1.35rem;
+    border: 1px solid rgba(22, 116, 185, 0.18);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    text-align: left;
+}
+
+.brand-transition-note p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.brand-transition-note strong {
+    color: var(--blue-background-color);
 }
 
 .about-story {

@@ -1,5 +1,16 @@
 // --------------- HEADER : fond au scroll ---------------
 (function () {
+    const banner = document.querySelector('.brand-transition');
+    const closeBtn = document.querySelector('.brand-transition-close');
+    if (!banner || !closeBtn) return;
+
+    closeBtn.addEventListener('click', () => {
+        banner.hidden = true;
+        document.body.classList.add('brand-transition-dismissed');
+    });
+})();
+
+(function () {
     const header = document.querySelector('.header');
     if (!header) return;
 
@@ -176,7 +187,7 @@
             icon: 'ti-rocket',
             title: 'Demander une démo',
             desc: null,
-            subject: 'Nouvelle demande de démo - Site Resaam',
+            subject: 'Nouvelle demande de démo - Site Reelia',
             submitLabel: 'Envoyer ma demande',
             messageRequired: false,
             showHeader: false,
@@ -186,7 +197,7 @@
             icon: 'ti-message',
             title: 'Envoyer un message',
             desc: null,
-            subject: 'Nouveau message - Site Resaam',
+            subject: 'Nouveau message - Site Reelia',
             submitLabel: 'Envoyer le message',
             messageRequired: true,
             showHeader: false,
@@ -196,7 +207,7 @@
             icon: 'ti-mail',
             title: "Contacter l'équipe commerciale",
             desc: "Décrivez votre besoin, un membre de l'équipe commerciale vous répond sous 24h ouvrées.",
-            subject: 'Nouvelle demande commerciale - Site Resaam',
+            subject: 'Nouvelle demande commerciale - Site Reelia',
             submitLabel: 'Envoyer',
             messageRequired: true,
             showHeader: true,
@@ -206,7 +217,7 @@
             icon: 'ti-headset',
             title: 'Contacter le support client',
             desc: 'Décrivez votre problème technique, notre équipe support vous répond dans les meilleurs délais.',
-            subject: 'Nouvelle demande support - Site Resaam',
+            subject: 'Nouvelle demande support - Site Reelia',
             submitLabel: 'Envoyer',
             messageRequired: true,
             showHeader: true,

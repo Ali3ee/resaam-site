@@ -38,8 +38,8 @@
 <body>
 
         <div class="brand-transition" role="status" aria-live="polite">
-        <p>Resaam devient Reelia — nouveau nom, nouvelle plateforme, même équipe.</p>
-        <button class="brand-transition-close" type="button" aria-label="Fermer le bandeau de transition" onclick="this.closest('.brand-transition').hidden = true; document.body.classList.add('brand-transition-dismissed');"><span aria-hidden="true">&times;</span></button>
+        <p>Resaam devient Reelia &mdash; nouveau nom, nouvelle plateforme, même équipe.</p>
+        <button class="brand-transition-close" type="button" aria-label="Fermer le bandeau de transition" onclick="closeBrandTransition(this)"><span aria-hidden="true">&times;</span></button>
     </div>
 <header class="header">
         <div class="header-inner">
@@ -232,15 +232,15 @@
     <script src="/assets/js/app.js"></script>
     <script src="/assets/js/animations.js"></script>
     <script>
-    (() => {
-        const loginForm    = document.getElementById('login-form');
-        const loginCard    = document.getElementById('login-card');
-        const platformCard = document.getElementById('platform-card');
-        const platformList = document.getElementById('platform-list');
-        const userLabel    = document.getElementById('platform-user-label');
-        const countLabel   = document.getElementById('platform-count-label');
-        const backBtn      = document.getElementById('platform-back');
-        const submitBtn    = document.getElementById('login-submit');
+    (function () {
+        var loginForm    = document.getElementById('login-form');
+        var loginCard    = document.getElementById('login-card');
+        var platformCard = document.getElementById('platform-card');
+        var platformList = document.getElementById('platform-list');
+        var userLabel    = document.getElementById('platform-user-label');
+        var countLabel   = document.getElementById('platform-count-label');
+        var backBtn      = document.getElementById('platform-back');
+        var submitBtn    = document.getElementById('login-submit');
 
         if (!loginForm) return;
 
@@ -248,24 +248,24 @@
         // Point d'intégration avec l'API Express.
         // En dev, configurer le proxy Vite vers le port du serveur Express.
         // ---------------------------------------------------------------
-        const API_LOGIN_URL = '/api/auth/login';
+        var API_LOGIN_URL = '/api/auth/login';
 
         // Icônes cohérentes avec le menu "Solutions" du header
-        const PLATFORM_ICONS = {
+        var PLATFORM_ICONS = {
             'uph': 'ti-bell-ringing',
             'transport-programme': 'ti-truck-delivery',
             'outil-metier': 'ti-clipboard-list'
         };
 
         function clearFeedback(){
-            const existing = loginForm.querySelector('.form-feedback');
+            var existing = loginForm.querySelector('.form-feedback');
             if (existing) existing.remove();
         }
 
         function showFeedback(type, message){
             clearFeedback();
-            const el = document.createElement('div');
-            el.className = `form-feedback form-feedback-${type}`;
+            var el = document.createElement('div');
+            el.className = 'form-feedback form-feedback-' + type;
             el.textContent = message;
             loginForm.appendChild(el);
         }
@@ -278,24 +278,23 @@
         }
 
         function renderPlatforms(user, platforms){
-            userLabel.textContent = `Bonjour ${user.name || user.email}`;
+            userLabel.textContent = 'Bonjour ' + (user.name || user.email);
             countLabel.textContent = platforms.length > 1
-                ? `Votre compte a accès à ${platforms.length} espaces. Choisissez celui que vous souhaitez ouvrir.`
-                : `Choisissez l'espace auquel vous souhaitez accéder.`;
+                ? 'Votre compte a accès à ' + platforms.length + ' espaces. Choisissez celui que vous souhaitez ouvrir.'
+                : "Choisissez l'espace auquel vous souhaitez accéder.";
 
             platformList.innerHTML = '';
-            platforms.forEach((p) => {
-                const item = document.createElement('a');
+            platforms.forEach(function (p) {
+                var item = document.createElement('a');
                 item.href = p.url;
                 item.className = 'contact-info-item';
-                item.innerHTML = `
-                    <div class="icon"><i class="ti ${PLATFORM_ICONS[p.id] || 'ti-apps'}"></i></div>
-                    <div class="contact-info-text">
-                        <strong>${p.name}</strong>
-                        <span>${p.url.replace(/^https?:\/\//, '')}</span>
-                    </div>
-                    <i class="ti ti-chevron-right contact-info-arrow"></i>
-                `;
+                item.innerHTML = ''
+                    + '<div class="icon"><i class="ti ' + (PLATFORM_ICONS[p.id] || 'ti-apps') + '"></i></div>'
+                    + '<div class="contact-info-text">'
+                    + '<strong>' + p.name + '</strong>'
+                    + '<span>' + p.url.replace(/^https?:\/\//, '') + '</span>'
+                    + '</div>'
+                    + '<i class="ti ti-chevron-right contact-info-arrow"></i>';
                 platformList.appendChild(item);
             });
 
@@ -303,12 +302,12 @@
             platformCard.style.display = 'block';
         }
 
-        loginForm.addEventListener('submit', async (e) => {
+        loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
             clearFeedback();
 
-            const email    = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
+            var email    = document.getElementById('email').value.trim();
+            var password = document.getElementById('password').value;
 
             if (!email || !password){
                 showFeedback('error', 'Veuillez renseigner votre e-mail et votre mot de passe.');
@@ -316,29 +315,22 @@
             }
 
             setLoading(true);
-            try {
-                const response = await fetch(API_LOGIN_URL, {
+            fetch(API_LOGIN_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-
+                    body: JSON.stringify({ email: email, password: password })
+                })
+                .then(function (response) {
                 if (!response.ok){
                     throw new Error(response.status === 401
                         ? 'Identifiants incorrects.'
                         : 'Une erreur est survenue. Merci de réessayer.');
                 }
 
-                // Réponse attendue depuis l'API Express, par exemple :
-                // {
-                //   user: { name: "Jeanne Dupont", email: "jeanne@etablissement.fr" },
-                //   platforms: [
-                //     { id: "uph", name: "UPH", url: "https://uph.reelia.fr/sso?token=..." },
-                //     { id: "transport-programme", name: "Transport programmé", url: "https://transport.reelia.fr/sso?token=..." }
-                //   ]
-                // }
-                const data = await response.json();
-                const platforms = data.platforms || [];
+                    return response.json();
+                })
+                .then(function (data) {
+                    var platforms = data.platforms || [];
 
                 if (platforms.length === 0){
                     showFeedback('error', "Aucun espace n'est associé à ce compte.");
@@ -347,16 +339,18 @@
                     window.location.href = platforms[0].url;
                 } else {
                     // Plusieurs plateformes → affichage du sélecteur
-                    renderPlatforms(data.user || { email }, platforms);
+                    renderPlatforms(data.user || { email: email }, platforms);
                 }
-            } catch (err){
+                })
+                .catch(function (err) {
                 showFeedback('error', err.message || 'Connexion impossible.');
-            } finally {
+                })
+                .then(function () {
                 setLoading(false);
-            }
+                });
         });
 
-        backBtn.addEventListener('click', () => {
+        backBtn.addEventListener('click', function () {
             platformCard.style.display = 'none';
             loginCard.style.display = 'block';
             loginForm.reset();

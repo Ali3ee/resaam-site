@@ -1,20 +1,25 @@
 // --------------- HEADER : fond au scroll ---------------
+function closeBrandTransition(btn) {
+    var banner = btn.closest('.brand-transition');
+    if (banner) banner.hidden = true;
+    document.body.classList.add('brand-transition-dismissed');
+}
+
 (function () {
-    const banner = document.querySelector('.brand-transition');
-    const closeBtn = document.querySelector('.brand-transition-close');
+    var banner = document.querySelector('.brand-transition');
+    var closeBtn = document.querySelector('.brand-transition-close');
     if (!banner || !closeBtn) return;
 
-    closeBtn.addEventListener('click', () => {
-        banner.hidden = true;
-        document.body.classList.add('brand-transition-dismissed');
+    closeBtn.addEventListener('click', function () {
+        closeBrandTransition(closeBtn);
     });
 })();
 
 (function () {
-    const header = document.querySelector('.header');
+    var header = document.querySelector('.header');
     if (!header) return;
 
-    const SCROLL_THRESHOLD = 50;
+    var SCROLL_THRESHOLD = 50;
 
     function toggleHeaderBackground() {
         if (window.scrollY > SCROLL_THRESHOLD) {
@@ -30,39 +35,39 @@
 
 // --------------- Carrousel de témoignages dynamique ---------------
 (function () {
-    const slider = document.getElementById('temoignagesSlider');
+    var slider = document.getElementById('temoignagesSlider');
     if (!slider) return;
 
-    const track = document.getElementById('temoignageTrack');
-    const dotsWrap = document.getElementById('temoignageDots');
-    const prevBtn = document.getElementById('temoignagePrev');
-    const nextBtn = document.getElementById('temoignageNext');
+    var track = document.getElementById('temoignageTrack');
+    var dotsWrap = document.getElementById('temoignageDots');
+    var prevBtn = document.getElementById('temoignagePrev');
+    var nextBtn = document.getElementById('temoignageNext');
 
     // Garde : si un élément attendu manque, on arrête proprement au lieu de
     // laisser une exception planter le reste du script (FAQ, contact, menu...)
     if (!track || !dotsWrap || !prevBtn || !nextBtn) return;
 
-    const cards = track.querySelectorAll('.temoignage-card');
+    var cards = track.querySelectorAll('.temoignage-card');
     if (!cards.length) return;
 
-    let current = 0;
-    let autoplayTimer = null;
-    const AUTOPLAY_DELAY = 2000;
+    var current = 0;
+    var autoplayTimer = null;
+    var AUTOPLAY_DELAY = 2000;
 
-    cards.forEach((_, i) => {
-        const dot = document.createElement('button');
+    cards.forEach(function (_, i) {
+        var dot = document.createElement('button');
         dot.classList.add('temoignage-dot');
         if (i === 0) dot.classList.add('active');
-        dot.setAttribute('aria-label', `Aller au témoignage ${i + 1}`);
-        dot.addEventListener('click', () => goTo(i));
+        dot.setAttribute('aria-label', 'Aller au témoignage ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); });
         dotsWrap.appendChild(dot);
     });
 
-    const dots = dotsWrap.querySelectorAll('.temoignage-dot');
+    var dots = dotsWrap.querySelectorAll('.temoignage-dot');
 
     function update() {
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function (dot, i) { dot.classList.toggle('active', i === current); });
     }
 
     function goTo(index) {
@@ -86,16 +91,16 @@
     nextBtn.addEventListener('click', next);
     prevBtn.addEventListener('click', prev);
 
-    slider.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+    slider.addEventListener('mouseenter', function () { clearInterval(autoplayTimer); });
     slider.addEventListener('mouseleave', startAutoplay);
 
-    let touchStartX = 0;
-    track.addEventListener('touchstart', (e) => {
+    var touchStartX = 0;
+    track.addEventListener('touchstart', function (e) {
         touchStartX = e.touches[0].clientX;
     }, { passive: true });
 
-    track.addEventListener('touchend', (e) => {
-        const diff = e.changedTouches[0].clientX - touchStartX;
+    track.addEventListener('touchend', function (e) {
+        var diff = e.changedTouches[0].clientX - touchStartX;
         if (diff > 50) prev();
         else if (diff < -50) next();
     });
@@ -105,19 +110,21 @@
 
 // --------------- FAQ : Accordéon ---------------
 (function () {
-    const faqQuestions = document.querySelectorAll('.faq-question');
+    var faqQuestions = document.querySelectorAll('.faq-question');
     if (!faqQuestions.length) return;
 
-    faqQuestions.forEach((button) => {
-        button.addEventListener('click', () => {
-            const item = button.closest('.faq-item');
-            const answer = item.querySelector('.faq-answer');
-            const isActive = item.classList.contains('active');
+    faqQuestions.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var item = button.closest('.faq-item');
+            if (!item) return;
+            var answer = item.querySelector('.faq-answer');
+            if (!answer) return;
+            var isActive = item.classList.contains('active');
 
-            document.querySelectorAll('.faq-item.active').forEach((openItem) => {
+            document.querySelectorAll('.faq-item.active').forEach(function (openItem) {
                 if (openItem !== item) {
                     openItem.classList.remove('active');
-                    const openAnswer = openItem.querySelector('.faq-answer');
+                    var openAnswer = openItem.querySelector('.faq-answer');
                     if (openAnswer) openAnswer.style.maxHeight = null;
                 }
             });
@@ -135,21 +142,21 @@
 
 // --------------- FAQ : Filtres par catégorie ---------------
 (function () {
-    const faqFilters = document.querySelectorAll('.faq-filter');
-    const faqGroups = document.querySelectorAll('.faq-group');
-    const faqEmpty = document.querySelector('.faq-empty');
+    var faqFilters = document.querySelectorAll('.faq-filter');
+    var faqGroups = document.querySelectorAll('.faq-group');
+    var faqEmpty = document.querySelector('.faq-empty');
     if (!faqFilters.length) return;
 
-    faqFilters.forEach((filter) => {
-        filter.addEventListener('click', () => {
-            faqFilters.forEach((f) => f.classList.remove('active'));
+    faqFilters.forEach(function (filter) {
+        filter.addEventListener('click', function () {
+            faqFilters.forEach(function (f) { f.classList.remove('active'); });
             filter.classList.add('active');
 
-            const target = filter.dataset.filter;
-            let visibleCount = 0;
+            var target = filter.dataset.filter;
+            var visibleCount = 0;
 
-            faqGroups.forEach((group) => {
-                const match = target === 'all' || group.dataset.category === target;
+            faqGroups.forEach(function (group) {
+                var match = target === 'all' || group.dataset.category === target;
                 group.style.display = match ? '' : 'none';
                 if (match) visibleCount++;
             });
@@ -161,28 +168,28 @@
 
 // --------------- CONTACT : Config des canaux + Web3Forms ---------------
 (function () {
-    const contactForm = document.getElementById('contact-form');
+    var contactForm = document.getElementById('contact-form');
     if (!contactForm) return; // rien à faire sur les pages sans formulaire de contact
 
     // Une seule clé d'accès Web3Forms pour tous les canaux : c'est le même
     // formulaire physique, seul l'affichage (onglets, header, champs) change.
-    const WEB3FORMS_ACCESS_KEY = '6e4c85f6-d56e-4b60-94f0-127209c74d20';
+    var WEB3FORMS_ACCESS_KEY = '6e4c85f6-d56e-4b60-94f0-127209c74d20';
 
-    const formAccessKey = document.getElementById('form-access-key');
-    const formSubject = document.getElementById('form-subject');
-    const formHeader = document.getElementById('contact-form-header');
-    const formHeaderIcon = document.getElementById('contact-form-header-icon');
-    const formHeaderTitle = document.getElementById('contact-form-header-title');
-    const formHeaderDesc = document.getElementById('contact-form-header-desc');
-    const formExtraFields = document.getElementById('contact-form-extra-fields');
-    const formProfileGroup = document.getElementById('contact-form-profile-group');
-    const formMessageLabel = document.getElementById('contact-form-message-label');
-    const submitBtnText = contactForm.querySelector('.btn-text');
-    const messageTextarea = document.getElementById('message');
+    var formAccessKey = document.getElementById('form-access-key');
+    var formSubject = document.getElementById('form-subject');
+    var formHeader = document.getElementById('contact-form-header');
+    var formHeaderIcon = document.getElementById('contact-form-header-icon');
+    var formHeaderTitle = document.getElementById('contact-form-header-title');
+    var formHeaderDesc = document.getElementById('contact-form-header-desc');
+    var formExtraFields = document.getElementById('contact-form-extra-fields');
+    var formProfileGroup = document.getElementById('contact-form-profile-group');
+    var formMessageLabel = document.getElementById('contact-form-message-label');
+    var submitBtnText = contactForm.querySelector('.btn-text');
+    var messageTextarea = document.getElementById('message');
 
-    let currentChannel = 'demo'; // canal actif par défaut, doit matcher l'onglet .active du HTML
+    var currentChannel = 'demo'; // canal actif par défaut, doit matcher l'onglet .active du HTML
 
-    const channelConfig = {
+    var channelConfig = {
         demo: {
             icon: 'ti-rocket',
             title: 'Demander une démo',
@@ -225,8 +232,16 @@
         }
     };
 
+    function formDataToObject(formData) {
+        var object = {};
+        formData.forEach(function (value, key) {
+            object[key] = value;
+        });
+        return object;
+    }
+
     function applyChannel(target) {
-        const config = channelConfig[target];
+        var config = channelConfig[target];
         if (!config) return;
         currentChannel = target;
 
@@ -245,7 +260,7 @@
 
         if (formHeader) {
             if (config.showHeader) {
-                if (formHeaderIcon) formHeaderIcon.innerHTML = `<i class="ti ${config.icon}"></i>`;
+                if (formHeaderIcon) formHeaderIcon.innerHTML = '<i class="ti ' + config.icon + '"></i>';
                 if (formHeaderTitle) formHeaderTitle.textContent = config.title;
                 if (formHeaderDesc) formHeaderDesc.textContent = config.desc;
                 formHeader.style.display = 'flex';
@@ -257,18 +272,18 @@
         if (formExtraFields) formExtraFields.style.display = config.showExtra ? 'flex' : 'none';
         if (formProfileGroup) formProfileGroup.style.display = config.showExtra ? 'flex' : 'none';
 
-        document.querySelectorAll('[data-form-target]').forEach((btn) => {
+        document.querySelectorAll('[data-form-target]').forEach(function (btn) {
             btn.classList.toggle('active', btn.dataset.formTarget === target);
         });
     }
 
-    document.querySelectorAll('[data-form-target]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const target = btn.dataset.formTarget;
+    document.querySelectorAll('[data-form-target]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var target = btn.dataset.formTarget;
             applyChannel(target);
 
             if (window.innerWidth < 960) {
-                const card = document.getElementById('contact-form-card');
+                var card = document.getElementById('contact-form-card');
                 if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
@@ -278,54 +293,56 @@
     // uniquement de ce qui est codé en dur dans le HTML)
     applyChannel(currentChannel);
 
-    contactForm.addEventListener('submit', async (e) => {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        const form = e.target;
-        const submitBtn = form.querySelector('.cta-form-submit');
-        const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
-        const originalText = btnText ? btnText.textContent : null;
+        var form = e.target;
+        var submitBtn = form.querySelector('.cta-form-submit');
+        var btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+        var originalText = btnText ? btnText.textContent : null;
 
         if (submitBtn) submitBtn.disabled = true;
         if (btnText) btnText.textContent = 'Envoi en cours...';
 
-        const formData = new FormData(form);
-        const object = Object.fromEntries(formData);
+        var formData = new FormData(form);
+        var object = formDataToObject(formData);
         object.access_key = WEB3FORMS_ACCESS_KEY; // garantie, même si le champ caché a été altéré
-        const json = JSON.stringify(object);
+        var json = JSON.stringify(object);
 
-        try {
-            const response = await fetch('https://api.web3forms.com/submit', {
+        fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json'
                 },
                 body: json
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                showFormFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
-                form.reset();
-                applyChannel(currentChannel); // réapplique l'état du canal après le reset natif
-            } else {
-                showFormFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ou de nous contacter par téléphone.');
-            }
-        } catch (error) {
-            showFormFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
-        } finally {
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (result) {
+                if (result.success) {
+                    showFormFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
+                    form.reset();
+                    applyChannel(currentChannel); // réapplique l'état du canal après le reset natif
+                } else {
+                    showFormFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ou de nous contacter par téléphone.');
+                }
+            })
+            .catch(function () {
+                showFormFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
+            })
+            .then(function () {
             if (submitBtn) submitBtn.disabled = false;
             if (btnText) btnText.textContent = originalText;
-        }
+            });
     });
 
     function showFormFeedback(form, type, message) {
-        const existing = form.querySelector('.form-feedback');
+        var existing = form.querySelector('.form-feedback');
         if (existing) existing.remove();
 
-        const feedback = document.createElement('p');
-        feedback.className = `form-feedback form-feedback-${type}`;
+        var feedback = document.createElement('p');
+        feedback.className = 'form-feedback form-feedback-' + type;
         feedback.textContent = message;
         form.appendChild(feedback);
     }
@@ -333,59 +350,69 @@
 
 // --------------- CTA FORM (page d'accueil) : envoi AJAX sans redirection ---------------
 (function () {
-    const ctaForm = document.getElementById('cta-form');
+    var ctaForm = document.getElementById('cta-form');
     if (!ctaForm) return; // rien à faire sur les pages sans ce formulaire
 
-    ctaForm.addEventListener('submit', async (e) => {
+    function formDataToObject(formData) {
+        var object = {};
+        formData.forEach(function (value, key) {
+            object[key] = value;
+        });
+        return object;
+    }
+
+    ctaForm.addEventListener('submit', function (e) {
         e.preventDefault(); // empêche la soumission classique -> plus de redirection vers Web3Forms
 
-        const form = e.target;
-        const submitBtn = form.querySelector('.cta-form-submit');
-        const originalText = submitBtn ? submitBtn.textContent : null;
+        var form = e.target;
+        var submitBtn = form.querySelector('.cta-form-submit');
+        var originalText = submitBtn ? submitBtn.textContent : null;
 
         if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Envoi en cours...';
         }
 
-        const formData = new FormData(form);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
+        var formData = new FormData(form);
+        var object = formDataToObject(formData);
+        var json = JSON.stringify(object);
 
-        try {
-            const response = await fetch('https://api.web3forms.com/submit', {
+        fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json'
                 },
                 body: json
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (result) {
+                if (result.success) {
+                    showCtaFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
+                    form.reset();
+                } else {
+                    showCtaFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ultérieurement');
+                }
+            })
+            .catch(function () {
+                showCtaFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
+            })
+            .then(function () {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
             });
-
-            const result = await response.json();
-
-            if (result.success) {
-                showCtaFeedback(form, 'success', 'Votre demande a bien été envoyée. Nous revenons vers vous sous 24h ouvrées.');
-                form.reset();
-            } else {
-                showCtaFeedback(form, 'error', 'Une erreur est survenue. Merci de réessayer ultérieurement');
-            }
-        } catch (error) {
-            showCtaFeedback(form, 'error', "Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
-        } finally {
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-            }
-        }
     });
 
     function showCtaFeedback(form, type, message) {
-        const existing = form.querySelector('.form-feedback');
+        var existing = form.querySelector('.form-feedback');
         if (existing) existing.remove();
 
-        const feedback = document.createElement('p');
-        feedback.className = `form-feedback form-feedback-${type}`;
+        var feedback = document.createElement('p');
+        feedback.className = 'form-feedback form-feedback-' + type;
         feedback.textContent = message;
         form.appendChild(feedback);
     }
@@ -393,9 +420,9 @@
 
 // --------------- MENU MOBILE ---------------
 (function () {
-    const burger = document.querySelector('.burger');
-    const nav = document.getElementById('mainNav');
-    const overlay = document.querySelector('.nav-overlay');
+    var burger = document.querySelector('.burger');
+    var nav = document.getElementById('mainNav');
+    var overlay = document.querySelector('.nav-overlay');
     if (!burger || !nav || !overlay) return;
 
     function openNav() {
@@ -411,53 +438,58 @@
         burger.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('nav-locked');
 
-        document.querySelectorAll('.nav-item.dropdown-open').forEach((item) => {
+        document.querySelectorAll('.nav-item.dropdown-open').forEach(function (item) {
             item.classList.remove('dropdown-open');
-            item.querySelector('.nav-link')?.setAttribute('aria-expanded', 'false');
+            var itemLink = item.querySelector('.nav-link');
+            if (itemLink) itemLink.setAttribute('aria-expanded', 'false');
         });
     }
 
-    burger.addEventListener('click', () => {
+    burger.addEventListener('click', function () {
         nav.classList.contains('open') ? closeNav() : openNav();
     });
 
     overlay.addEventListener('click', closeNav);
 
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', function () {
         if (window.innerWidth > 900 && nav.classList.contains('open')) {
             closeNav();
         }
     });
 
-    nav.querySelectorAll('.nav-list > .nav-item > a.nav-link').forEach((link) => {
+    nav.querySelectorAll('.nav-list > .nav-item > a.nav-link').forEach(function (link) {
         link.addEventListener('click', closeNav);
     });
 
-    nav.querySelectorAll('.dropdown-item').forEach((link) => {
+    nav.querySelectorAll('.dropdown-item').forEach(function (link) {
         link.addEventListener('click', closeNav);
     });
 
-    const solutionsBtn = nav.querySelector('.nav-item > button.nav-link');
+    var solutionsBtn = nav.querySelector('.nav-item > button.nav-link');
     if (solutionsBtn) {
-        const solutionsItem = solutionsBtn.closest('.nav-item');
-        solutionsBtn.addEventListener('click', () => {
+        var solutionsItem = solutionsBtn.closest('.nav-item');
+        solutionsBtn.addEventListener('click', function () {
             if (window.innerWidth > 900) return;
-            const isOpen = solutionsItem.classList.toggle('dropdown-open');
+            if (!solutionsItem) return;
+            var isOpen = solutionsItem.classList.toggle('dropdown-open');
             solutionsBtn.setAttribute('aria-expanded', String(isOpen));
         });
     }
 })();
 
-const backToTopBtn = document.getElementById('backToTop');
+(function () {
+    var backToTopBtn = document.getElementById('backToTop');
+    if (!backToTopBtn) return;
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-        backToTopBtn.classList.add('visible');
-    } else {
-        backToTopBtn.classList.remove('visible');
-    }
-});
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 400) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
 
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();

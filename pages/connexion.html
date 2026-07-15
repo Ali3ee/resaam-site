@@ -116,63 +116,12 @@
                 <div class="hero-glow-bottom"></div>
             </div>
 
+            <img src="/assets/images/resaam.png" alt="Logo REELIA" class="logo-img">
             <span class="eyebrow-blue">Connexion</span>
-            <h1>Accédez à votre espace</h1>
-            <p class="p1">Identifiez-vous une seule fois : Reelia vous oriente automatiquement vers le ou les espaces associés à votre compte.</p>
-        </section>
-
-        <section class="auth-section">
-            <div class="auth-container">
-
-                <!-- Étape 1 : identifiants -->
-                <div class="contact-form-card" id="login-card">
-                    <form class="cta-form" id="login-form" novalidate>
-
-                        <div class="cta-form-group">
-                            <label for="email">E-mail professionnel</label>
-                            <input type="email" id="email" name="email" placeholder="j.dupont@etablissement.fr" required autocomplete="username">
-                        </div>
-
-                        <div class="cta-form-group">
-                            <label for="password">Mot de passe</label>
-                            <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
-                        </div>
-
-                        <div class="auth-row">
-                            <label class="auth-remember">
-                                <input type="checkbox" id="remember" name="remember">
-                                <span>Rester connecté</span>
-                            </label>
-                            <a href="/pages/contact.html" class="auth-forgot">Mot de passe oublié ?</a>
-                        </div>
-
-                        <button type="submit" class="button button-blue cta-form-submit" id="login-submit">
-                            <span class="btn-text">Se connecter</span>
-                        </button>
-
-                        <p class="cta-form-footer">Connexion sécurisée · Hébergement de données de santé (HDS)</p>
-                    </form>
-                </div>
-
-                <!-- Étape 2 : sélection de l'espace (si plusieurs plateformes) -->
-                <div class="contact-form-card" id="platform-card" style="display:none;">
-
-                    <div class="contact-form-header" style="display:flex;">
-                        <div class="contact-form-header-icon"><i class="ti ti-apps"></i></div>
-                        <div>
-                            <strong id="platform-user-label">Bonjour</strong>
-                            <p id="platform-count-label">Choisissez l'espace auquel vous souhaitez accéder.</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-list" id="platform-list">
-                        <!-- espaces générés dynamiquement en JS -->
-                    </div>
-
-                    <button type="button" class="auth-back" id="platform-back">← Se connecter avec un autre compte</button>
-                </div>
-
-            </div>
+            <h1>Redirection vers votre espace Reelia…</h1>
+            <p class="p1">
+                <a href="https://login.resaam.com" id="login-redirect-link" class="button button-blue">Si la redirection ne fonctionne pas, cliquez ici</a>
+            </p>
         </section>
 
     </main>
@@ -233,129 +182,13 @@
     <script src="/assets/js/animations.js"></script>
     <script>
     (function () {
-        var loginForm    = document.getElementById('login-form');
-        var loginCard    = document.getElementById('login-card');
-        var platformCard = document.getElementById('platform-card');
-        var platformList = document.getElementById('platform-list');
-        var userLabel    = document.getElementById('platform-user-label');
-        var countLabel   = document.getElementById('platform-count-label');
-        var backBtn      = document.getElementById('platform-back');
-        var submitBtn    = document.getElementById('login-submit');
+        var loginUrl = getReeliaLoginUrl();
+        var fallbackLink = document.getElementById('login-redirect-link');
+        if (fallbackLink) fallbackLink.href = loginUrl;
 
-        if (!loginForm) return;
-
-        // ---------------------------------------------------------------
-        // Point d'intégration avec l'API Express.
-        // En dev, configurer le proxy Vite vers le port du serveur Express.
-        // ---------------------------------------------------------------
-        var API_LOGIN_URL = '/api/auth/login';
-
-        // Icônes cohérentes avec le menu "Solutions" du header
-        var PLATFORM_ICONS = {
-            'uph': 'ti-bell-ringing',
-            'transport-programme': 'ti-truck-delivery',
-            'outil-metier': 'ti-clipboard-list'
-        };
-
-        function clearFeedback(){
-            var existing = loginForm.querySelector('.form-feedback');
-            if (existing) existing.remove();
-        }
-
-        function showFeedback(type, message){
-            clearFeedback();
-            var el = document.createElement('div');
-            el.className = 'form-feedback form-feedback-' + type;
-            el.textContent = message;
-            loginForm.appendChild(el);
-        }
-
-        function setLoading(isLoading){
-            submitBtn.disabled = isLoading;
-            submitBtn.querySelector('.btn-text').textContent = isLoading
-                ? 'Connexion en cours...'
-                : 'Se connecter';
-        }
-
-        function renderPlatforms(user, platforms){
-            userLabel.textContent = 'Bonjour ' + (user.name || user.email);
-            countLabel.textContent = platforms.length > 1
-                ? 'Votre compte a accès à ' + platforms.length + ' espaces. Choisissez celui que vous souhaitez ouvrir.'
-                : "Choisissez l'espace auquel vous souhaitez accéder.";
-
-            platformList.innerHTML = '';
-            platforms.forEach(function (p) {
-                var item = document.createElement('a');
-                item.href = p.url;
-                item.className = 'contact-info-item';
-                item.innerHTML = ''
-                    + '<div class="icon"><i class="ti ' + (PLATFORM_ICONS[p.id] || 'ti-apps') + '"></i></div>'
-                    + '<div class="contact-info-text">'
-                    + '<strong>' + p.name + '</strong>'
-                    + '<span>' + p.url.replace(/^https?:\/\//, '') + '</span>'
-                    + '</div>'
-                    + '<i class="ti ti-chevron-right contact-info-arrow"></i>';
-                platformList.appendChild(item);
-            });
-
-            loginCard.style.display = 'none';
-            platformCard.style.display = 'block';
-        }
-
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            clearFeedback();
-
-            var email    = document.getElementById('email').value.trim();
-            var password = document.getElementById('password').value;
-
-            if (!email || !password){
-                showFeedback('error', 'Veuillez renseigner votre e-mail et votre mot de passe.');
-                return;
-            }
-
-            setLoading(true);
-            fetch(API_LOGIN_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email, password: password })
-                })
-                .then(function (response) {
-                if (!response.ok){
-                    throw new Error(response.status === 401
-                        ? 'Identifiants incorrects.'
-                        : 'Une erreur est survenue. Merci de réessayer.');
-                }
-
-                    return response.json();
-                })
-                .then(function (data) {
-                    var platforms = data.platforms || [];
-
-                if (platforms.length === 0){
-                    showFeedback('error', "Aucun espace n'est associé à ce compte.");
-                } else if (platforms.length === 1){
-                    // Une seule plateforme accessible → redirection directe
-                    window.location.href = platforms[0].url;
-                } else {
-                    // Plusieurs plateformes → affichage du sélecteur
-                    renderPlatforms(data.user || { email: email }, platforms);
-                }
-                })
-                .catch(function (err) {
-                showFeedback('error', err.message || 'Connexion impossible.');
-                })
-                .then(function () {
-                setLoading(false);
-                });
-        });
-
-        backBtn.addEventListener('click', function () {
-            platformCard.style.display = 'none';
-            loginCard.style.display = 'block';
-            loginForm.reset();
-            clearFeedback();
-        });
+        window.setTimeout(function () {
+            window.location.href = loginUrl;
+        }, 1000);
     })();
     </script>
     <nav class="floating-actions" aria-label="Actions de contact rapides">

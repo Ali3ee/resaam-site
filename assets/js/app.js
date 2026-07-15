@@ -5,6 +5,32 @@ function closeBrandTransition(btn) {
     document.body.classList.add('brand-transition-dismissed');
 }
 
+function getReeliaLoginUrl() {
+    var hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return 'http://localhost:5180';
+    }
+    return 'https://login.resaam.com';
+}
+
+function updateReeliaLoginLinks() {
+    var loginUrl = getReeliaLoginUrl();
+    var links = document.querySelectorAll('a[href="/pages/connexion.html"], a[href="pages/connexion.html"]');
+
+    links.forEach(function (link) {
+        link.href = loginUrl;
+        link.removeAttribute('target');
+    });
+}
+
+(function () {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateReeliaLoginLinks);
+    } else {
+        updateReeliaLoginLinks();
+    }
+})();
+
 (function () {
     var banner = document.querySelector('.brand-transition');
     var closeBtn = document.querySelector('.brand-transition-close');

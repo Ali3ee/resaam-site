@@ -62,7 +62,7 @@ main {
 
 @media (min-width: 961px) {
     .home-hero {
-        overflow-x: visible;
+        overflow-x: hidden;
         overflow-y: hidden;
     }
 

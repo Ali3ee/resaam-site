@@ -705,48 +705,6 @@ body.nav-locked {
     flex-shrink: 0;
 }
 
-/* section about */
-.home-about {
-    width: 100%;
-    max-width: 1180px;
-    margin: 0 auto;
-    min-height: 65vh;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 3rem;
-    padding: 5rem 2rem;
-    box-sizing: border-box;
-}
-
-.home-about-left {
-    flex: 1 1 420px;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.home-about .home-about-left > p {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    line-height: 1.5;
-}
-
-.home-about .home-about-left > p + p {
-    margin-top: 6px;
-}
-
-.home-about-right {
-    flex: 1 1 380px;
-    min-width: 0;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
 /* Section nos solutions */
 .home-solutions {
     width: 100%;
@@ -757,6 +715,7 @@ body.nav-locked {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 4rem;
 }
 
 .titles {
@@ -766,11 +725,11 @@ body.nav-locked {
     align-items: center;
     text-align: center;
     gap: 1rem;
-    margin: 6rem 0rem;
+    margin: 6rem 0 0;
 }
 
 .home-solutions-items {
-    margin: 4rem 0rem;
+    margin: 0 0 4rem;
     width: 100%;
     display: flex;
     justify-content: center;

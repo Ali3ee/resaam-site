@@ -42,7 +42,7 @@
         { selector: ".partners-section img, .partners-section .partner-logo", type: "fade-in", group: true },
 
         // Visuels
-        { selector: ".home-hero img, .home-about img, .home-solutions img", type: "fade-up" },
+        { selector: ".home-hero img, .home-solutions img", type: "fade-up" },
         { selector: "section img:not([data-aos])", type: "fade-up" },
 
         // Blocs génériques de type "solution" / "chiffres"

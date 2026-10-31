@@ -25,7 +25,6 @@ main {
 /* Conteneurs fluides */
 .footer-inner,
 .home-hero,
-.home-about,
 .home-solutions,
 .chiffres-box,
 .faq-section,
@@ -36,7 +35,6 @@ main {
 }
 
 .home-hero,
-.home-about,
 .home-solutions,
 .faq-section,
 .contact-hero {
@@ -54,10 +52,6 @@ main {
         padding-right: 1.5rem;
     }
 
-    .home-about {
-        min-height: 70svh;
-        padding-top: clamp(2rem, 4vh, 3rem);
-    }
 }
 
 @media (min-width: 961px) {
@@ -70,8 +64,7 @@ main {
 
 /* Tablettes et petits écrans */
 @media (max-width: 1100px) {
-    .home-hero,
-    .home-about {
+    .home-hero {
         width: min(100%, 1000px);
         gap: 2rem;
     }
@@ -106,7 +99,6 @@ main {
 
 @media (max-width: 960px) {
     .home-hero,
-    .home-about,
     .home-solutions,
     .chiffres,
     .faq-section,
@@ -118,7 +110,6 @@ main {
     }
 
     .home-hero,
-    .home-about,
     .home-solutions-item,
     .home-solutions-item-reverse {
         flex-direction: column;
@@ -131,10 +122,12 @@ main {
         padding-bottom: 3rem;
     }
 
+    .home-solutions {
+        gap: 3rem;
+    }
+
     .home-hero-left,
     .home-hero-right,
-    .home-about-left,
-    .home-about-right,
     .home-solutions-item .left,
     .home-solutions-item .right,
     .home-solutions-item-reverse .left,
@@ -146,7 +139,6 @@ main {
     }
 
     .home-hero h1,
-    .home-about h2,
     .titles h2,
     .home-solutions-item h3,
     .home-solutions-item-reverse h3 {
@@ -156,23 +148,19 @@ main {
     }
 
     .home-hero h1 br,
-    .home-about h2 br,
     .titles h2 br,
     .home-solutions-item h3 br,
     .home-solutions-item-reverse h3 br {
         display: none;
     }
 
-    .home-about-right {
-        justify-content: center;
-    }
-
     .home-solutions-items {
         gap: 4rem;
+        margin-bottom: 3rem;
     }
 
     .titles {
-        margin: 4rem 0 2rem;
+        margin: 4rem 0 0;
     }
 
     .footer-grid {
@@ -227,7 +215,6 @@ main {
     }
 
     .home-hero h1,
-    .home-about h2,
     .titles h2,
     .home-solutions-item h3,
     .home-solutions-item-reverse h3 {
@@ -239,7 +226,6 @@ main {
     }
 
     .home-hero p,
-    .home-about p,
     .titles p,
     .home-solutions-item p,
     .home-solutions-item-reverse p {
@@ -329,7 +315,6 @@ main {
     }
 
     .home-hero,
-    .home-about,
     .home-solutions,
     .chiffres,
     .faq-section,
@@ -339,7 +324,6 @@ main {
     }
 
     .home-hero h1,
-    .home-about h2,
     .titles h2 {
         font-size: 1.7rem;
     }
@@ -373,10 +357,6 @@ main {
         padding-bottom: 2rem;
     }
 
-    .home-about {
-        min-height: auto;
-        padding-top: 2rem;
-    }
 }
 
 @media (max-width: 600px) {

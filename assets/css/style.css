@@ -15,10 +15,6 @@ html:not(.regulation-local) .home-solutions-regulation {
     display: none !important;
 }
 
-html:not(.regulation-local) .home-solutions-eyebrow {
-    display: none !important;
-}
-
 .home-solutions-title {
     visibility: hidden;
 }
@@ -914,6 +910,18 @@ html:not(.interfaces-uph-local) .uph-interfaces-dependent {
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 18px 24px rgba(15, 23, 42, 0.14));
+}
+
+.home-solutions-service .chip-light {
+    background-color: rgba(0, 144, 120, 0.12);
+    color: #007a68;
+    border-color: rgba(0, 144, 120, 0.28);
+}
+
+.home-solutions-service .check-icon {
+    color: #009078;
+    background-color: rgba(0, 144, 120, 0.12);
+    border-color: rgba(0, 144, 120, 0.32);
 }
 
 .chiffres {

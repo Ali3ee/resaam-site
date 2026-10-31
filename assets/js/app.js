@@ -6,7 +6,9 @@
     if (isLocal) document.documentElement.classList.add('regulation-local');
 
     var solutionsTitle = document.querySelector('.home-solutions-title');
-    if (!isLocal && solutionsTitle) solutionsTitle.textContent = 'Nos solutions';
+    if (!isLocal && solutionsTitle && solutionsTitle.firstChild) {
+        solutionsTitle.firstChild.nodeValue = solutionsTitle.firstChild.nodeValue.replace('Trois solutions', 'Nos solutions');
+    }
     document.documentElement.classList.add('regulation-environment-ready');
 })();
 

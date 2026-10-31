@@ -475,7 +475,8 @@ body.nav-locked {
 /* --------------- HOMEPAGE --------------- */
 
 /* Les interfaces UPH restent visibles uniquement en local. */
-html:not(.interfaces-uph-local) .uph-interfaces-section {
+html:not(.interfaces-uph-local) .uph-interfaces-section,
+html:not(.interfaces-uph-local) .uph-interfaces-dependent {
     display: none !important;
 }
 

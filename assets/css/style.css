@@ -547,6 +547,7 @@ body.nav-locked {
 .home-hero-visual {
     width: 100%;
     max-width: 100%;
+    background: transparent;
 }
 
 .home-hero-right img {

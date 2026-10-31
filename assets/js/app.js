@@ -2,9 +2,12 @@
 // Régulation : visible uniquement sur les environnements locaux.
 (function () {
     var hostname = window.location.hostname;
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        document.documentElement.classList.add('regulation-local');
-    }
+    var isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
+    if (isLocal) document.documentElement.classList.add('regulation-local');
+
+    var solutionsTitle = document.querySelector('.home-solutions-title');
+    if (!isLocal && solutionsTitle) solutionsTitle.textContent = 'Nos solutions';
+    document.documentElement.classList.add('regulation-environment-ready');
 })();
 
 // --------------- Lecteur vidéo UPH ---------------

@@ -203,11 +203,6 @@ main {
         padding-bottom: 2rem;
     }
 
-    .uph-video-card {
-        padding: .6rem;
-        border-radius: 20px;
-    }
-
     .uph-video-card .home-hero-video-shell {
         border-radius: 15px;
     }
@@ -335,11 +330,6 @@ main {
     .home-hero h1,
     .titles h2 {
         font-size: 1.7rem;
-    }
-
-    .uph-video-card {
-        padding: .45rem;
-        border-radius: 18px;
     }
 
     .uph-video-card .home-hero-video-shell {

@@ -575,23 +575,11 @@ html:not(.interfaces-uph-local) .uph-interfaces-dependent {
     object-fit: contain;
 }
 
-.uph-video-card {
-    overflow: hidden;
-    box-sizing: border-box;
-    padding: .75rem;
-    border: 1px solid rgba(102, 112, 133, 0.14);
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 22px 55px -28px rgba(37, 99, 235, 0.42),
-        0 12px 30px rgba(15, 23, 42, 0.10);
-}
-
 .home-hero-video-shell {
     position: relative;
     width: 100%;
     overflow: hidden;
     border-radius: 16px;
-    background: #0f172a;
 }
 
 .home-hero-video {

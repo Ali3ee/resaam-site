@@ -66,11 +66,6 @@ main {
         overflow-y: hidden;
     }
 
-    .home-hero-right img {
-        width: 118%;
-        max-width: none;
-        transform: translateX(3%);
-    }
 }
 
 /* Tablettes et petits écrans */

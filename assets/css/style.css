@@ -640,8 +640,17 @@ body.nav-locked {
     align-items: center;
 }
 
-.home-hero-right img {
+.home-hero-visual {
     width: 100%;
+    max-width: 100%;
+}
+
+.home-hero-right img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .cadre {
@@ -814,8 +823,15 @@ body.nav-locked {
     gap: 1rem;
 }
 
-.home-about-left p:first-child {
-    line-height: .8rem;
+.home-about .home-about-left > p {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.home-about .home-about-left > p + p {
+    margin-top: 6px;
 }
 
 .home-about-right {
@@ -896,6 +912,14 @@ body.nav-locked {
 .home-solutions-item-reverse .right {
     flex: 1 1 320px;
     min-width: 0;
+}
+
+.home-solutions-item .uph-visual img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .chiffres {
@@ -1029,6 +1053,10 @@ body.nav-locked {
     text-align: center;
     padding: 6rem 2rem;
     box-sizing: border-box;
+}
+
+.temoignages[hidden] {
+    display: none !important;
 }
 
 .temoignages h2 {

@@ -203,6 +203,15 @@ main {
         padding-bottom: 2rem;
     }
 
+    .home-hero-right {
+        padding: .6rem;
+        border-radius: 20px;
+    }
+
+    .home-hero-right video {
+        border-radius: 15px;
+    }
+
     .hero-buttons {
         flex-direction: column;
         width: 100%;
@@ -326,6 +335,15 @@ main {
     .home-hero h1,
     .titles h2 {
         font-size: 1.7rem;
+    }
+
+    .home-hero-right {
+        padding: .45rem;
+        border-radius: 18px;
+    }
+
+    .home-hero-right video {
+        border-radius: 14px;
     }
 
     .button,

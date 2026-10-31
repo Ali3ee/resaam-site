@@ -542,6 +542,14 @@ body.nav-locked {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: .75rem;
+    border: 1px solid rgba(102, 112, 133, 0.14);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 22px 55px -28px rgba(37, 99, 235, 0.42),
+        0 12px 30px rgba(15, 23, 42, 0.10);
 }
 
 .home-hero-visual {
@@ -550,12 +558,22 @@ body.nav-locked {
     background: transparent;
 }
 
-.home-hero-right img {
+.home-hero-right img,
+.home-hero-right video {
     display: block;
     width: 100%;
     max-width: 100%;
     height: auto;
     object-fit: contain;
+    border-radius: 16px;
+    background: #f8fbff;
+}
+
+.home-hero-video {
+    position: static;
+    flex: 0 1 auto;
+    aspect-ratio: 16 / 9;
+    transform: none;
 }
 
 .cadre {

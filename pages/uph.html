@@ -5,6 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            var host = window.location.hostname;
+            if (host === 'localhost' || host === '127.0.0.1') {
+                document.documentElement.classList.add('interfaces-uph-local');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -157,7 +165,7 @@
         </section>
 
         <!-- ============== ONGLETS + PANNEAUX ============== -->
-        <section class="solutions-tabs-section" id="solutions">
+        <section class="solutions-tabs-section uph-interfaces-section" id="solutions">
 
             <div class="titles" id="interfaces">
                 <div class="eyebrow-blue">Interfaces UPH</div>

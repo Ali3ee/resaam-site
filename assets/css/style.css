@@ -474,6 +474,11 @@ body.nav-locked {
 
 /* --------------- HOMEPAGE --------------- */
 
+/* Les interfaces UPH restent visibles uniquement en local. */
+html:not(.interfaces-uph-local) .uph-interfaces-section {
+    display: none !important;
+}
+
 /* Hero header */
 .home-hero {
     position: relative;

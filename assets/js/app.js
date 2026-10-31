@@ -1,10 +1,4 @@
 // --------------- HEADER : fond au scroll ---------------
-function closeBrandTransition(btn) {
-    var banner = btn.closest('.brand-transition');
-    if (banner) banner.hidden = true;
-    document.body.classList.add('brand-transition-dismissed');
-}
-
 function getReeliaLoginUrl() {
     var hostname = window.location.hostname;
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
@@ -29,16 +23,6 @@ function updateReeliaLoginLinks() {
     } else {
         updateReeliaLoginLinks();
     }
-})();
-
-(function () {
-    var banner = document.querySelector('.brand-transition');
-    var closeBtn = document.querySelector('.brand-transition-close');
-    if (!banner || !closeBtn) return;
-
-    closeBtn.addEventListener('click', function () {
-        closeBrandTransition(closeBtn);
-    });
 })();
 
 (function () {

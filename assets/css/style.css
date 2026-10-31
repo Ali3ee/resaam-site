@@ -1,5 +1,16 @@
 /* --------------- HEADER --------------- */
 
+/* La solution Régulation reste développable en local, mais n'est pas proposée
+   sur les environnements publics. Le masquage est sûr par défaut. */
+html:not(.regulation-local) a[href="/pages/outil-metier.html"],
+html:not(.regulation-local) a[href="pages/outil-metier.html"],
+html:not(.regulation-local) li:has(> a[href="/pages/outil-metier.html"]),
+html:not(.regulation-local) li:has(> a[href="pages/outil-metier.html"]),
+html:not(.regulation-local) .dropdown-divider:has(+ a[href="/pages/outil-metier.html"]),
+html:not(.regulation-local) .dropdown-divider:has(+ a[href="pages/outil-metier.html"]) {
+    display: none !important;
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -548,6 +559,23 @@ html:not(.interfaces-uph-local) .uph-interfaces-dependent {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.home-hero-visual {
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+}
+
+.home-hero-right img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.uph-video-card {
     overflow: hidden;
     box-sizing: border-box;
     padding: .75rem;
@@ -558,28 +586,88 @@ html:not(.interfaces-uph-local) .uph-interfaces-dependent {
         0 12px 30px rgba(15, 23, 42, 0.10);
 }
 
-.home-hero-visual {
+.home-hero-video-shell {
+    position: relative;
     width: 100%;
-    max-width: 100%;
-    background: transparent;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #0f172a;
 }
 
-.home-hero-right img,
-.home-hero-right video {
+.home-hero-video {
     display: block;
     width: 100%;
     max-width: 100%;
     height: auto;
+    aspect-ratio: 16 / 9;
     object-fit: contain;
-    border-radius: 16px;
-    background: #f8fbff;
-}
-
-.home-hero-video {
     position: static;
     flex: 0 1 auto;
-    aspect-ratio: 16 / 9;
     transform: none;
+}
+
+.home-hero-video-controls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    min-height: 44px;
+    padding: .5rem .65rem;
+    color: #fff;
+    background: linear-gradient(to top, rgba(15, 23, 42, .82), rgba(15, 23, 42, 0));
+    opacity: 1;
+    transition: opacity .2s ease;
+}
+
+.home-hero-video-shell[data-controls-hidden="true"] .home-hero-video-controls {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-control {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.video-control:hover,
+.video-control:focus-visible {
+    background: rgba(255, 255, 255, .18);
+    outline: none;
+}
+
+.video-progress-label {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.video-progress,
+.video-volume {
+    width: 100%;
+    accent-color: var(--blue-background-color);
+    cursor: pointer;
+}
+
+.video-volume-label {
+    flex: 0 1 84px;
+    min-width: 48px;
+}
+
+.home-hero-video-shell video:not([data-custom-controls-ready="true"]) + .home-hero-video-controls {
+    display: none;
 }
 
 .cadre {

@@ -1,0 +1,19 @@
+{
+  "routes": [
+    {
+      "src": "/pages/outil-metier.html",
+      "status": 404
+    },
+    {
+      "src": "/pages/outil-metier",
+      "status": 404
+    },
+    {
+      "src": "/pages/outil-metier/",
+      "status": 404
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
+}

@@ -203,12 +203,12 @@ main {
         padding-bottom: 2rem;
     }
 
-    .home-hero-right {
+    .uph-video-card {
         padding: .6rem;
         border-radius: 20px;
     }
 
-    .home-hero-right video {
+    .uph-video-card .home-hero-video-shell {
         border-radius: 15px;
     }
 
@@ -337,12 +337,12 @@ main {
         font-size: 1.7rem;
     }
 
-    .home-hero-right {
+    .uph-video-card {
         padding: .45rem;
         border-radius: 18px;
     }
 
-    .home-hero-right video {
+    .uph-video-card .home-hero-video-shell {
         border-radius: 14px;
     }
 

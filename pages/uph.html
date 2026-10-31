@@ -127,14 +127,35 @@
                 </div>
             </div>
 
-            <div class="home-hero-right">
-                <video class="home-hero-video" controls controlsList="nodownload" playsinline preload="metadata"
-                    oncontextmenu="return false;"
-                    poster="/assets/images/uph-video-poster.jpg"
-                    aria-label="Présentation vidéo de la plateforme Reelia pour les urgences pré-hospitalières">
-                    <source src="/assets/videos/Reelia-film-v19-safari.mp4" type="video/mp4">
-                    <p>La présentation vidéo n’est pas disponible.</p>
-                </video>
+            <div class="home-hero-right uph-video-card">
+                <div class="home-hero-video-shell">
+                    <video class="home-hero-video" controls controlsList="nodownload" playsinline preload="metadata" tabindex="0"
+                        oncontextmenu="return false;"
+                        poster="/assets/images/uph-video-poster.jpg"
+                        aria-label="Présentation vidéo de la plateforme Reelia pour les urgences pré-hospitalières">
+                        <source src="/assets/videos/Reelia-film-v19-safari.mp4" type="video/mp4">
+                        <p>La présentation vidéo n’est pas disponible.</p>
+                    </video>
+                    <div class="home-hero-video-controls" aria-label="Commandes de la vidéo">
+                        <button type="button" class="video-control video-play" aria-label="Lire la vidéo" aria-pressed="false">
+                            <i class="ti ti-player-play-filled" aria-hidden="true"></i>
+                        </button>
+                        <label class="video-progress-label">
+                            <span class="sr-only">Position dans la vidéo</span>
+                            <input class="video-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Position dans la vidéo">
+                        </label>
+                        <button type="button" class="video-control video-mute" aria-label="Activer le son" aria-pressed="false">
+                            <i class="ti ti-volume" aria-hidden="true"></i>
+                        </button>
+                        <label class="video-volume-label">
+                            <span class="sr-only">Volume</span>
+                            <input class="video-volume" type="range" min="0" max="1" value="1" step="0.05" aria-label="Volume">
+                        </label>
+                        <button type="button" class="video-control video-fullscreen" aria-label="Plein écran">
+                            <i class="ti ti-maximize" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="hero-features">

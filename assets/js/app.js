@@ -1,4 +1,119 @@
 // --------------- HEADER : fond au scroll ---------------
+// Régulation : visible uniquement sur les environnements locaux.
+(function () {
+    var hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        document.documentElement.classList.add('regulation-local');
+    }
+})();
+
+// --------------- Lecteur vidéo UPH ---------------
+(function () {
+    var videos = document.querySelectorAll('.home-hero-video');
+    if (!videos.length) return;
+
+    videos.forEach(function (video) {
+        var shell = video.closest('.home-hero-video-shell');
+        if (!shell) return;
+
+        var controls = shell.querySelector('.home-hero-video-controls');
+        var playButton = shell.querySelector('.video-play');
+        var progress = shell.querySelector('.video-progress');
+        var muteButton = shell.querySelector('.video-mute');
+        var volume = shell.querySelector('.video-volume');
+        var fullscreenButton = shell.querySelector('.video-fullscreen');
+        if (!controls || !playButton || !progress || !muteButton || !volume || !fullscreenButton) return;
+
+        video.removeAttribute('controls');
+        video.setAttribute('data-custom-controls-ready', 'true');
+
+        var hideTimer;
+
+        function updatePlayButton() {
+            var playing = !video.paused && !video.ended;
+            playButton.setAttribute('aria-label', playing ? 'Mettre la vidéo en pause' : 'Lire la vidéo');
+            playButton.setAttribute('aria-pressed', String(playing));
+            playButton.innerHTML = '<i class="ti ' + (playing ? 'ti-player-pause-filled' : 'ti-player-play-filled') + '" aria-hidden="true"></i>';
+        }
+
+        function updateProgress() {
+            if (!video.duration) return;
+            progress.value = String((video.currentTime / video.duration) * 100);
+        }
+
+        function updateMuteButton() {
+            var muted = video.muted || video.volume === 0;
+            muteButton.setAttribute('aria-label', muted ? 'Activer le son' : 'Couper le son');
+            muteButton.setAttribute('aria-pressed', String(muted));
+            muteButton.innerHTML = '<i class="ti ' + (muted ? 'ti-volume-off' : 'ti-volume') + '" aria-hidden="true"></i>';
+        }
+
+        function showControls() {
+            shell.removeAttribute('data-controls-hidden');
+            clearTimeout(hideTimer);
+            if (!video.paused) {
+                hideTimer = setTimeout(function () {
+                    if (!controls.matches(':focus-within')) shell.setAttribute('data-controls-hidden', 'true');
+                }, 2500);
+            }
+        }
+
+        function togglePlay() {
+            if (video.paused || video.ended) video.play().catch(function () {});
+            else video.pause();
+            showControls();
+        }
+
+        playButton.addEventListener('click', togglePlay);
+        video.addEventListener('click', togglePlay);
+        video.addEventListener('play', function () { updatePlayButton(); showControls(); });
+        video.addEventListener('pause', function () { updatePlayButton(); showControls(); });
+        video.addEventListener('loadedmetadata', updateProgress);
+        video.addEventListener('timeupdate', updateProgress);
+        video.addEventListener('volumechange', updateMuteButton);
+        progress.addEventListener('input', function () {
+            if (video.duration) video.currentTime = (Number(progress.value) / 100) * video.duration;
+            showControls();
+        });
+        muteButton.addEventListener('click', function () {
+            video.muted = !(video.muted || video.volume === 0);
+            if (!video.muted && video.volume === 0) video.volume = .8;
+            updateMuteButton();
+            showControls();
+        });
+        volume.addEventListener('input', function () {
+            video.volume = Number(volume.value);
+            video.muted = video.volume === 0;
+            updateMuteButton();
+            showControls();
+        });
+        fullscreenButton.addEventListener('click', function () {
+            if (document.fullscreenElement) document.exitFullscreen();
+            else if (shell.requestFullscreen) shell.requestFullscreen();
+            else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+            showControls();
+        });
+        shell.addEventListener('mousemove', showControls);
+        shell.addEventListener('touchstart', showControls, { passive: true });
+        video.addEventListener('keydown', function (event) {
+            if (event.key === ' ' || event.key === 'k') {
+                event.preventDefault();
+                togglePlay();
+            } else if (event.key === 'ArrowRight') {
+                video.currentTime = Math.min(video.duration || video.currentTime, video.currentTime + 5);
+                showControls();
+            } else if (event.key === 'ArrowLeft') {
+                video.currentTime = Math.max(0, video.currentTime - 5);
+                showControls();
+            }
+        });
+
+        updatePlayButton();
+        updateMuteButton();
+        updateProgress();
+    });
+})();
+
 function getReeliaLoginUrl() {
     var hostname = window.location.hostname;
     if (hostname === 'localhost' || hostname === '127.0.0.1') {

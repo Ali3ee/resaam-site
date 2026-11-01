@@ -342,6 +342,34 @@ html.regulation-environment-ready .home-solutions-title {
         padding: .5rem;
     }
 
+    .nav-item .dropdown {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .nav-item:not(.dropdown-open) .dropdown {
+        height: 0;
+        margin-bottom: 0;
+        overflow: hidden;
+    }
+
+    .nav-item.dropdown-open .dropdown {
+        height: auto;
+        overflow: visible;
+    }
+
+    .nav-item:not(.dropdown-open) .dropdown-inner {
+        padding: 0;
+    }
+
+    .nav-item.dropdown-open .dropdown-inner {
+        padding: .35rem .5rem .25rem;
+    }
+
     .nav-item:hover svg,
     .nav-item:focus-within svg {
         transform: none;

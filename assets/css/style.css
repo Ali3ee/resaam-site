@@ -528,7 +528,8 @@ body.nav-locked {
 /* Les interfaces UPH restent visibles uniquement en local. */
 html:not(.interfaces-uph-local) .uph-interfaces-section,
 html:not(.interfaces-uph-local) .uph-interfaces-dependent,
-html:not(.interfaces-uph-local) .transport-interfaces-section {
+html:not(.interfaces-uph-local) .transport-interfaces-section,
+html:not(.interfaces-uph-local) .transport-features-button {
     display: none !important;
 }
 
